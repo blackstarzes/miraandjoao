@@ -1,0 +1,92 @@
+body {
+    background: url(img/background.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: 'Scriptorama';
+    src: url('fonts/Scriptorama.eot');
+    src: url('fonts/Scriptorama.eot?#iefix') format('embedded-opentype'), url('fonts/Scriptorama.woff2') format('woff2'), url('fonts/Scriptorama.woff') format('woff'), url('fonts/Scriptorama.ttf') format('truetype'), url('fonts/Scriptorama.svg#Scriptorama') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.calligraphy {
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.readable {
+    font-family: 'Amatic SC', cursive;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+hr {
+    opacity: 0;
+    height: 3vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.headline-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headline-title {
+    color: azure;
+    font-size: 8vh;
+    text-align: center;
+}
+
+.headline-subtitle {
+    color: azure;
+    font-size: 3vh;
+    text-align: center;
+    transform: translateY(-5vh);
+}
+
+.mira-and-joao-pic {
+    content: url(img/miraandjoao.png);
+    height: 30vh;
+    border: 1vh solid rgba(135, 206, 250, 0.8);
+    border-radius: 50%;
+}
+
+.sign {
+    background: url(img/wood.jpg);
+    border: 1vh solid lightblue;
+    text-align: center;
+    opacity: 0.8;
+    text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+}
+}
+
+.sign .sign-header {
+    font-size: 3vh;
+}
+
+.sign .sign-content {
+    font-size: 8vh;
+}
+
+.sign .sign-footer {
+    font-size: 3vh;
+}
+
+.footline {
+    color: azure;
+    font-size: 2vh;
+}
