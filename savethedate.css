@@ -1,5 +1,5 @@
 .calligraphy {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Great Vibes', 'Marck Script', cursive;
     font-weight: normal;
     font-style: normal;
 }
@@ -105,4 +105,10 @@ body {
 .footline {
     font-size: 2vh;
     text-align: center;
+}
+
+.copyright {
+    font-size: 1vh;
+    font-family: sans-serif;
+    color: lightgray;
 }
