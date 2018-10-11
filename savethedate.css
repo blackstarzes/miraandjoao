@@ -1,19 +1,3 @@
-body {
-    background: url(img/background.jpg) no-repeat fixed center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-@font-face {
-    font-family: 'Scriptorama';
-    src: url('fonts/Scriptorama.eot');
-    src: url('fonts/Scriptorama.eot?#iefix') format('embedded-opentype'), url('fonts/Scriptorama.woff2') format('woff2'), url('fonts/Scriptorama.woff') format('woff'), url('fonts/Scriptorama.ttf') format('truetype'), url('fonts/Scriptorama.svg#Scriptorama') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .calligraphy {
     font-family: 'Great Vibes', cursive;
     font-weight: normal;
@@ -26,9 +10,9 @@ body {
     font-style: normal;
 }
 
-hr {
-    opacity: 0;
-    height: 3vh;
+body {
+    background-color: white;
+    color: gray;
 }
 
 .main-content {
@@ -36,57 +20,89 @@ hr {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
-.headline-title {
+.headline {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .headline-title {
-    color: azure;
     font-size: 8vh;
+    color: #555555;
+    margin-top: 3vh;
+    margin-bottom: 0;
     text-align: center;
 }
 
 .headline-subtitle {
-    color: azure;
     font-size: 3vh;
     text-align: center;
-    transform: translateY(-5vh);
 }
 
 .mira-and-joao-pic {
-    content: url(img/miraandjoao.png);
-    height: 30vh;
-    border: 1vh solid rgba(135, 206, 250, 0.8);
-    border-radius: 50%;
+    content: url(img/miraandjoao.jpg);
+    max-height: 50vh;
+    max-width: 100%;
 }
 
-.sign {
-    background: url(img/wood.jpg);
-    border: 1vh solid lightblue;
+.calendar {
+    font-family: 'Amatic SC', cursive;
+    font-weight: bolder;
+    font-style: normal;
+    font-size: 3vh;
+}
+
+.week {
+    display: flex;
+}
+
+.week-header {
+    display: flex;
+    color: #555555;
+}
+
+.day {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    padding: 5px;
+    font-size: 2.5vh;
+}
+
+.day.selected {
+    background: url(img/heart.png) no-repeat;
+    background-size: 100%;
+}
+
+.details {
     text-align: center;
-    opacity: 0.8;
-    text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
-}
 }
 
-.sign .sign-header {
+.details.save-the-date {
     font-size: 3vh;
+    color: #555555;
 }
 
-.sign .sign-content {
-    font-size: 8vh;
+.details.date {
+    font-size: 6vh;
+    color: #880903;
+    text-shadow: 2px 2px 0px #a45f62;
 }
 
-.sign .sign-footer {
+.details.place {
     font-size: 3vh;
+    color: #555555;
+}
+
+.floral-separator {
+    content: url(img/floral.png);
+    max-width: 20%;
 }
 
 .footline {
-    color: azure;
     font-size: 2vh;
+    text-align: center;
 }
