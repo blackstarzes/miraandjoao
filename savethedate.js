@@ -31,6 +31,7 @@ function applyLanguage() {
             .done(function(langData) {
                 console.log("Found language " + lang);
 
+                $(document).attr("title", langData.title);
                 $("[" + i18nKeyConst + "]").each(function() {
                     let translation = langData[$(this).attr(i18nKeyConst)];
                     $(this).text(translation);
