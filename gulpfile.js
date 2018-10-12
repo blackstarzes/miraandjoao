@@ -1,4 +1,5 @@
 const gulp = require("gulp");
+const browserSync = require('browser-sync');
 
 const buildFolder = "build";
 const buildImgFolder = buildFolder + "/img";
@@ -34,9 +35,18 @@ function images() {
         .pipe(gulp.dest(buildImgFolder));
 }
 
+function serve() {
+    return browserSync.init({
+        server: 'build',
+        open: false,
+        port: 3000
+    });
+}
+
 gulp.task("copy", copy);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 gulp.task("images", images);
 
 gulp.task("build", gulp.series("copy", "styles", "scripts", "images"));
+gulp.task("serve", gulp.series("build", serve));
