@@ -1,4 +1,6 @@
 const gulp = require("gulp");
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync');
 
 const buildFolder = "build";
@@ -24,6 +26,10 @@ function scripts() {
     return gulp.src([
         "src/*.js"
     ])
+        .pipe(babel({
+            presets: ["@babel/env"]
+        }))
+        .pipe(uglify({ mangle: { toplevel: true } }))
         .pipe(gulp.dest(buildFolder));
 }
 
