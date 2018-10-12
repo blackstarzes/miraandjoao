@@ -10,6 +10,7 @@
     "browser-sync": "^2.26.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^3.10.0",
     "gulp-uglify": "^3.0.1"
   },
   "scripts": {

@@ -1,6 +1,7 @@
 const gulp = require("gulp");
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
+const cleanCss = require('gulp-clean-css');
 const browserSync = require('browser-sync');
 
 const buildFolder = "build";
@@ -19,6 +20,9 @@ function styles() {
     return gulp.src([
         "src/*.css"
     ])
+        .pipe(cleanCss({
+            compatibility: "ie8"
+        }))
         .pipe(gulp.dest(buildFolder));
 }
 
