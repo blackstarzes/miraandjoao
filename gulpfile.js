@@ -6,7 +6,7 @@ const browserSync = require('browser-sync');
 const buildFolder = "build";
 const buildImgFolder = buildFolder + "/img";
 
-function copy() {
+function pages() {
     return gulp.src([
         "src/*.html",
         "src/*.ico",
@@ -41,6 +41,14 @@ function images() {
         .pipe(gulp.dest(buildImgFolder));
 }
 
+function watch() {
+    return gulp.watch([
+        "src/*.*",
+        "src/**/*.*"
+        ]
+        , gulp.series("build"));
+}
+
 function serve() {
     return browserSync.init({
         server: 'build',
@@ -49,10 +57,11 @@ function serve() {
     });
 }
 
-gulp.task("copy", copy);
+gulp.task("pages", pages);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 gulp.task("images", images);
 
-gulp.task("build", gulp.series("copy", "styles", "scripts", "images"));
-gulp.task("serve", gulp.series("build", serve));
+gulp.task("build", gulp.parallel("pages", "styles", "scripts", "images"));
+gulp.task("watch", watch);
+gulp.task("serve", gulp.series("watch", serve));
