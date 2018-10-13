@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= lang %>">
 <head>
     <meta charset="UTF-8">
-    <title>Mira & Joao</title>
+    <title><%= title %></title>
     <link rel="icon" type="image/png" sizes="192x192"  href="favicon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
@@ -13,24 +13,24 @@
 <body>
     <div class="main-content">
         <div class="headline">
-            <h1 class="headline-title calligraphy" data-i18n-key="miraAndJoao">Mira & Joao</h1>
-            <div class="headline-subtitle readable" data-i18n-key="areGettingMarried">are getting married</div>
+            <h1 class="headline-title calligraphy"><%= miraAndJoao %></h1>
+            <div class="headline-subtitle readable"><%= areGettingMarried %></div>
         </div>
         <div>
             <div class="mira-and-joao-pic"></div>
         </div>
         <div class="details">
-            <div class="details save-the-date calligraphy" data-i18n-key="saveTheDate">Save the Date</div>
+            <div class="details save-the-date calligraphy"><%= saveTheDate %></div>
             <div class="details calendar">
-                <div class="details date readable" data-i18n-key="weddingDate">11 October 2019</div>
+                <div class="details date readable"><%= weddingDate %></div>
                 <div class="week-header">
-                    <div class="day" data-i18n-key="abbrMonday">M</div>
-                    <div class="day" data-i18n-key="abbrTuesday">T</div>
-                    <div class="day" data-i18n-key="abbrWednesday">W</div>
-                    <div class="day" data-i18n-key="abbrThursday">T</div>
-                    <div class="day" data-i18n-key="abbrFriday">F</div>
-                    <div class="day" data-i18n-key="abbrSaturday">S</div>
-                    <div class="day" data-i18n-key="abbrSunday">S</div>
+                    <div class="day"><%= abbrMonday %></div>
+                    <div class="day"><%= abbrTuesday %></div>
+                    <div class="day"><%= abbrWednesday %></div>
+                    <div class="day"><%= abbrThursday %></div>
+                    <div class="day"><%= abbrFriday %></div>
+                    <div class="day"><%= abbrSaturday %></div>
+                    <div class="day"><%= abbrSunday %></div>
                 </div>
                 <div class="week">
                     <div class="day"></div>
@@ -79,10 +79,10 @@
                 </div>
             </div>
             <hr>
-            <div class="details place readable" data-i18n-key="algarvePortugal">Algarve • Portugal</div>
+            <div class="details place readable"><%= algarvePortugal %></div>
         </div>
         <div class="floral-separator"></div>
-        <div class="footline readable" data-i18n-key="invitationsToFollow">formal invitations to follow</div>
+        <div class="footline readable"><%= invitationsToFollow %></div>
         <div class="copyright">© Joao Lourenco 2018</div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

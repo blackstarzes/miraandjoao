@@ -2,9 +2,11 @@ const gulp = require("gulp");
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const cleanCss = require('gulp-clean-css');
-const fs = require("fs");
 const path = require("path");
 const through2 = require("through2");
+const fs = require("fs");
+const data = require("gulp-data");
+const template = require("gulp-template");
 const browserSync = require('browser-sync');
 
 const buildFolder = "build";
@@ -21,7 +23,6 @@ function pages() {
             let i = 0, len = languages.length;
             for (; i < len; i++) {
                 let lang = languages[i];
-                let langJson = JSON.parse(fs.readFileSync("src/i18n/" + lang + ".json"));
                 let newFile = file.clone();
                 newFile.contents = new Buffer(pageContents);
                 newFile.path = path.join(pagePath.dir, pagePath.name + "_" + lang + pagePath.ext);
@@ -30,6 +31,12 @@ function pages() {
 
             next();
         }))
+        .pipe(data(function(file) {
+            let filename = path.parse(file.path).name;
+            let lang = filename.substring(filename.indexOf("_") + 1);
+            return JSON.parse(fs.readFileSync("src/i18n/" + lang + ".json"));
+        }))
+        .pipe(template())
         .pipe(gulp.dest(buildFolder));
 }
 
@@ -94,4 +101,4 @@ gulp.task("images", images);
 
 gulp.task("build", gulp.parallel("pages", "styles", "scripts", "favicons", "images"));
 gulp.task("watch", watch);
-gulp.task("serve", gulp.series("watch", serve));
+gulp.task("serve", gulp.parallel("watch", serve));
