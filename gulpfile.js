@@ -2,17 +2,34 @@ const gulp = require("gulp");
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const cleanCss = require('gulp-clean-css');
+const fs = require("fs");
+const path = require("path");
+const through2 = require("through2");
 const browserSync = require('browser-sync');
 
 const buildFolder = "build";
 const buildImgFolder = buildFolder + "/img";
+const languages = ["en", "ru"];
 
 function pages() {
     return gulp.src([
-        "src/*.html",
-        "src/*.ico",
-        "src/*.png"
+        "src/*.html"
     ])
+        .pipe(through2.obj(function(file, enc, next) {
+            let pageContents = file.contents.toString();
+            let pagePath = path.parse(file.path);
+            let i = 0, len = languages.length;
+            for (; i < len; i++) {
+                let lang = languages[i];
+                let langJson = JSON.parse(fs.readFileSync("src/i18n/" + lang + ".json"));
+                let newFile = file.clone();
+                newFile.contents = new Buffer(pageContents);
+                newFile.path = path.join(pagePath.dir, pagePath.name + "_" + lang + pagePath.ext);
+                this.push(newFile);
+            }
+
+            next();
+        }))
         .pipe(gulp.dest(buildFolder));
 }
 
@@ -34,6 +51,14 @@ function scripts() {
             presets: ["@babel/env"]
         }))
         .pipe(uglify({ mangle: { toplevel: true } }))
+        .pipe(gulp.dest(buildFolder));
+}
+
+function favicons() {
+    return gulp.src([
+        "src/*.ico",
+        "src/*.png"
+    ])
         .pipe(gulp.dest(buildFolder));
 }
 
@@ -64,8 +89,9 @@ function serve() {
 gulp.task("pages", pages);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
+gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.parallel("pages", "styles", "scripts", "images"));
+gulp.task("build", gulp.parallel("pages", "styles", "scripts", "favicons", "images"));
 gulp.task("watch", watch);
 gulp.task("serve", gulp.series("watch", serve));
