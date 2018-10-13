@@ -1,13 +1,13 @@
 const gulp = require("gulp");
-const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
-const cleanCss = require('gulp-clean-css');
+const babel = require("gulp-babel");
+const uglify = require("gulp-uglify");
+const cleanCss = require("gulp-clean-css");
 const path = require("path");
 const through2 = require("through2");
 const fs = require("fs");
 const data = require("gulp-data");
 const template = require("gulp-template");
-const browserSync = require('browser-sync');
+const browserSync = require("browser-sync");
 
 // Configuration
 const srcFolder = "src";
@@ -31,15 +31,14 @@ function pages() {
                 let lang = languages[i];
                 let newFile = file.clone();
                 newFile.contents = new Buffer(pageContents);
-                newFile.path = path.join(pagePath.dir, pagePath.name + "_" + lang + pagePath.ext);
+                newFile.path = path.join(pagePath.dir, "i18n", lang, pagePath.name + pagePath.ext);
                 this.push(newFile);
             }
 
             next();
         }))
         .pipe(data(function(file) {
-            let filename = path.parse(file.path).name;
-            let lang = filename.substring(filename.indexOf("_") + 1);
+            let lang = path.parse(path.parse(file.path).dir).name;
             return JSON.parse(fs.readFileSync(appFolder + "/i18n/" + lang + ".json"));
         }))
         .pipe(template())
