@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="stylesheet" href="savethedate.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Great+Vibes|Marck+Script" rel="stylesheet">
+</head>
+<body>
+    <div class="main-content">
+        <div class="headline">
+            <h1 class="headline-title calligraphy"><%= miraAndJoao %></h1>
+            <div class="headline-subtitle readable"><%= areGettingMarried %></div>
+        </div>
+        <div>
+            <div class="mira-and-joao-pic"></div>
+        </div>
+        <div class="details">
+            <div class="details save-the-date calligraphy"><%= saveTheDate %></div>
+            <div class="details calendar">
+                <div class="details date readable"><%= weddingDate %></div>
+                <div class="week-header">
+                    <div class="day"><%= abbrMonday %></div>
+                    <div class="day"><%= abbrTuesday %></div>
+                    <div class="day"><%= abbrWednesday %></div>
+                    <div class="day"><%= abbrThursday %></div>
+                    <div class="day"><%= abbrFriday %></div>
+                    <div class="day"><%= abbrSaturday %></div>
+                    <div class="day"><%= abbrSunday %></div>
+                </div>
+                <div class="week">
+                    <div class="day"></div>
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                </div>
+                <div class="week">
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day selected">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                </div>
+                <div class="week">
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                </div>
+                <div class="week">
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                </div>
+                <div class="week">
+                    <div class="day">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                    <div class="day">31</div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                    <div class="day"></div>
+                </div>
+            </div>
+            <hr>
+            <div class="details place readable"><%= algarvePortugal %></div>
+        </div>
+        <div class="floral-separator"></div>
+        <div class="footline readable"><%= invitationsToFollow %></div>
+        <div class="copyright">© Joao Lourenco 2018</div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="savethedate.js"></script>
+</body>
+</html>

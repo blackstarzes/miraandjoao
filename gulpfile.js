@@ -9,13 +9,19 @@ const data = require("gulp-data");
 const template = require("gulp-template");
 const browserSync = require('browser-sync');
 
+// Configuration
+const srcFolder = "src";
 const buildFolder = "build";
-const buildImgFolder = buildFolder + "/img";
 const languages = ["en", "ru"];
+
+// Web App
+const appFolder = srcFolder + "/app";
+const buildAppFolder = buildFolder + "/app"
+const buildAppImgFolder = buildAppFolder + "/img";
 
 function pages() {
     return gulp.src([
-        "src/*.html"
+        appFolder + "/*.html"
     ])
         .pipe(through2.obj(function(file, enc, next) {
             let pageContents = file.contents.toString();
@@ -34,60 +40,59 @@ function pages() {
         .pipe(data(function(file) {
             let filename = path.parse(file.path).name;
             let lang = filename.substring(filename.indexOf("_") + 1);
-            return JSON.parse(fs.readFileSync("src/i18n/" + lang + ".json"));
+            return JSON.parse(fs.readFileSync(appFolder + "/i18n/" + lang + ".json"));
         }))
         .pipe(template())
-        .pipe(gulp.dest(buildFolder));
+        .pipe(gulp.dest(buildAppFolder));
 }
 
 function styles() {
     return gulp.src([
-        "src/*.css"
+        appFolder + "/*.css"
     ])
         .pipe(cleanCss({
             compatibility: "ie8"
         }))
-        .pipe(gulp.dest(buildFolder));
+        .pipe(gulp.dest(buildAppFolder));
 }
 
 function scripts() {
     return gulp.src([
-        "src/*.js"
+        appFolder + "/*.js"
     ])
         .pipe(babel({
             presets: ["@babel/env"]
         }))
         .pipe(uglify({ mangle: { toplevel: true } }))
-        .pipe(gulp.dest(buildFolder));
+        .pipe(gulp.dest(buildAppFolder));
 }
 
 function favicons() {
     return gulp.src([
-        "src/*.ico",
-        "src/*.png"
+        appFolder + "/*.ico",
+        appFolder + "/*.png"
     ])
-        .pipe(gulp.dest(buildFolder));
+        .pipe(gulp.dest(buildAppFolder));
 }
 
 function images() {
     return gulp.src([
-        "src/img/*.jpg",
-        "src/img/*.png"
+        appFolder + "/img/*.jpg",
+        appFolder + "/img/*.png"
     ])
-        .pipe(gulp.dest(buildImgFolder));
+        .pipe(gulp.dest(buildAppImgFolder));
 }
 
 function watch() {
     return gulp.watch([
-        "src/*.*",
-        "src/**/*.*"
-        ]
-        , gulp.series("build"));
+        appFolder + "/*.*",
+        appFolder + "/**/*.*"
+    ] , gulp.series("build"));
 }
 
 function serve() {
     return browserSync.init({
-        server: 'build',
+        server: 'build/app',
         open: false,
         port: 3000
     });
