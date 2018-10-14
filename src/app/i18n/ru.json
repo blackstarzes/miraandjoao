@@ -19,5 +19,17 @@
   },
   "privacyPolicyPage": {
     "titleSuffix": "Политика конфиденциальности"
+  },
+  "email": {
+    "saveTheDate": {
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "Мира и Жоао женятся!",
+      "cta": "Откройте дату сохранения"
+    },
+    "footer": {
+      "visitOurSite": "Посетите наш сайт",
+      "emailUs": "Пишите нам",
+      "sentBy": "Это письмо было отправлено"
+    }
   }
 }

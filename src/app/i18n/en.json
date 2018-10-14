@@ -19,5 +19,17 @@
   },
   "privacyPolicyPage": {
     "titleSuffix": "Privacy Policy"
+  },
+  "email": {
+    "saveTheDate": {
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "Mira & Joao are getting married!",
+      "cta": "Open your save the date"
+    },
+    "footer": {
+      "visitOurSite": "Visit our site",
+      "emailUs": "Email us",
+      "sentBy": "This email was sent by"
+    }
   }
 }
