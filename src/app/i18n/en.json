@@ -14,10 +14,10 @@
   "abbrSunday": "S",
   "algarvePortugal": "Algarve • Portugal",
   "invitationsToFollow": "formal invitations to follow",
-  "saveTheDate": {
+  "saveTheDatePage": {
     "titleSuffix": "Save the Date"
   },
-  "privacyPolicy": {
+  "privacyPolicyPage": {
     "titleSuffix": "Privacy Policy"
   }
 }
