@@ -69,16 +69,26 @@ exports.handler = (event, context, callback) => {
         return null;
     };
 
+    // Original request
     let acceptLanguage = request.headers["accept-language"][0].value;
     let uri = request.uri;
     console.log(`Request uri="${uri}" accept-language="${acceptLanguage}"`);
+
+    // Language
     let language = selectLanguage(languages, acceptLanguage, { loose: true });
-    if (!request.uri || request.uri === "" || request.uri === "/") {
-        request.uri = "/index.html";
-    }
     if (!language) {
         language = "en";
     }
+
+    // URL rewrite
+    if (!request.uri || request.uri === "") {
+        request.uri = "/";
+    }
+    if (request.uri.endsWith("/")) {
+        request.uri += "index.html";
+    }
+
+    // Final resource
     request.uri = "/i18n/" + language + request.uri;
     console.log(`Selected language "${language}" when accept-language="${acceptLanguage}" - request uri changed from "${uri}" to "${request.uri}"`);
 

@@ -13,5 +13,8 @@
   "abbrSaturday": "S",
   "abbrSunday": "S",
   "algarvePortugal": "Algarve • Portugal",
-  "invitationsToFollow": "formal invitations to follow"
+  "invitationsToFollow": "formal invitations to follow",
+  "privacyPolicy": {
+    "titleSuffix": "Privacy Policy"
+  }
 }

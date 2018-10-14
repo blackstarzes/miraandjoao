@@ -16,29 +16,57 @@ const languages = ["en", "ru"];
 
 // Web App
 const appFolder = srcFolder + "/app";
-const buildAppFolder = buildFolder + "/app"
+const appLayoutFolder = appFolder + "/_layout";
+const buildAppFolder = buildFolder + "/app";
 const buildAppImgFolder = buildAppFolder + "/img";
+
+function applyLayout(pageContents) {
+    let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
+    console.log(layoutString);
+    let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"-->/);
+    if (match) {
+        let layout = fs.readFileSync(appLayoutFolder + "/" + match[1]).toString();
+        layout = layout
+            .replace("<!--title-->", match[2])
+            .replace("<!--content-->", pageContents.substring(pageContents.indexOf("\n")+1));
+        return layout;
+    }
+    return pageContents;
+}
 
 function pages() {
     return gulp.src([
-        appFolder + "/*.html"
+        appFolder + "/*.html",
+        appFolder + "/**/*.html"
     ])
         .pipe(through2.obj(function(file, enc, next) {
             let pageContents = file.contents.toString();
             let pagePath = path.parse(file.path);
+
+            // Ignore layout folder
+            if (pagePath.dir.endsWith(appLayoutFolder)) {
+                next();
+                return;
+            }
+
+            // Apply layout
+            pageContents = applyLayout(pageContents);
+
+            // Emit file per language
             let i = 0, len = languages.length;
             for (; i < len; i++) {
                 let lang = languages[i];
                 let newFile = file.clone();
                 newFile.contents = new Buffer(pageContents);
-                newFile.path = path.join(pagePath.dir, "i18n", lang, pagePath.name + pagePath.ext);
+                newFile.path = path.join(appFolder, "i18n", lang, path.relative(appFolder, pagePath.dir), pagePath.name + pagePath.ext);
+                newFile.lang = lang;
                 this.push(newFile);
             }
 
             next();
         }))
         .pipe(data(function(file) {
-            let lang = path.parse(path.parse(file.path).dir).name;
+            let lang = file.lang;
             return JSON.parse(fs.readFileSync(appFolder + "/i18n/" + lang + ".json"));
         }))
         .pipe(template())

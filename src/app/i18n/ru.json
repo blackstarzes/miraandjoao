@@ -13,5 +13,8 @@
   "abbrSaturday": "С",
   "abbrSunday": "В",
   "algarvePortugal": "Алгарве • Португалия",
-  "invitationsToFollow": "официальное приглашение следует"
+  "invitationsToFollow": "официальное приглашение следует",
+  "privacyPolicy": {
+    "titleSuffix": "Политика конфиденциальности"
+  }
 }
