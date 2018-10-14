@@ -120,9 +120,10 @@ function watch() {
 
 function serve() {
     return browserSync.init({
-        server: 'build/app',
+        server: "build/app",
         open: false,
-        port: 3000
+        port: 3000,
+        files: ["build/app/*.*", "build/app/**/*.*"]
     });
 }
 
