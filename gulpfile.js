@@ -22,7 +22,6 @@ const buildAppImgFolder = buildAppFolder + "/img";
 
 function applyLayout(pageContents) {
     let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
-    console.log(layoutString);
     let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"-->/);
     if (match) {
         let layout = fs.readFileSync(appLayoutFolder + "/" + match[1]).toString();

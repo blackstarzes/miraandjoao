@@ -14,6 +14,9 @@
   "abbrSunday": "S",
   "algarvePortugal": "Algarve • Portugal",
   "invitationsToFollow": "formal invitations to follow",
+  "saveTheDate": {
+    "titleSuffix": "Save the Date"
+  },
   "privacyPolicy": {
     "titleSuffix": "Privacy Policy"
   }

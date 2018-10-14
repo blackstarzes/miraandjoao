@@ -14,6 +14,9 @@
   "abbrSunday": "В",
   "algarvePortugal": "Алгарве • Португалия",
   "invitationsToFollow": "официальное приглашение следует",
+  "saveTheDate": {
+    "titleSuffix": "Дата свадьбы"
+  },
   "privacyPolicy": {
     "titleSuffix": "Политика конфиденциальности"
   }
