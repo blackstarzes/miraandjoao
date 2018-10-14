@@ -1,5 +1,6 @@
 const gulp = require("gulp");
 const babel = require("gulp-babel");
+const htmlmin = require('gulp-htmlmin');
 const uglify = require("gulp-uglify");
 const cleanCss = require("gulp-clean-css");
 const path = require("path");
@@ -69,6 +70,7 @@ function pages() {
             return JSON.parse(fs.readFileSync(appFolder + "/i18n/" + lang + ".json"));
         }))
         .pipe(template())
+        .pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true }))
         .pipe(gulp.dest(buildAppFolder));
 }
 
