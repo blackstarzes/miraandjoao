@@ -1,2 +1,0 @@
-$.when($.ready).then(function(){
-});
