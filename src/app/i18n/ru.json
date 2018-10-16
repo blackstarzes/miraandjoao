@@ -24,7 +24,10 @@
     "saveTheDate": {
       "salutation": "{{salutation}} {{invitednames}},",
       "message": "Мира и Жоао женятся!",
-      "cta": "Откройте дату сохранения"
+      "cta": "Откройте дату сохранения",
+      "algarvePortugal": "Алгарве, Португалия",
+      "weddingDate": "11 Oктября 2019",
+      "invitationsToFollow": "Oфициальное приглашение следует"
     },
     "footer": {
       "visitOurSite": "Посетите наш сайт",

@@ -1,6 +1,7 @@
 const gulp = require("gulp");
 const babel = require("gulp-babel");
 const htmlmin = require('gulp-htmlmin');
+const html2txt = require('gulp-html2txt');
 const uglify = require("gulp-uglify");
 const cleanCss = require("gulp-clean-css");
 const path = require("path");
@@ -20,6 +21,7 @@ const appFolder = srcFolder + "/app";
 const appLayoutFolder = appFolder + "/_layout";
 const buildAppFolder = buildFolder + "/app";
 const buildAppImgFolder = buildAppFolder + "/img";
+const buildEmailFolder = buildFolder + "/email";
 
 function applyLayout(pageContents) {
     let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
@@ -58,7 +60,10 @@ function pages() {
                 let lang = languages[i];
                 let newFile = file.clone();
                 newFile.contents = new Buffer(pageContents);
-                newFile.path = path.join(appFolder, "i18n", lang, path.relative(appFolder, pagePath.dir), pagePath.name + pagePath.ext);
+                let dir = path.relative(appFolder, pagePath.dir) === "email"
+                    ? path.join(buildEmailFolder, lang)
+                    : path.join(appFolder, "i18n", lang, path.relative(appFolder, pagePath.dir));
+                newFile.path = path.join(dir, pagePath.name + pagePath.ext);
                 newFile.lang = lang;
                 this.push(newFile);
             }
@@ -72,6 +77,17 @@ function pages() {
         .pipe(template())
         .pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }))
         .pipe(gulp.dest(buildAppFolder));
+}
+
+function email2text() {
+    return gulp.src([
+        buildEmailFolder + "/**/*.html"
+    ])
+        .pipe(html2txt({
+            wordwrap: false,
+            ignoreImage: true
+        }))
+        .pipe(gulp.dest(buildEmailFolder));
 }
 
 function styles() {
@@ -128,11 +144,12 @@ function serve() {
 }
 
 gulp.task("pages", pages);
+gulp.task("email2text", email2text);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.parallel("pages", "styles", "scripts", "favicons", "images"));
+gulp.task("build", gulp.parallel(gulp.series("pages", "email2text"), "styles", "scripts", "favicons", "images"));
 gulp.task("watch", watch);
 gulp.task("serve", gulp.parallel("watch", serve));

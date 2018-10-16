@@ -33,7 +33,7 @@
                         <table width="200" height="44" cellpadding="0" cellspacing="0" border="0" bgcolor="#880903" style="border-radius:4px;">
                             <tr>
                                 <td align="center" valign="middle" height="44" style="font-family: Arial, sans-serif; font-size:12px; font-weight:bold;">
-                                    <a href="https://miraandjoao.com/savethedate/" target="_blank" style="font-family: Arial, sans-serif; color:#ffffff; display: inline-block; text-decoration: none; line-height:44px; width:200px; font-weight:bold;"><%= email.saveTheDate.cta %></a>
+                                    <p><a href="https://miraandjoao.com/savethedate/{{usertag}}" target="_blank" style="font-family: Arial, sans-serif; color:#ffffff; display: inline-block; text-decoration: none; line-height:44px; width:200px; font-weight:bold;"><%= email.saveTheDate.cta %></a></p>
                                 </td>
                             </tr>
                         </table>
@@ -41,6 +41,51 @@
                 </tr>
             </table>
 
+        </td>
+    </tr>
+    <tr>
+        <td height="10" style="font-size:10px; line-height:10px;">&nbsp;</td>
+    </tr>
+</table>
+
+<table width="640" cellpadding="0" cellspacing="0" border="0" class="wrapper" bgcolor="#FFFFFF">
+    <tr>
+        <td height="10" style="font-size:10px; line-height:10px;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">
+            <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+                <tr>
+                    <td width="300" class="mobile" align="center" valign="top">
+                        <p style="font-weight: bold">Where:</p>
+                        <p><%= email.saveTheDate.algarvePortugal %></p>
+                    </td>
+                    <td width="300" class="mobile" align="center" valign="top">
+                        <p style="font-weight: bold">When:</p>
+                        <p><%= email.saveTheDate.weddingDate %></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td height="10" style="font-size:10px; line-height:10px;">&nbsp;</td>
+    </tr>
+</table>
+
+<table width="640" cellpadding="0" cellspacing="0" border="0" class="wrapper" bgcolor="#FFFFFF">
+    <tr>
+        <td height="10" style="font-size:10px; line-height:10px;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="center" valign="top">
+            <table width="600" cellpadding="0" cellspacing="0" border="0" class="container">
+                <tr>
+                    <td align="center" valign="top">
+                        <p><%= email.saveTheDate.invitationsToFollow %></p>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>
