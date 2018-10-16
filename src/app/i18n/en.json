@@ -26,9 +26,9 @@
       "salutation": "{{salutation}} {{invitednames}},",
       "message": "Mira & Joao are getting married!",
       "cta": "Open your save the date",
-      "where": "Location",
+      "where": "Where",
       "algarvePortugal": "Algarve, Portugal",
-      "when": "Date",
+      "when": "When",
       "weddingDate": "11 October 2019",
       "invitationsToFollow": "Formal invitations to follow"
     },

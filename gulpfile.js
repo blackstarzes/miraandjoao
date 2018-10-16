@@ -12,6 +12,7 @@ const through2 = require("through2");
 const fs = require("fs");
 const data = require("gulp-data");
 const template = require("gulp-template");
+var groupAggregate = require('gulp-group-aggregate');
 const browserSync = require("browser-sync");
 
 // Configuration
@@ -93,13 +94,49 @@ function pages() {
         .pipe(gulp.dest(buildAppFolder));
 }
 
-function email2text() {
+function email2txt() {
     return gulp.src([
         buildEmailFolder + "/**/*.html"
     ])
         .pipe(html2txt({
             wordwrap: false,
             ignoreImage: true
+        }))
+        .pipe(gulp.dest(buildEmailFolder));
+}
+
+function emailTemplates() {
+    return gulp.src([
+        buildEmailFolder + "/**/*.*"
+    ])
+        .pipe(groupAggregate({
+            group: function(file) {
+                let filePath = path.parse(file.path);
+                return filePath.name + "-" + path.parse(filePath.dir).name;
+            },
+            aggregate: function(group, files) {
+                let htmlContents = null, textContents = null;
+                let i = 0, len = files.length;
+                for (; i < len; i++) {
+                    let file = files[i];
+                    switch (path.parse(file.path).ext) {
+                        case ".html": htmlContents = String(fs.readFileSync(file.path)); break;
+                        case ".txt": textContents = String(fs.readFileSync(file.path)); break;
+                    }
+                }
+                let template = {
+                    "Template": {
+                        "TemplateName": group,
+                        "SubjectPart": htmlContents.match(/<title>([^<]*)<\/title>/)[1],
+                        "HtmlPart": htmlContents.replace("{{tracking}}", "https://www.google-analytics.com/collect?v=1&tid=UA-42628014-3&cid={{cid}}&uid={{usertag}}&t=event&ec=email&ea=open&dp=/email/{{templatename}}&dt={{subject}}&cn={{subject}}&cm=email"),
+                        "TextPart": textContents
+                    }
+                };
+                return {
+                    path: group + "-template.json",
+                    contents: new Buffer(JSON.stringify(template, null, 4))
+                };
+            }
         }))
         .pipe(gulp.dest(buildEmailFolder));
 }
@@ -185,13 +222,14 @@ function serve() {
 
 gulp.task("clean", cleanBuild);
 gulp.task("pages", pages);
-gulp.task("email2text", email2text);
+gulp.task("emailTemplates", emailTemplates);
+gulp.task("email2txt", email2txt);
 gulp.task("emailTokens", emailTokens);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2text", "emailTokens"), "styles", "scripts", "favicons", "images")));
+gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2txt", "emailTokens", "emailTemplates"), "styles", "scripts", "favicons", "images")));
 gulp.task("watch", watch);
 gulp.task("serve", gulp.parallel("watch", serve));
