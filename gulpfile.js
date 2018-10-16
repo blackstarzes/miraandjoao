@@ -1,4 +1,5 @@
 const gulp = require("gulp");
+const clean = require('gulp-clean');
 const babel = require("gulp-babel");
 const htmlmin = require('gulp-htmlmin');
 const html2txt = require('gulp-html2txt');
@@ -22,6 +23,17 @@ const appLayoutFolder = appFolder + "/_layout";
 const buildAppFolder = buildFolder + "/app";
 const buildAppImgFolder = buildAppFolder + "/img";
 const buildEmailFolder = buildFolder + "/email";
+
+function cleanBuild() {
+    return gulp.src(
+        [
+            buildFolder
+        ], {
+            read: false,
+            allowEmpty: true
+        })
+        .pipe(clean());
+}
 
 function applyLayout(pageContents) {
     let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
@@ -143,6 +155,7 @@ function serve() {
     });
 }
 
+gulp.task("clean", cleanBuild);
 gulp.task("pages", pages);
 gulp.task("email2text", email2text);
 gulp.task("styles", styles);
@@ -150,6 +163,6 @@ gulp.task("scripts", scripts);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.parallel(gulp.series("pages", "email2text"), "styles", "scripts", "favicons", "images"));
+gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2text"), "styles", "scripts", "favicons", "images")));
 gulp.task("watch", watch);
 gulp.task("serve", gulp.parallel("watch", serve));
