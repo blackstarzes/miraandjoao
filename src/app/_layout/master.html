@@ -24,9 +24,13 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         var userid = getCookie("usertag");
-        gtag('config', 'UA-42628014-3', {
-            "user_id": userid
-        });
+        if (userId) {
+            gtag('config', 'UA-42628014-3', {
+                "user_id": userid
+            });
+        } else {
+            gtag('config', 'UA-42628014-3');
+        }
     </script>
 
     <meta charset="UTF-8">
