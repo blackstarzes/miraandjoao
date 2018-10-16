@@ -70,7 +70,7 @@ function pages() {
             return JSON.parse(fs.readFileSync(appFolder + "/i18n/" + lang + ".json"));
         }))
         .pipe(template())
-        .pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true }))
+        .pipe(htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }))
         .pipe(gulp.dest(buildAppFolder));
 }
 
