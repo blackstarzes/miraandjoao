@@ -115,20 +115,29 @@ function emailTemplates() {
                 return filePath.name + "-" + path.parse(filePath.dir).name;
             },
             aggregate: function(group, files) {
-                let htmlContents = null, textContents = null;
+                let htmlContents = null, textContents = null, campaign = null, lang = null;
                 let i = 0, len = files.length;
                 for (; i < len; i++) {
                     let file = files[i];
-                    switch (path.parse(file.path).ext) {
-                        case ".html": htmlContents = String(fs.readFileSync(file.path)); break;
-                        case ".txt": textContents = String(fs.readFileSync(file.path)); break;
+                    let filePath = path.parse(file.path);
+                    switch (filePath.ext) {
+                        case ".html":
+                            htmlContents = String(fs.readFileSync(file.path));
+                            campaign = filePath.name;
+                            lang = path.parse(filePath.dir).name;
+                            break;
+                        case ".txt":
+                            textContents = String(fs.readFileSync(file.path));
+                            break;
                     }
                 }
+                let subject = htmlContents.match(/<title>([^<]*)<\/title>/)[1];
+                let tracking = `https://www.google-analytics.com/collect?v=1&tid=UA-42628014-3&cid={{cid}}&uid={{usertag}}&t=event&ec=email&ea=open&dp=/email/${group}&dt=${subject}&cn=${campaign}&cm=email&ul=${lang}`;
                 let template = {
                     "Template": {
                         "TemplateName": group,
-                        "SubjectPart": htmlContents.match(/<title>([^<]*)<\/title>/)[1],
-                        "HtmlPart": htmlContents.replace("{{tracking}}", "https://www.google-analytics.com/collect?v=1&tid=UA-42628014-3&cid={{cid}}&uid={{usertag}}&t=event&ec=email&ea=open&dp=/email/{{templatename}}&dt={{subject}}&cn={{subject}}&cm=email"),
+                        "SubjectPart": subject,
+                        "HtmlPart": htmlContents.replace("{{tracking}}", tracking),
                         "TextPart": textContents
                     }
                 };
