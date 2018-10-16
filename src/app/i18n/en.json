@@ -22,17 +22,20 @@
   },
   "email": {
     "saveTheDate": {
+      "title": "Save the Date",
       "salutation": "{{salutation}} {{invitednames}},",
       "message": "Mira & Joao are getting married!",
       "cta": "Open your save the date",
+      "where": "Location",
       "algarvePortugal": "Algarve, Portugal",
+      "when": "Date",
       "weddingDate": "11 October 2019",
       "invitationsToFollow": "Formal invitations to follow"
     },
     "footer": {
       "visitOurSite": "Visit our site",
       "emailUs": "Email us",
-      "privacyPolicy": "Privacy Policy",
+      "privacyPolicy": "Privacy policy",
       "sentBy": "This email was sent by"
     }
   }

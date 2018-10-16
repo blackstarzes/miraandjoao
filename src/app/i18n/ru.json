@@ -22,10 +22,13 @@
   },
   "email": {
     "saveTheDate": {
+      "title": "Дата свадьбы",
       "salutation": "{{salutation}} {{invitednames}},",
       "message": "Мира и Жоао женятся!",
       "cta": "Откройте дату сохранения",
+      "where": "Место нахождения",
       "algarvePortugal": "Алгарве, Португалия",
+      "when": "Дата",
       "weddingDate": "11 Oктября 2019",
       "invitationsToFollow": "Oфициальное приглашение следует"
     },

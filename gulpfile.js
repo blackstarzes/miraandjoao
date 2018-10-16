@@ -3,6 +3,8 @@ const clean = require('gulp-clean');
 const babel = require("gulp-babel");
 const htmlmin = require('gulp-htmlmin');
 const html2txt = require('gulp-html2txt');
+const modifyFile = require('gulp-modify-file');
+const rename = require("gulp-rename");
 const uglify = require("gulp-uglify");
 const cleanCss = require("gulp-clean-css");
 const path = require("path");
@@ -102,6 +104,32 @@ function email2text() {
         .pipe(gulp.dest(buildEmailFolder));
 }
 
+function emailTokens() {
+    return gulp.src([
+        buildEmailFolder + "/**/*.html"
+    ])
+        .pipe(modifyFile(function(content, path, file) {
+            // Process tokens
+            let tokens = {};
+            let matches = content.match(/{{\w+}}/g);
+            if (matches) {
+                let i = 0, len = matches.length;
+                for (; i < len; i++) {
+                    let match = matches[i]
+                        .replace("{{", "")
+                        .replace("}}", "");
+                    tokens[match] = "{{" + match + "}}";
+                }
+            }
+
+            return JSON.stringify(tokens, null, 4);
+        }))
+        .pipe(rename(function (path) {
+            path.extname = ".json";
+        }))
+        .pipe(gulp.dest(buildEmailFolder));
+}
+
 function styles() {
     return gulp.src([
         appFolder + "/*.css"
@@ -158,11 +186,12 @@ function serve() {
 gulp.task("clean", cleanBuild);
 gulp.task("pages", pages);
 gulp.task("email2text", email2text);
+gulp.task("emailTokens", emailTokens);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2text"), "styles", "scripts", "favicons", "images")));
+gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2text", "emailTokens"), "styles", "scripts", "favicons", "images")));
 gulp.task("watch", watch);
 gulp.task("serve", gulp.parallel("watch", serve));
