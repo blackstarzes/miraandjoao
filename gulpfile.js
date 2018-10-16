@@ -137,8 +137,13 @@ function emailTemplates() {
                     "Template": {
                         "TemplateName": group,
                         "SubjectPart": subject,
-                        "HtmlPart": htmlContents.replace("{{tracking}}", tracking),
+                        "HtmlPart": htmlContents
+                            .replace("{{tracking}}", tracking)
+                            .replace(/{{campaign}}/g, campaign)
+                            .replace(/{{source}}/g, group),
                         "TextPart": textContents
+                            .replace(/{{campaign}}/g, campaign)
+                            .replace(/{{source}}/g, group)
                     }
                 };
                 return {
@@ -152,7 +157,7 @@ function emailTemplates() {
 
 function emailTokens() {
     return gulp.src([
-        buildEmailFolder + "/**/*.html"
+        buildEmailFolder + "/*-template.json"
     ])
         .pipe(modifyFile(function(content, path, file) {
             // Process tokens
@@ -171,7 +176,7 @@ function emailTokens() {
             return JSON.stringify(tokens, null, 4);
         }))
         .pipe(rename(function (path) {
-            path.extname = ".json";
+            path.basename += "-tokens";
         }))
         .pipe(gulp.dest(buildEmailFolder));
 }
@@ -231,14 +236,14 @@ function serve() {
 
 gulp.task("clean", cleanBuild);
 gulp.task("pages", pages);
-gulp.task("emailTemplates", emailTemplates);
 gulp.task("email2txt", email2txt);
+gulp.task("emailTemplates", emailTemplates);
 gulp.task("emailTokens", emailTokens);
 gulp.task("styles", styles);
 gulp.task("scripts", scripts);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2txt", "emailTokens", "emailTemplates"), "styles", "scripts", "favicons", "images")));
+gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2txt", "emailTemplates", "emailTokens"), "styles", "scripts", "favicons", "images")));
 gulp.task("watch", watch);
 gulp.task("serve", gulp.parallel("watch", serve));
