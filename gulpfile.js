@@ -40,12 +40,15 @@ function cleanBuild() {
 
 function applyLayout(pageContents) {
     let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
-    let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"-->/);
+    let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"(?: preview="([^"]+)")-->/);
     if (match) {
         let layout = fs.readFileSync(appLayoutFolder + "/" + match[1]).toString();
         layout = layout
             .replace("<!--title-->", match[2])
-            .replace("<!--content-->", pageContents.substring(pageContents.indexOf("\n")+1));
+            .replace("<!--content-->", pageContents.substring(pageContents.indexOf("\n")+1))
+            .replace("<!--preview-->", match.length == 4 ? match[3] : "")
+            .replace(/\n/g, "")
+            .replace(/\s\s+/g, " ");
         return layout;
     }
     return pageContents;
@@ -100,7 +103,14 @@ function email2txt() {
     ])
         .pipe(html2txt({
             wordwrap: false,
-            ignoreImage: true
+            ignoreImage: true,
+            baseElement: ["div.email-container"],
+            format: {
+                heading: function(elem, fn, options) {
+                    var h = fn(elem.children, options);
+                    return h + "\n\n";
+                }
+            }
         }))
         .pipe(gulp.dest(buildEmailFolder));
 }

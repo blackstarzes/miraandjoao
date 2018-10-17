@@ -23,6 +23,7 @@
   "email": {
     "saveTheDate": {
       "title": "Save the Date",
+      "preview": "Save the Date - Mira & Joao are getting married!",
       "salutation": "{{salutation}} {{invitednames}},",
       "message": "Mira & Joao are getting married!",
       "cta": "Open your save the date",

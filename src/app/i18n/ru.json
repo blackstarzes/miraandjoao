@@ -23,6 +23,7 @@
   "email": {
     "saveTheDate": {
       "title": "Дата свадьбы",
+      "preview": "Дата свадьбы - Мира и Жоао женятся!",
       "salutation": "{{salutation}} {{invitednames}},",
       "message": "Мира и Жоао женятся!",
       "cta": "Открыть календарь",
