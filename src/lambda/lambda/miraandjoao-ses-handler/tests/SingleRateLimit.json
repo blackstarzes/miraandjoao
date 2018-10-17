@@ -1,0 +1,31 @@
+{
+  "ratePerSecond": "1",
+  "source": {
+    "tableName": "miraandjoao-users",
+    "projectionExpression": "userid, invitednames, salutation, usertag, #lang",
+    "expressionAttributeNames": {
+      "#lang": "language"
+    }
+  },
+  "mapping": {
+    "emailAddressField": "userid",
+    "templateSuffixField": "language",
+    "generatedCidToken": "cid",
+    "tokenMapping": [
+      { "source": "invitednames", "destination": "invitednames" },
+      { "source": "salutation", "destination": "salutation" },
+      { "source": "usertag", "destination": "usertag" }
+    ]
+  },
+  "mail": {
+    "source": "Mira & Joao <wedding@miraandjoao.com>",
+    "templatePrefix": "savethedate-",
+    "configurationSetName": "Wedding",
+    "tags": [
+      {
+        "Name": "configuration-set",
+        "Value": "Engagement"
+      }
+    ]
+  }
+}
