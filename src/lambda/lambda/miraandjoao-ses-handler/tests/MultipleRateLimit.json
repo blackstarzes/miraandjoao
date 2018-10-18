@@ -9,6 +9,7 @@
   },
   "mapping": {
     "emailAddressField": "userid",
+    "friendlyNameField": "invitednames",
     "templateSuffixField": "language",
     "generatedCidToken": "cid",
     "tokenMapping": [
@@ -19,6 +20,8 @@
   },
   "mail": {
     "source": "Mira & Joao <wedding@miraandjoao.com>",
+    "isTest": true,
+    "testAddress": "blackstarzes@gmail.com",
     "templatePrefix": "savethedate-",
     "configurationSetName": "Wedding",
     "tags": [

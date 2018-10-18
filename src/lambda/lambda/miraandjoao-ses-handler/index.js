@@ -46,10 +46,13 @@ exports.handler = (event, context, callback) => {
             event.mapping.tokenMapping.forEach(function(mapping) {
                 templateData[mapping.destination] = item[mapping.source];
             });
+            let emailAddress = event.mail.isTest
+                ? event.mail.testAddress
+                : item[event.mapping.emailAddressField];
             let destination = {
                 Destination: {
                     ToAddresses: [
-                        item[event.mapping.emailAddressField]
+                        `${item[event.mapping.friendlyNameField]} <${emailAddress}>`
                     ]
                 },
                 ReplacementTemplateData: JSON.stringify(templateData)
