@@ -59,7 +59,7 @@ exports.handler = (event, context, callback) => {
             let destination = {
                 Destination: {
                     ToAddresses: [
-                        `${item[event.mapping.friendlyNameField]} <${emailAddress}>`
+                        emailAddress
                     ]
                 },
                 ReplacementTemplateData: JSON.stringify(templateData)
