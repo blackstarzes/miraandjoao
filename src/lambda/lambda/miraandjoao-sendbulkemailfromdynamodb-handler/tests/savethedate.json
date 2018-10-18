@@ -1,5 +1,5 @@
 {
-  "ratePerSecond": "14",
+  "batchSize": "1",
   "source": {
     "tableName": "miraandjoao-users",
     "projectionExpression": "userid, invitednames, salutation, usertag, #lang",
@@ -13,9 +13,18 @@
     "templateSuffixField": "language",
     "generatedCidToken": "cid",
     "tokenMapping": [
-      { "source": "invitednames", "destination": "invitednames" },
-      { "source": "salutation", "destination": "salutation" },
-      { "source": "usertag", "destination": "usertag" }
+      {
+        "source": "invitednames",
+        "destination": "invitednames"
+      },
+      {
+        "source": "salutation",
+        "destination": "salutation"
+      },
+      {
+        "source": "usertag",
+        "destination": "usertag"
+      }
     ]
   },
   "mail": {

@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const ddb = new AWS.DynamoDB.DocumentClient();
+const ddb = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
 exports.handler = (event, context, callback) => {
     if (event.request.userAttributes.hasOwnProperty("email")) {
