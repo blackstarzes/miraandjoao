@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const ses = new AWS.SES({apiVersion: '2010-12-01'});
+const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
 exports.handler = (event, context, callback) => {
     // Should only receive one record
@@ -15,6 +16,29 @@ exports.handler = (event, context, callback) => {
             callback("Error");
         } else {
             console.log(data); // successful sent
+
+            // Analytics
+            params.Destinations.forEach(function(item) {
+                let analytics = {
+                    usertag: JSON.parse(item.ReplacementTemplateData).usertag,
+                    type: "emailsend",
+                    attributes: {
+                        template: params.Template
+                    },
+                };
+                let sqsParams = {
+                    MessageBody: JSON.stringify(analytics),
+                    QueueUrl: process.env.analytics_queue_url
+                };
+                sqs.sendMessage(sqsParams, function(err, data) {
+                    if (err) {
+                        console.log("Error", err);
+                    } else {
+                        console.log("Success", data.MessageId);
+                    }
+                });
+            });
+
             callback(null, "Success");
         }
     });
