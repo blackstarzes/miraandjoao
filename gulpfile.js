@@ -40,7 +40,7 @@ function cleanBuild() {
 
 function applyLayout(pageContents) {
     let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
-    let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"(?: preview="([^"]+)")-->/);
+    let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"(?: preview="([^"]+)")?-->/);
     if (match) {
         let layout = fs.readFileSync(appLayoutFolder + "/" + match[1]).toString();
         layout = layout

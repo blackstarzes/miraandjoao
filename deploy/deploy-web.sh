@@ -1,0 +1,1 @@
+aws s3 sync build/app/ s3://miraandjoao.com/ --delete

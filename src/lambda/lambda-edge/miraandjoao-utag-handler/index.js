@@ -23,24 +23,49 @@ function getCookieExpiration() {
 exports.handler = (event, context, callback) => {
     const request = event.Records[0].cf.request;
     const params = querystring.parse(request.querystring);
+    const cookieSettings = "Domain=miraandjoao.com; Path=/; secure; Same-Site=Strict";
+    const cookies = [];
+    const cookieKeys = ["set-cookie", "set-cookiE", "set-cookIe", "set-cookIE", "set-cooKie"];
 
+    // Parse the user tag
     if (params.ut) {
         const usertag = params.ut;
         delete params.ut;
+        cookies.push(`usertag=${usertag}; Expires=${getCookieExpiration()}; Max-Age=${365*24*60*60}`);
+    }
+
+    // Parse the utm parameters
+    for (const [key, value] of Object.entries(params)) {
+        if (key.startsWith("utm_")) {
+            cookies.push(`${key}=${value}`);
+            delete params[key];
+        }
+    }
+
+    // If there are any cookies, redirect
+    if (cookies.length > 0) {
+        let redirect = request.uri;
+        let qs = querystring.stringify(params);
+        if (qs) {
+            redirect += `?${qs}`;
+        }
         const response = {
             status: "302",
             statusDescription: "Found",
             headers: {
                 location: [{
                     key: "Location",
-                    value: `${request.uri}?${querystring.stringify(params)}`,
+                    value: redirect,
                 }],
-                "set-cookie": [{
-                    key: "Set-Cookie",
-                    value: `usertag=${usertag}; Expires=${getCookieExpiration()}; Max-Age=${365*24*60*60}; Domain=miraandjoao.com; Path=/; secure; Same-Site=Strict`
-                }]
+                "set-cookie": []
             },
         };
+        for (let i=0; i<cookies.length; i++) {
+            response.headers["set-cookie"].push({
+                key: cookieKeys[i],
+                value: `${cookies[i]}; ${cookieSettings}`
+            })
+        }
         callback(null, response);
     }
 

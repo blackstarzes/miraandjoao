@@ -22,12 +22,33 @@
 
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        gtag("js", new Date());
+        var config = {};
         var userid = getCookie("usertag");
-        if (userid) {
-            gtag('config', 'UA-42628014-3', {
-                "user_id": userid
-            });
+        var source = getCookie("utm_source");
+        var medium = getCookie("utm_medium");
+        var campaign = getCookie("utm_campaign");
+        var content = getCookie("utm_content");
+        if (userid || source || medium || campaign || content) {
+            if (userid) {
+                config["user_id"] = userid;
+            }
+            if (source || medium || campaign || content) {
+                config.campaign = {};
+                if (source) {
+                    config.campaign.source = source;
+                }
+                if (medium) {
+                    config.campaign.medium = medium;
+                }
+                if (campaign) {
+                    config.campaign.name = campaign;
+                }
+                if (content) {
+                    config.campaign.content = content;
+                }
+            }
+            gtag('config', 'UA-42628014-3', config);
         } else {
             gtag('config', 'UA-42628014-3');
         }
@@ -44,6 +65,6 @@
 </head>
 <body>
 <!--content-->
-<div class="copyright">© Joao Lourenco 2018 | <a href="privacy/">Privacy Policy</a></div>
+<div class="copyright">© Joao Lourenco 2018 | <a href="/privacy/">Privacy Policy</a></div>
 </body>
 </html>
