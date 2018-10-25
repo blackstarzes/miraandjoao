@@ -1,5 +1,5 @@
 {
-  "batchSize": "1",
+  "batchSize": "14",
   "source": {
     "tableName": "miraandjoao-users",
     "projectionExpression": "userid, invitednames, salutation, usertag, #lang",
@@ -29,9 +29,9 @@
   },
   "mail": {
     "source": "Mira & Joao <wedding@miraandjoao.com>",
-    "isTest": true,
+    "isTest": false,
     "testAddress": "blackstarzes@gmail.com",
-    "templatePrefix": "savethedate-",
+    "templatePrefix": "savethedate",
     "configurationSetName": "Wedding",
     "tags": [
       {

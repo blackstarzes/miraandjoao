@@ -6,12 +6,21 @@ const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
 exports.handler = (event, context, callback) => {
 
+    // Add filter for undelivered
+    const expressionAttributeNames = event.source.expressionAttributeNames;
+    expressionAttributeNames["#delivered"] = "delivered";
+    expressionAttributeNames["#template"] = event.mail.templatePrefix;
+    const expressionAttributeValues = {":undelivered":false};
+
     // Fetch the recipients from dynamodb and add to templates
     let scanParams = {
         TableName: event.source.tableName,
         ProjectionExpression: event.source.projectionExpression,
-        ExpressionAttributeNames: event.source.expressionAttributeNames
+        FilterExpression: "attribute_not_exists(#delivered) or attribute_not_exists(#delivered.#template) or #delivered.#template = :undelivered",
+        ExpressionAttributeNames: expressionAttributeNames,
+        ExpressionAttributeValues: expressionAttributeValues
     };
+    console.log(scanParams);
 
     let uuidv4 = function() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -33,7 +42,7 @@ exports.handler = (event, context, callback) => {
         }
         data.Items.forEach(function(item) {
             // Check if the template exists in the dictionary
-            let template = event.mail.templatePrefix + item[event.mapping.templateSuffixField];
+            let template = event.mail.templatePrefix + "-" + item[event.mapping.templateSuffixField];
             if (!templates[template]) {
                 templates[template] = {
                     Destinations: [],
