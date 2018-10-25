@@ -1,3 +1,5 @@
+"use strict";
+
 const AWS = require('aws-sdk');
 const ses = new AWS.SES({apiVersion: '2010-12-01'});
 const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
