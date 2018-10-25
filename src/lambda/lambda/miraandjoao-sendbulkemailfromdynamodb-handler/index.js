@@ -1,3 +1,5 @@
+"use strict";
+
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
@@ -41,6 +43,7 @@ exports.handler = (event, context, callback) => {
                     DefaultTags: event.mail.tags,
                     DefaultTemplateData: "{}"
                 };
+                messages.push(templates[template]);
             }
 
             // Generate template data
@@ -66,7 +69,6 @@ exports.handler = (event, context, callback) => {
             };
             templates[template].Destinations.push(destination);
             if (templates[template].Destinations.length == event.batchSize) {
-                messages.push(templates[template]);
                 templates[template] = null;
             }
         });
