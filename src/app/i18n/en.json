@@ -15,10 +15,10 @@
   "algarvePortugal": "Algarve • Portugal",
   "invitationsToFollow": "formal invitations to follow",
   "saveTheDatePage": {
-    "titleSuffix": "Save the Date"
+    "title": "Save the Date"
   },
   "privacyPolicyPage": {
-    "titleSuffix": "Privacy Policy"
+    "title": "Privacy Policy"
   },
   "email": {
     "saveTheDate": {

@@ -15,10 +15,10 @@
   "algarvePortugal": "Алгарве • Португалия",
   "invitationsToFollow": "официальное приглашение следует",
   "saveTheDatePage": {
-    "titleSuffix": "Дата свадьбы"
+    "title": "Дата свадьбы"
   },
   "privacyPolicyPage": {
-    "titleSuffix": "Политика конфиденциальности"
+    "title": "Политика конфиденциальности"
   },
   "email": {
     "saveTheDate": {
