@@ -1,0 +1,24 @@
+/*
+    Navigation
+ */
+.navbar {
+    background-color: #a45f62;
+}
+.navbar-brand {
+    font-family: 'Great Vibes', 'Marck Script', cursive;
+    color: #880903 !important;
+    text-shadow: #a45f62;
+    font-size: xx-large;
+}
+.heart {
+    content: url(/img/heart.png);
+    height: 20px;
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+    transform: translateY(5px);
+}
+.navbar-toggler {
+    background-color: #880903;
+
+}

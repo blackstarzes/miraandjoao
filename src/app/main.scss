@@ -1,3 +1,5 @@
+@import "variables";
+
 .calligraphy {
     font-family: 'Great Vibes', 'Marck Script', cursive;
     font-weight: normal;
@@ -11,18 +13,18 @@
 }
 
 body {
-    background-color: white;
-    color: gray;
+    background-color: $white;
+    color: $grey;
 }
 
 a {
-    color: gray;
+    color: $grey;
     text-decoration: underline;
 }
 
 .main-content {
-    background-color: white;
-    color: gray;
+    background-color: $white;
+    color: $grey;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,7 +40,7 @@ a {
 
 .headline-title {
     font-size: 8vh;
-    color: #555555;
+    color: $darkgrey;
     margin-top: 3vh;
     margin-bottom: 0;
     text-align: center;
@@ -68,7 +70,7 @@ a {
 
 .week-header {
     display: flex;
-    color: #555555;
+    color: $darkgrey;
 }
 
 .day {
@@ -90,18 +92,18 @@ a {
 
 .details.save-the-date {
     font-size: 3vh;
-    color: #555555;
+    color: $darkgrey;
 }
 
 .details.date {
     font-size: 6vh;
-    color: #880903;
-    text-shadow: 2px 2px 0px #a45f62;
+    color: $burgundy;
+    text-shadow: 2px 2px 0px $salmon;
 }
 
 .details.place {
     font-size: 3vh;
-    color: #555555;
+    color: $darkgrey;
 }
 
 .floral-separator {
@@ -117,10 +119,10 @@ a {
 .copyright {
     font-size: 1vh;
     font-family: sans-serif;
-    color: lightgray;
+    color: $lightgrey;
     text-align: center;
 }
 
 .copyright > a {
-    color: lightgrey;
+    color: $lightgrey;
 }

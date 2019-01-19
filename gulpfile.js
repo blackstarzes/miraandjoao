@@ -6,13 +6,14 @@ const html2txt = require('gulp-html2txt');
 const modifyFile = require('gulp-modify-file');
 const rename = require("gulp-rename");
 const uglify = require("gulp-uglify");
+const sass = require('gulp-sass');
 const cleanCss = require("gulp-clean-css");
 const path = require("path");
 const through2 = require("through2");
 const fs = require("fs");
 const data = require("gulp-data");
 const template = require("gulp-template");
-var groupAggregate = require('gulp-group-aggregate');
+const groupAggregate = require('gulp-group-aggregate');
 const browserSync = require("browser-sync");
 
 // Configuration
@@ -193,8 +194,9 @@ function emailTokens() {
 
 function styles() {
     return gulp.src([
-        appFolder + "/*.css"
+        appFolder + "/*.scss"
     ])
+        .pipe(sass().on('error', sass.logError))
         .pipe(cleanCss({
             compatibility: "ie8"
         }))
