@@ -258,4 +258,4 @@ gulp.task("images", images);
 
 gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2txt", "emailTemplates", "emailTokens"), "styles", "scripts", "favicons", "images")));
 gulp.task("watch", watch);
-gulp.task("serve", gulp.parallel("watch", serve));
+gulp.task("serve", gulp.series("build", gulp.parallel("watch", serve)));
