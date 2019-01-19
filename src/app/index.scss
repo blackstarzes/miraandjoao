@@ -31,10 +31,23 @@ body {
     border-color: $burgundy;
 
     &:hover {
-      background-color: $salmon;
-      border-color: $salmon;
-      color: $burgundy;
+      text-shadow: 2px 2px 2px $white;
     }
+  }
+}
+a.round-icon {
+  font-size: 16px;
+  height: 30px;
+  width: 30px;
+  padding-top: 7px;
+  padding-left: 1px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  background-color: $salmon;
+  color: $white !important;
+  &:hover {
+    background-color: $burgundy;
   }
 }
 
@@ -73,18 +86,14 @@ body {
 /*
   Content
  */
-//section:before {
-//    height: 74px;
-//    content: "";
-//    display:block;
-//}
 section {
   padding-top: 74px;
   margin-top: -74px;
+  padding-bottom: 50px;
 }
 
 /*
-    Home content
+  Home content
  */
 #home.jumbotron {
   min-height: 100vh;
@@ -217,6 +226,37 @@ section {
         }
         100% {
           opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+/*
+  Couple content
+ */
+#couple {
+  margin-top: unset;
+
+  .couple-content {
+    background-color: $offwhite;
+    padding: 10px;
+
+    h2 {
+      @include readable();
+      font-weight: bolder;
+      text-transform: uppercase;
+    }
+    p {
+      color: $grey;
+    }
+    h3 {
+      @include calligraphy();
+    }
+    span {
+      div {
+        i {
+          color: $white;
         }
       }
     }
