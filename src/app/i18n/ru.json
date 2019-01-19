@@ -6,15 +6,15 @@
   "j": "Ж",
   "nav": {
     "home": "Главная",
-    "couple": "Пара",
-    "story": "История",
+    "couple": "O нас",
+    "story": "Наша история",
     "events": "События",
     "people": "Люди",
     "gallery": "Галерея",
-    "rsvp": "Просьба ответить"
+    "rsvp": "RSVP"
   },
   "areGettingMarried" : "женятся",
-  "rsvp": "Просьба ответить",
+  "rsvp": "RSVP",
   "saveTheDate": "Дата свадьбы",
   "weddingDate": "11 Oктября 2019",
   "abbrMonday": "П",

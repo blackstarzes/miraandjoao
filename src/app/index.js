@@ -1,7 +1,7 @@
 $(function(){
     // Navigation
     let initNav = function() {
-        $('.navbar-nav li.nav-item a').click(function () {
+        $("a[href^='#']").click(function () {
             let sectionTo = $(this).attr('href');
             $('html, body').animate({
                 scrollTop: $(sectionTo).offset().top
@@ -10,4 +10,5 @@ $(function(){
     };
 
     initNav();
+    AOS.init();
 });

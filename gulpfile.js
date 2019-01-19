@@ -8,6 +8,7 @@ const rename = require("gulp-rename");
 const uglify = require("gulp-uglify");
 const sass = require('gulp-sass');
 const cleanCss = require("gulp-clean-css");
+const concat = require("gulp-concat");
 const path = require("path");
 const through2 = require("through2");
 const fs = require("fs");
@@ -20,6 +21,12 @@ const browserSync = require("browser-sync");
 const srcFolder = "src";
 const buildFolder = "build";
 const languages = ["en", "ru"];
+
+// Third party
+const thirdPartyFolder = "node_modules";
+const thirdPartyLibs = [
+    "aos"
+    ];
 
 // Web App
 const appFolder = srcFolder + "/app";
@@ -196,10 +203,18 @@ function styles() {
     return gulp.src([
         appFolder + "/*.scss"
     ])
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass().on("error", sass.logError))
         .pipe(cleanCss({
             compatibility: "ie8"
         }))
+        .pipe(gulp.dest(buildAppFolder));
+}
+
+function stylesThirdParty() {
+    return gulp.src(thirdPartyLibs.map(function(item){
+        return `${thirdPartyFolder}/${item}/dist/**/*.css`
+    }))
+        .pipe(concat("thirdParty.css"))
         .pipe(gulp.dest(buildAppFolder));
 }
 
@@ -211,6 +226,14 @@ function scripts() {
             presets: ["@babel/env"]
         }))
         .pipe(uglify({ mangle: { toplevel: true } }))
+        .pipe(gulp.dest(buildAppFolder));
+}
+
+function scriptsThirdParty() {
+    return gulp.src(thirdPartyLibs.map(function(item){
+        return `${thirdPartyFolder}/${item}/dist/**/*.js`
+    }))
+        .pipe(concat("thirdParty.js"))
         .pipe(gulp.dest(buildAppFolder));
 }
 
@@ -252,10 +275,34 @@ gulp.task("email2txt", email2txt);
 gulp.task("emailTemplates", emailTemplates);
 gulp.task("emailTokens", emailTokens);
 gulp.task("styles", styles);
+gulp.task("stylesThirdParty", stylesThirdParty);
 gulp.task("scripts", scripts);
+gulp.task("scriptsThirdParty", scriptsThirdParty);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
-gulp.task("build", gulp.series("clean", gulp.parallel(gulp.series("pages", "email2txt", "emailTemplates", "emailTokens"), "styles", "scripts", "favicons", "images")));
+gulp.task("build", gulp.series(
+    "clean",
+    gulp.parallel(
+        gulp.series(
+            "pages",
+            "email2txt",
+            "emailTemplates",
+            "emailTokens"
+        ),
+        "styles",
+        "stylesThirdParty",
+        "scripts",
+        "scriptsThirdParty",
+        "favicons",
+        "images"
+    )
+));
 gulp.task("watch", watch);
-gulp.task("serve", gulp.series("build", gulp.parallel("watch", serve)));
+gulp.task("serve", gulp.series(
+    "build",
+    gulp.parallel(
+        "watch",
+        serve
+    )
+));
