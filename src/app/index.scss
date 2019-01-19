@@ -25,6 +25,15 @@ body {
     background-color: $burgundy;
     color: $white;
 }
+.navbar .nav-item a {
+    text-transform: uppercase;
+}
+.navbar .nav-item a.nav-link:hover {
+    color: $salmon;
+}
+.navbar .nav-item a.nav-link.active {
+    color: $burgundy;
+}
 
 /*
     Content
@@ -34,3 +43,9 @@ section:before {
     content: "";
     display:block;
 }
+.readable {
+     font-family: 'Amatic SC', cursive;
+     font-weight: bolder;
+     font-style: normal;
+    font-size: x-large;
+ }
