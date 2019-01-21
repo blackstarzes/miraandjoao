@@ -18,6 +18,15 @@ body {
 }
 
 /*
+  Typography
+ */
+h2 {
+  @include readable();
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+/*
   Buttons
  */
 .btn {
@@ -241,12 +250,6 @@ section {
   .couple-content {
     background-color: $offwhite;
     padding: 10px;
-
-    h2 {
-      @include readable();
-      font-weight: bolder;
-      text-transform: uppercase;
-    }
     p {
       color: $grey;
     }
@@ -260,5 +263,19 @@ section {
         }
       }
     }
+  }
+}
+
+/*
+  Events content
+ */
+#events {
+  .events-content {
+    background-color: $offwhite;
+    padding: 10px;
+  }
+  #googleMap {
+    height: 400px;
+    width: 100%;
   }
 }

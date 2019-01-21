@@ -225,7 +225,7 @@ function scripts() {
         .pipe(babel({
             presets: ["@babel/env"]
         }))
-        .pipe(uglify({ mangle: { toplevel: true } }))
+        .pipe(uglify({ mangle: { toplevel: true, reserved: ['initMaps'] } }))
         .pipe(gulp.dest(buildAppFolder));
 }
 

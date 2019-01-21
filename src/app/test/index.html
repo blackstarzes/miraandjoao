@@ -132,12 +132,12 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-6 col-sm-12">
-                    <img src="/img/mira-formal.jpg" class="img-fluid" data-aos="fade-right"/>
+                    <img src="/img/mira-formal.jpg" class="img-fluid" data-aos="fade-up"/>
                 </div>
                 <div class="col-md-6 col-sm-12 couple-content">
-                    <h data-aos="fade-up"2>The Bride</h2>
-                    <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <h3 data-aos="fade-up">Mira</h3>
+                    <h2 data-aos="fade-up"2><%= couple.theBride.title %></h2>
+                    <p data-aos="fade-up"><%= couple.theBride.content %></p>
+                    <h3 data-aos="fade-up"><%= mira %></h3>
                     <p data-aos="fade-up">
                         <a target="_blank" href="https://www.facebook.com/mira.yegemberdiyeva" class="fab fa-facebook round-icon"></a>
                         <a target="_blank" href="https://www.instagram.com/mirahontas/" class="fab fa-instagram round-icon"></a>
@@ -145,23 +145,34 @@
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-md-6 col-sm-12 couple-content">
-                    <h2 data-aos="fade-up">The Groom</h2>
-                    <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <h3 data-aos="fade-up">Joao</h3>
+                <div class="col-md-6 order-md-first col-sm-12 order-sm-last couple-content">
+                    <h2 data-aos="fade-up"><%= couple.theGroom.title %></h2>
+                    <div data-aos="fade-up">
+                        <p><%= couple.theGroom.content1 %></p>
+                        <p><%= couple.theGroom.content2 %></p>
+                    </div>
+                    <h3 data-aos="fade-up"><%= joao %></h3>
                     <p data-aos="fade-up">
                         <a target="_blank" href="https://www.facebook.com/JoaoMCLourenco" class="fab fa-facebook round-icon"></a>
                         <a target="_blank" href="https://www.instagram.com/blackstarzes/" class="fab fa-instagram round-icon"></a>
                     </p>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                    <img src="/img/joao-formal.jpg" class="img-fluid" data-aos="fade-left"/>
+                <div class="col-md-6 order-md-last col-sm-12 order-sm-first">
+                    <img src="/img/joao-formal.jpg" class="img-fluid" data-aos="fade-up"/>
                 </div>
             </div>
         </div>
     </section>
     <section id="story" style="height: 300px"><%= nav.story %></section>
-    <section id="events" style="height: 300px"><%= nav.events %></section>
+    <section id="events">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <div id="googleMap" data-aos="fade-up"></div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="people" style="height: 300px"><%= nav.people %></section>
     <section id="gallery" style="height: 300px"><%= nav.gallery %></section>
     <section id="rsvp" style="height: 300px"><%= nav.rsvp %></section>
@@ -172,5 +183,6 @@
     <script src="/thirdParty.js"></script>
     <script src="/ethereal.js"></script>
     <script src="/index.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAUGlv2ylVDZF9j3vee3-i-FItsfb75-o&callback=initMaps" async defer></script>
 </body>
 </html>
