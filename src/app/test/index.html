@@ -126,6 +126,13 @@
                     <div><%= rsvp %></div>
                 </a>
             </div>
+            <div class="date-place"
+                 data-aos="fade-up"
+                 data-aos-anchor="h1.headline-title"
+                 data-aos-delay="2100">
+                <p class="readable"><%= weddingDate %></p>
+                <p class="readable"><%= algarvePortugal %></p>
+            </div>
         </div>
     </section>
     <section id="couple">
@@ -145,7 +152,10 @@
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-md-6 order-md-first col-sm-12 order-sm-last couple-content">
+                <div class="col-md-6 order-md-2 col-sm-12">
+                    <img src="/img/joao-formal.jpg" class="img-fluid" data-aos="fade-up"/>
+                </div>
+                <div class="col-md-6 order-md-1 col-sm-12 couple-content">
                     <h2 data-aos="fade-up"><%= couple.theGroom.title %></h2>
                     <div data-aos="fade-up">
                         <p><%= couple.theGroom.content1 %></p>
@@ -156,9 +166,6 @@
                         <a target="_blank" href="https://www.facebook.com/JoaoMCLourenco" class="fab fa-facebook round-icon"></a>
                         <a target="_blank" href="https://www.instagram.com/blackstarzes/" class="fab fa-instagram round-icon"></a>
                     </p>
-                </div>
-                <div class="col-md-6 order-md-last col-sm-12 order-sm-first">
-                    <img src="/img/joao-formal.jpg" class="img-fluid" data-aos="fade-up"/>
                 </div>
             </div>
         </div>
