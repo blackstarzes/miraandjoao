@@ -24,9 +24,14 @@ const languages = ["en", "ru"];
 
 // Third party
 const thirdPartyFolder = "node_modules";
-const thirdPartyLibs = [
-    "aos"
+const thirdPartyScripts = [
+    "aos/dist/aos.js",
+    "moment/min/moment.min.js",
+    "moment-timezone/builds/moment-timezone-with-data.min.js"
     ];
+const thirdPartyStyles = [
+    "aos/dist/aos.css"
+];
 
 // Web App
 const appFolder = srcFolder + "/app";
@@ -211,8 +216,8 @@ function styles() {
 }
 
 function stylesThirdParty() {
-    return gulp.src(thirdPartyLibs.map(function(item){
-        return `${thirdPartyFolder}/${item}/dist/**/*.css`
+    return gulp.src(thirdPartyStyles.map(function(item){
+        return `${thirdPartyFolder}/${item}`
     }))
         .pipe(concat("thirdParty.css"))
         .pipe(gulp.dest(buildAppFolder));
@@ -230,8 +235,8 @@ function scripts() {
 }
 
 function scriptsThirdParty() {
-    return gulp.src(thirdPartyLibs.map(function(item){
-        return `${thirdPartyFolder}/${item}/dist/**/*.js`
+    return gulp.src(thirdPartyScripts.map(function(item){
+        return `${thirdPartyFolder}/${item}`
     }))
         .pipe(concat("thirdParty.js"))
         .pipe(gulp.dest(buildAppFolder));

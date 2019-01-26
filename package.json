@@ -4,7 +4,9 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "aos": "^2.3.4"
+    "aos": "^2.3.4",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.23"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

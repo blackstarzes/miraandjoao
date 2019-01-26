@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="/thirdParty.css">
     <link rel="stylesheet" href="/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Great+Vibes|Marck+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Great+Vibes|Marck+Script|Dosis" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset-top="148">
     <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-light bg-light">
@@ -83,11 +83,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#couple"><%= nav.couple %></a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" href="#story"><%= nav.story %></a>
-                </li>
+                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#events"><%= nav.events %></a>
+                    <a class="nav-link" href="#wedding"><%= nav.wedding %></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#people"><%= nav.people %></a>
@@ -138,10 +138,10 @@
     <section id="couple">
         <div class="container">
             <div class="row no-gutters">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-12">
                     <img src="/img/mira-formal.jpg" class="img-fluid" data-aos="fade-up"/>
                 </div>
-                <div class="col-md-6 col-sm-12 couple-content">
+                <div class="col-md-6 col-12 couple-content">
                     <h2 data-aos="fade-up"2><%= couple.theBride.title %></h2>
                     <p data-aos="fade-up"><%= couple.theBride.content %></p>
                     <h3 data-aos="fade-up"><%= mira %></h3>
@@ -152,10 +152,10 @@
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-md-6 order-md-2 col-sm-12">
+                <div class="col-md-6 order-md-2 col-12">
                     <img src="/img/joao-formal.jpg" class="img-fluid" data-aos="fade-up"/>
                 </div>
-                <div class="col-md-6 order-md-1 col-sm-12 couple-content">
+                <div class="col-md-6 order-md-1 col-12 couple-content">
                     <h2 data-aos="fade-up"><%= couple.theGroom.title %></h2>
                     <div data-aos="fade-up">
                         <p><%= couple.theGroom.content1 %></p>
@@ -170,8 +170,65 @@
             </div>
         </div>
     </section>
-    <section id="story" style="height: 300px"><%= nav.story %></section>
-    <section id="events">
+    <section id="countdown">
+        <div class="countdown-background">
+            <div class="countdown-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 countdown-message">
+                            <p class="calligraphy">
+                                We are counting down the days...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row digital justify-content-center">
+                        <div class="col-md-2 col-sm-3 col-6">
+                            <div class="countdown-element">
+                                <p id="countdown-days" class="countdown-number">
+                                    --
+                                </p>
+                                <p class="countdown-unit">
+                                    days
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-6">
+                            <div class="countdown-element">
+                            <p id="countdown-hours" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                hours
+                            </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-6">
+                            <div class="countdown-element">
+                            <p id="countdown-minutes" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                minutes
+                            </p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-6">
+                            <div class="countdown-element">
+                            <p id="countdown-seconds" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                seconds
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<section id="story" style="height: 300px"><%= nav.story %></section>-->
+    <section id="wedding">
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-12">

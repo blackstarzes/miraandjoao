@@ -1,8 +1,26 @@
 @import "variables";
 @import "node_modules/compass-mixins/lib/compass/css3";
 
-body {
+body, html {
   position: relative;
+  margin: 0;
+  padding: 0;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $offwhite;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $salmon;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
 }
 @mixin calligraphy() {
   font-family: 'Great Vibes', 'Marck Script', cursive;
@@ -15,6 +33,12 @@ body {
 }
 .readable {
   @include readable();
+}
+@mixin digital() {
+  font-family: 'Dosis', sans-serif;
+}
+.digital {
+  @include digital();
 }
 
 /*
@@ -99,6 +123,7 @@ section {
   padding-top: 74px;
   margin-top: -74px;
   padding-bottom: 50px;
+  position: relative;
 }
 
 /*
@@ -194,11 +219,13 @@ section {
           &:nth-child(odd) {
             animation: opacityOnAndOff 3s infinite;
             animation-delay: 0.75s;
+            opacity: 0;
           }
 
           &:nth-child(even) {
             animation: opacityOnAndOff 3s infinite;
             animation-delay: 2.25s;
+            opacity: 0;
           }
         }
       }
@@ -267,10 +294,54 @@ section {
 }
 
 /*
-  Events content
+  Countdown
  */
-#events {
-  .events-content {
+#countdown {
+  .countdown-background {
+    background-image: url(/img/countdown-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .countdown-content {
+
+    .countdown-message {
+      color: $white;
+      text-align: center;
+
+      p {
+        margin-top: 30px;
+        font-size: x-large;
+      }
+    }
+
+    .countdown-number {
+      font-size: xx-large;
+    }
+
+    .countdown-element {
+      color: $salmon;
+      background-color: $white;
+      border: solid $offwhite 3px;
+      border-radius: 10px;
+      margin: 10px;
+      text-align: center;
+    }
+  }
+}
+
+/*
+  Story content
+ */
+
+/*
+  Wedding content
+ */
+#wedding {
+  .wedding-content {
     background-color: $offwhite;
     padding: 10px;
   }

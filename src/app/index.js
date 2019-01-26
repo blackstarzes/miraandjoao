@@ -16,10 +16,43 @@ $(function(){
             duration: 1000,
             easing: 'ease-in-out-sine',
         });
-    }
+    };
+
+    // Countdown
+    let initCountdown = function() {
+        const secondsInMinute = 60;
+        const secondsInHour = secondsInMinute*60;
+        const secondsInDay = secondsInHour*24;
+        const targetDate = moment.tz("2019-10-11 14:00", "Europe/Lisbon").utc();
+        const localTimezone = moment.tz.guess(true);
+        var timer = setInterval(function() {
+            let now = moment().tz(localTimezone).utc();
+            if (now < targetDate) {
+                const delta = targetDate.diff(now, 'seconds');
+                //console.log(delta);
+                const days = Math.floor(delta/secondsInDay);
+                const hours = Math.floor((delta - (days*secondsInDay))/secondsInHour);
+                const minutes = Math.floor((delta - (days*secondsInDay) - (hours*secondsInHour))/secondsInMinute);
+                const seconds = Math.floor(delta - (days*secondsInDay) - (hours*secondsInHour) - (minutes*secondsInMinute));
+
+                $('#countdown-days').html(days);
+                $('#countdown-hours').html(hours);
+                $('#countdown-minutes').html(minutes);
+                $('#countdown-seconds').html(seconds);
+            } else {
+                clearInterval(timer);
+
+                $('#countdown-days').html('00');
+                $('#countdown-hours').html('00');
+                $('#countdown-minutes').html('00');
+                $('#countdown-seconds').html('00');
+            }
+        }, 1000);
+    };
 
     initNav();
     initAnimation();
+    initCountdown();
 });
 
 // Maps
