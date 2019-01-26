@@ -84,6 +84,14 @@ a.round-icon {
   }
 }
 
+/*
+  Grid system
+ */
+.row {
+  &.top50 {
+    margin-top: 50px;
+  }
+}
 
 /*
   Navigation
@@ -342,11 +350,31 @@ section {
  */
 #wedding {
   .wedding-content {
-    background-color: $offwhite;
-    padding: 10px;
+
+    i.fa-fw {
+      color: $salmon;
+    }
+
+    a {
+      color: $salmon;
+      &:hover {
+        color: $burgundy;
+        text-decoration: none;
+      }
+    }
   }
-  #googleMap {
-    height: 400px;
-    width: 100%;
+}
+
+/*
+  Copyright
+ */
+.copyright {
+  font-size: 1vh;
+  font-family: sans-serif;
+  color: $lightgrey;
+  text-align: center;
+
+  a {
+    color: $lightgrey;
   }
 }

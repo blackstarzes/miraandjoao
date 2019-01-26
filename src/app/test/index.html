@@ -92,9 +92,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#people"><%= nav.people %></a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" href="#gallery"><%= nav.gallery %></a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="#rsvp"><%= nav.rsvp %></a>
                 </li>
@@ -142,7 +142,7 @@
                     <img src="/img/mira-formal.jpg" class="img-fluid" data-aos="fade-up"/>
                 </div>
                 <div class="col-md-6 col-12 couple-content">
-                    <h2 data-aos="fade-up"2><%= couple.theBride.title %></h2>
+                    <h2 data-aos="fade-up"><%= couple.theBride.title %></h2>
                     <p data-aos="fade-up"><%= couple.theBride.content %></p>
                     <h3 data-aos="fade-up"><%= mira %></h3>
                     <p data-aos="fade-up">
@@ -177,7 +177,7 @@
                     <div class="row">
                         <div class="col-12 countdown-message">
                             <p class="calligraphy">
-                                We are counting down the days...
+                                <%= countdown.countingDown %>
                             </p>
                         </div>
                     </div>
@@ -188,38 +188,38 @@
                                     --
                                 </p>
                                 <p class="countdown-unit">
-                                    days
+                                    <%= countdown.days %>
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-3 col-6">
                             <div class="countdown-element">
-                            <p id="countdown-hours" class="countdown-number">
-                                --
-                            </p>
-                            <p class="countdown-unit">
-                                hours
-                            </p>
+                                <p id="countdown-hours" class="countdown-number">
+                                    --
+                                </p>
+                                <p class="countdown-unit">
+                                    <%= countdown.hours %>
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-3 col-6">
                             <div class="countdown-element">
-                            <p id="countdown-minutes" class="countdown-number">
-                                --
-                            </p>
-                            <p class="countdown-unit">
-                                minutes
-                            </p>
+                                <p id="countdown-minutes" class="countdown-number">
+                                    --
+                                </p>
+                                <p class="countdown-unit">
+                                    <%= countdown.minutes %>
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-3 col-6">
                             <div class="countdown-element">
-                            <p id="countdown-seconds" class="countdown-number">
-                                --
-                            </p>
-                            <p class="countdown-unit">
-                                seconds
-                            </p>
+                                <p id="countdown-seconds" class="countdown-number">
+                                    --
+                                </p>
+                                <p class="countdown-unit">
+                                    <%= countdown.seconds %>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -230,15 +230,62 @@
     <!--<section id="story" style="height: 300px"><%= nav.story %></section>-->
     <section id="wedding">
         <div class="container">
-            <div class="row no-gutters">
-                <div class="col-12">
-                    <div id="googleMap" data-aos="fade-up"></div>
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <img src="/img/church.jpg" class="img-fluid"/>
+                </div>
+                <div class="col-md-6 col-12 wedding-content">
+                    <h2><%= wedding.ceremony.title %></h2>
+                    <h3 class="calligraphy"><%= at %> <%= wedding.ceremony.name %></h3>
+                    <p>
+                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                        <%= wedding.ceremony.location %>
+                    </p>
+                    <p>
+                        <i class="fas fa-clock fa-fw"></i>
+                        <%= wedding.ceremony.date %>
+                    </p>
+                    <p>
+                        <%= wedding.ceremony.description %>
+                    </p>
+                    <p>
+                        <a href="http://google.com/maps/dir/?api=1&destination=Church+of+Our+Lady+of+the+Incarnation,+Porches,+Portugal" target="_blank">
+                            <%= wedding.seeLocation %>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row top50">
+                <div class="col-md-6 col-12">
+                    <img src="/img/reception.jpg" class="img-fluid"/>
+                </div>
+                <div class="col-md-6 col-12 wedding-content">
+                    <h2><%= wedding.reception.title %></h2>
+                    <h3 class="calligraphy"><%= at %> <%= wedding.reception.name %></h3>
+                    <p>
+                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                        <%= wedding.reception.location %>
+                    </p>
+                    <p>
+                        <i class="fas fa-clock fa-fw"></i>
+                        <%= wedding.reception.date %>
+                    </p>
+                    <p>
+                        <%= wedding.reception.description %>
+                    </p>
+                    <p>
+                        <a href="http://google.com/maps/dir/?api=1&destination=Vila+Vita+Parc,+Porches,+Portugal" target="_blank">
+                            <%= wedding.seeLocation %>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
     <section id="people" style="height: 300px"><%= nav.people %></section>
-    <section id="gallery" style="height: 300px"><%= nav.gallery %></section>
+    <!--<section id="gallery" style="height: 300px"><%= nav.gallery %></section>-->
     <section id="rsvp" style="height: 300px"><%= nav.rsvp %></section>
     <div class="copyright">© Joao Lourenco 2019 | <a href="/privacy/"><%= privacyPolicyPage.title %></a></div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -247,6 +294,6 @@
     <script src="/thirdParty.js"></script>
     <script src="/ethereal.js"></script>
     <script src="/index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAUGlv2ylVDZF9j3vee3-i-FItsfb75-o&callback=initMaps" async defer></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAUGlv2ylVDZF9j3vee3-i-FItsfb75-o&callback=initMaps" async defer></script>-->
 </body>
 </html>

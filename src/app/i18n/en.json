@@ -6,6 +6,7 @@
   "joao": "Joao",
   "m": "M",
   "j": "J",
+  "at": "at",
   "nav": {
     "home": "Home",
     "couple": "Couple",
@@ -24,6 +25,30 @@
       "title": "The Groom",
       "content1": "Mira is my partner, my soulmate, my other half, and most of all, my love. Without her, I would be lost in this world. I am looking forward to saying, \"I do\", starting a family and spending the rest of my life with this incredible woman.",
       "content2": "I am so excited to share this very special day with all of you!"
+    }
+  },
+  "countdown": {
+    "countingDown": "We are counting down the days...",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
+  },
+  "wedding": {
+    "seeLocation": "See location",
+    "ceremony": {
+      "title": "The Ceremony",
+      "name": "The Church of Our Lady of the Incarnation",
+      "location": "R. do Correio 12, 8400-498 Porches, Portugal",
+      "date": "11 October 2019 14:00 - 15:30",
+      "description": "We were blown away by the serenity and beauty of this church. Dating back to the 16th century, this baroque style church at the summit of the hill in the village of Porches, known as Igreja de Nossa Senhora da Encarnação, has beautiful azulejo tile installed throughout in its nave, complemented by a gilded carved wood altar. Dedicated to Mary, it has a special significance for Joao, who was born on the feast day of Our Lady."
+    },
+    "reception": {
+      "title": "The Reception",
+      "name": "Vila Vita Parc",
+      "location": "Rua Anneliese Pohl, Alporchinhos, 8400-450 Porches, Portugal",
+      "date": "11 October 2019 15:45 - 01:00",
+      "description": "We knew that this was the one when we arrived. The sprawling manicured gardens, dotted with tropical flora and exquisite water features, stretch from the rear of the reception towards the Atlantic Ocean, eventually giving way to the coastal sandstone cliffs for which the Algarve region is famous, which, in turn, offers up a secluded private beach. We cannot wait to celebrate our union with you in this idyllic piece of paradise!"
     }
   },
   "areGettingMarried" : "are getting married",
