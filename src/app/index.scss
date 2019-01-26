@@ -130,33 +130,48 @@ a.round-icon {
 section {
   padding-top: 74px;
   margin-top: -74px;
-  padding-bottom: 50px;
+  padding-bottom: 74px;
   position: relative;
 
-  div.section-heading {
+  .section-heading {
+    color: $burgundy;
     display: flex;
     justify-content: center;
     align-content: center;
 
     &:before {
-      color: $burgundy;
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
       content: "\f004\f004";
       position: absolute;
-      top: 50px;
+      top: 74px;
     }
 
     h1 {
       @include calligraphy();
-      color: $burgundy;
       background-color: $offwhite;
       border-top: solid $burgundy 1px;
       border-bottom: solid $burgundy 1px;
       display: inline-block;
       text-align: center;
       padding: 0 10px;
+      margin-top: 24px;
       margin-bottom: 50px;
+    }
+  }
+
+  &.dark {
+    .section-heading {
+      color: $offwhite;
+
+      h1 {
+        background-color: rgba($white, 0.2);
+        border-color: $offwhite;
+      }
+    }
+
+    p {
+      color: $offwhite;
     }
   }
 }
@@ -362,7 +377,7 @@ section {
       background-color: $white;
       border: solid $offwhite 3px;
       border-radius: 10px;
-      margin: 10px;
+      margin: 10px 10px 30px;
       text-align: center;
     }
   }
@@ -393,13 +408,41 @@ section {
 }
 
 /*
+  RSVP content
+ */
+#rsvp {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(/img/rsvp-bg.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/*
+  Accommodation content
+ */
+#accommodation {
+  background-color: $burgundy;
+}
+
+/*
+  Registry content
+ */
+#registry {
+  margin-top: 0px;
+}
+
+/*
   Copyright
  */
 .copyright {
-  font-size: 1vh;
+  font-size: 11px;
   font-family: sans-serif;
   color: $lightgrey;
   text-align: center;
+  margin: 10px;
 
   a {
     color: $lightgrey;

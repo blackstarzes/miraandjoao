@@ -17,6 +17,7 @@
     "rsvp": "RSVP"
   },
   "couple": {
+    "title": "O Нас",
     "theBride": {
       "title": "Невеста",
       "content": "Lorem ipsum..."
@@ -56,7 +57,14 @@
     "title": "Подружки Невесты и Жениха"
   },
   "rsvp": {
-    "title": "Присоединяйтесь к Нам"
+    "title": "Присоединяйтесь к Нам",
+    "pleaseRespond": "Пожалуйста, ответьте до 11 мая 2019 года."
+  },
+  "accommodation": {
+    "title": "Жилье"
+  },
+  "registry": {
+    "title": "Реестр Подарков"
   },
   "areGettingMarried" : "женятся",
   "saveTheDate": "Дата свадьбы",

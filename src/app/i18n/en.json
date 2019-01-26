@@ -17,6 +17,7 @@
     "rsvp": "RSVP"
   },
   "couple": {
+    "title": "The Couple",
     "theBride": {
       "title": "The Bride",
       "content": "Lorem ipsum..."
@@ -56,7 +57,14 @@
     "title": "Bridesmaids & Groomsmen"
   },
   "rsvp": {
-    "title": "Join Us"
+    "title": "Join Us",
+    "pleaseRespond": "Please respond by 11 May 2019."
+  },
+  "accommodation": {
+    "title": "Accommodation"
+  },
+  "registry": {
+    "title": "Gift Registry"
   },
   "areGettingMarried" : "are getting married",
   "saveTheDate": "Save the Date",
