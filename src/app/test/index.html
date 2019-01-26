@@ -123,7 +123,7 @@
                  data-aos-delay="1400">
                 <a href="#rsvp" class="pulse-button">
                     <div><i class="fas fa-reply"></i></div>
-                    <div><%= rsvp %></div>
+                    <div><%= nav.rsvp %></div>
                 </a>
             </div>
             <div class="date-place"
@@ -136,6 +136,9 @@
         </div>
     </section>
     <section id="couple">
+        <div class="section-heading">
+            <h1><%= nav.couple %></h1>
+        </div>
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-md-6 col-12">
@@ -227,8 +230,15 @@
             </div>
         </div>
     </section>
-    <!--<section id="story" style="height: 300px"><%= nav.story %></section>-->
+    <!--<section id="story">
+        <div class="section-heading">
+            <h1><%= nav.story %></h1>
+        </div>
+    </section>-->
     <section id="wedding">
+        <div class="section-heading">
+            <h1><%= wedding.title %></h1>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-12">
@@ -284,9 +294,21 @@
             </div>
         </div>
     </section>
-    <section id="people" style="height: 300px"><%= nav.people %></section>
-    <!--<section id="gallery" style="height: 300px"><%= nav.gallery %></section>-->
-    <section id="rsvp" style="height: 300px"><%= nav.rsvp %></section>
+    <section id="people">
+        <div class="section-heading">
+            <h1><%= people.title %></h1>
+        </div>
+    </section>
+    <!--<section id="gallery">
+        <div class="section-heading">
+            <h1><%= nav.gallery %></h1>
+        </div>
+    </section>-->
+    <section id="rsvp">
+        <div class="section-heading">
+            <h1><%= rsvp.title %></h1>
+        </div>
+    </section>
     <div class="copyright">© Joao Lourenco 2019 | <a href="/privacy/"><%= privacyPolicyPage.title %></a></div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

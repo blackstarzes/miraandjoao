@@ -132,6 +132,33 @@ section {
   margin-top: -74px;
   padding-bottom: 50px;
   position: relative;
+
+  div.section-heading {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    &:before {
+      color: $burgundy;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f004\f004";
+      position: absolute;
+      top: 50px;
+    }
+
+    h1 {
+      @include calligraphy();
+      color: $burgundy;
+      background-color: $offwhite;
+      border-top: solid $burgundy 1px;
+      border-bottom: solid $burgundy 1px;
+      display: inline-block;
+      text-align: center;
+      padding: 0 10px;
+      margin-bottom: 50px;
+    }
+  }
 }
 
 /*

@@ -35,6 +35,7 @@
     "seconds": "seconds"
   },
   "wedding": {
+    "title": "Wedding Details",
     "seeLocation": "See location",
     "ceremony": {
       "title": "The Ceremony",
@@ -51,8 +52,13 @@
       "description": "We knew that this was the one when we arrived. The sprawling manicured gardens, dotted with tropical flora and exquisite water features, stretch from the rear of the reception towards the Atlantic Ocean, eventually giving way to the coastal sandstone cliffs for which the Algarve region is famous, which, in turn, offers up a secluded private beach. We cannot wait to celebrate our union with you in this idyllic piece of paradise!"
     }
   },
+  "people": {
+    "title": "Bridesmaids & Groomsmen"
+  },
+  "rsvp": {
+    "title": "Join Us"
+  },
   "areGettingMarried" : "are getting married",
-  "rsvp": "RSVP",
   "saveTheDate": "Save the Date",
   "weddingDate": "11 October 2019",
   "abbrMonday": "M",
