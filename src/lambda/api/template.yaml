@@ -1,41 +1,92 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: SAM Template for Mira and Joao API
-    
+Description: Mira and Joao API
+
+Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+      - Stage
+      - Prod
+
+Mappings:
+  Prod:
+    us-east-1:
+      HostedZoneId: 'Z3SRU05LFQOORE'
+      DomainName: api.miraandjoao.com
+      CertificateArn: 'arn:aws:acm:us-east-1:890485269515:certificate/c6a6f2ac-027f-4fb3-8ec1-f70e9295db3b'
+
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
-    Function:
-        Timeout: 3
-
+  Function:
+    Handler: app.lambdaHandler
+    Runtime: nodejs8.10
+    Timeout: 3
+    Environment:
+      Variables:
+        USERS_TABLE_NAME: miraandjoao-users
 
 Resources:
 
-    HelloWorldFunction:
-        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-        Properties:
-            CodeUri: hello-world/
-            Handler: app.lambdaHandler
-            Runtime: nodejs8.10
-            Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-                Variables:
-                    PARAM1: VALUE
-            Events:
-                HelloWorld:
-                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-                    Properties:
-                        Path: /hello
-                        Method: get
+  RsvpTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: !Sub ${Environment}-rsvp
+      PrimaryKey:
+        Name: userid
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+  GetRsvpFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: get-rsvp/
+      Events:
+        GetRsvp:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /rsvp
+            Method: get
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+
+  APIDomainName:
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      CertificateArn: !FindInMap [!Ref Environment, !Ref 'AWS::Region', CertificateArn]
+      DomainName: !FindInMap [!Ref Environment, !Ref 'AWS::Region', DomainName]
+
+  APIBasePathMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    Properties:
+      DomainName: !Ref APIDomainName
+      RestApiId: !Ref ServerlessRestApi
+      Stage: !Ref Environment
+
+  APIDomain:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !FindInMap [!Ref Environment, !Ref 'AWS::Region', HostedZoneId]
+      RecordSets:
+        - Name: !FindInMap [!Ref Environment, !Ref 'AWS::Region', DomainName]
+          Type: A
+          AliasTarget:
+            DNSName: !GetAtt APIDomainName.DistributionDomainName
+            HostedZoneId: Z2FDTNDATAQYW2 # static ID for CloudFront aliases
 
 Outputs:
 
-    HelloWorldApi:
-      Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  MiraAndJoaoApi:
+    Description: "API Gateway endpoint URL for Get RSVP function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/"
 
-    HelloWorldFunction:
-      Description: "Hello World Lambda Function ARN"
-      Value: !GetAtt HelloWorldFunction.Arn
+  GetRsvpFunction:
+    Description: "GetRsvp Lambda Function ARN"
+    Value: !GetAtt GetRsvpFunction.Arn
 
-    HelloWorldFunctionIamRole:
-      Description: "Implicit IAM Role created for Hello World function"
-      Value: !GetAtt HelloWorldFunctionRole.Arn
+  GetRsvpFunctionIamRole:
+    Description: "Implicit IAM Role created for GetRsvp function"
+    Value: !GetAtt GetRsvpFunctionRole.Arn

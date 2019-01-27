@@ -18,7 +18,6 @@ describe('Tests index', function () {
 
         expect(response).to.be.an('object');
         expect(response.message).to.be.equal("hello world");
-        expect(response.location).to.be.an("string");
     });
 });
 
