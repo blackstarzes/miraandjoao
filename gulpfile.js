@@ -43,7 +43,8 @@ const buildEmailFolder = buildFolder + "/email";
 function cleanBuild() {
     return gulp.src(
         [
-            buildFolder
+            buildAppFolder,
+            buildEmailFolder
         ], {
             read: false,
             allowEmpty: true
