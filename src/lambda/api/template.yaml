@@ -25,6 +25,7 @@ Globals:
     Environment:
       Variables:
         USERS_TABLE_NAME: miraandjoao-users
+        USERS_TABLE_USERTAG_INDEX_NAME: usertag-index
         RSVPS_TABLE_NAME:
           Ref: RsvpTable
 
@@ -35,7 +36,7 @@ Resources:
     Properties:
       AttributeDefinitions:
         -
-          AttributeName: userid
+          AttributeName: usertag
           AttributeType: S
         -
           AttributeName: timestamp
@@ -43,12 +44,16 @@ Resources:
       BillingMode: PAY_PER_REQUEST
       KeySchema:
         -
-          AttributeName: userid
+          AttributeName: usertag
           KeyType: HASH
         -
           AttributeName: timestamp
           KeyType: RANGE
       TableName: !Sub ${Environment}-miraandjoao-rsvp
+      Tags:
+        -
+          Key: Project
+          Value: "miraandjoao.com"
 
   GetRsvpFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
