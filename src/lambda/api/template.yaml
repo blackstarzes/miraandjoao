@@ -25,19 +25,30 @@ Globals:
     Environment:
       Variables:
         USERS_TABLE_NAME: miraandjoao-users
+        RSVPS_TABLE_NAME:
+          Ref: RsvpTable
 
 Resources:
 
   RsvpTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Sub ${Environment}-rsvp
-      PrimaryKey:
-        Name: userid
-        Type: String
-      ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
+      AttributeDefinitions:
+        -
+          AttributeName: userid
+          AttributeType: S
+        -
+          AttributeName: timestamp
+          AttributeType: N
+      BillingMode: PAY_PER_REQUEST
+      KeySchema:
+        -
+          AttributeName: userid
+          KeyType: HASH
+        -
+          AttributeName: timestamp
+          KeyType: RANGE
+      TableName: !Sub ${Environment}-miraandjoao-rsvp
 
   GetRsvpFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
