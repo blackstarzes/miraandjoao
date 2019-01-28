@@ -83,8 +83,8 @@ describe("Get RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                headers: {
-                    "X-MiraAndJoao-UserTag": "abc123"
+                pathParameters: {
+                    "usertag": "abc123"
                 }
             }
         });
@@ -159,8 +159,8 @@ describe("Get RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                headers: {
-                    "X-MiraAndJoao-UserTag": "abc123"
+                pathParameters: {
+                    "usertag": "abc123"
                 }
             }
         });
@@ -233,8 +233,8 @@ describe("Get RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                headers: {
-                    "X-MiraAndJoao-UserTag": "abc123"
+                pathParameters: {
+                    "usertag": "abc123"
                 }
             }
         });

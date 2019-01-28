@@ -47,9 +47,11 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
     let response: ProxyResult;
 
     try {
-        // Extract the user id from the header
-        const userTag: string = event.headers["X-MiraAndJoao-UserTag"];
-        if (userTag == null) {
+        // Extract the user tag from the path
+        const userTag: string = event.pathParameters == null
+            ? ""
+            : event.pathParameters!["usertag"];
+        if (userTag == null || userTag == "") {
             // Return UserId not provided
             console.log("UserTag not provided");
             response = {
