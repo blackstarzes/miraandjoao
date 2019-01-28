@@ -14,6 +14,7 @@ Mappings:
     us-east-1:
       HostedZoneId: 'Z3SRU05LFQOORE'
       DomainName: api.miraandjoao.com
+      DomainNameUi: "https://miraandjoao.com"
       CertificateArn: 'arn:aws:acm:us-east-1:890485269515:certificate/c6a6f2ac-027f-4fb3-8ec1-f70e9295db3b'
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
@@ -24,10 +25,13 @@ Globals:
     Timeout: 3
     Environment:
       Variables:
+        HEADER_ACAO: !FindInMap [!Ref Environment, !Ref 'AWS::Region', DomainNameUi]
         USERS_TABLE_NAME: miraandjoao-users
         USERS_TABLE_USERTAG_INDEX_NAME: usertag-index
         RSVPS_TABLE_NAME:
           Ref: RsvpTable
+  Api:
+    Cors: !Join [ "", [ "'", !FindInMap [!Ref Environment, !Ref 'AWS::Region', DomainNameUi], "'" ] ]
 
 Resources:
 

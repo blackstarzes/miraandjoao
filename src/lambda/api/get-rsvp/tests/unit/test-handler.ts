@@ -12,6 +12,7 @@ import {PromiseResult} from "aws-sdk/lib/request";
 
 const expect = chai.expect;
 
+const DOMAIN_UI = "https://www.example.com";
 const RSVPS_TABLE_NAME = "rsvp-table";
 const USERS_TABLE_NAME = "user-table";
 const USERS_TABLE_USERTAG_INDEX_NAME = "user-table-usertag-index";
@@ -20,6 +21,8 @@ let context: Context;
 
 describe("Get RSVP tests", function () {
     it("When UserTag is not provided, should return 403 with message 'UserTag not provided'", async () => {
+        // Given
+        process.env.HEADER_ACAO = DOMAIN_UI;
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway"
         });
@@ -31,6 +34,9 @@ describe("Get RSVP tests", function () {
         expect(result).to.be.an("object");
         expect(result.statusCode).to.equal(403);
         expect(result.body).to.be.an("string");
+        expect(result.headers).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         expect(response.message).to.be.equal("UserTag not provided");
@@ -90,6 +96,9 @@ describe("Get RSVP tests", function () {
         expect(result).to.be.an("object");
         expect(result.statusCode).to.equal(200);
         expect(result.body).to.be.an("string");
+        expect(result.headers).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
@@ -163,6 +172,9 @@ describe("Get RSVP tests", function () {
         expect(result).to.be.an("object");
         expect(result.statusCode).to.equal(404);
         expect(result.body).to.be.an("string");
+        expect(result.headers).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         expect(response.message).to.be.equal("UserTag not found");
@@ -234,6 +246,9 @@ describe("Get RSVP tests", function () {
         expect(result).to.be.an("object");
         expect(result.statusCode).to.equal(200);
         expect(result.body).to.be.an("string");
+        expect(result.headers).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;

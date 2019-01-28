@@ -151,5 +151,9 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
         };
     }
 
+    response.headers = {
+        "access-control-allow-origin": process.env.HEADER_ACAO!
+    };
+
     return response;
 };
