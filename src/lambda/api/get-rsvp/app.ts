@@ -6,16 +6,17 @@ import AttributeMap = DocumentClient.AttributeMap;
 
 export interface RsvpDetails {
     name: string;
-    rsvpResponse: boolean;
-    diet: string;
+    rsvpResponse?: boolean;
+    diet?: string;
+    allergies?: string;
 }
 
 export interface Rsvp extends AttributeMap {
     usertag: string;
-    timestamp: number;
+    timestamp?: number;
     people: RsvpDetails[];
-    bachelorparty: boolean;
-    bacheloretteparty: boolean;
+    bachelorparty?: boolean;
+    bacheloretteparty?: boolean;
     allowchildren: boolean;
 }
 
@@ -112,18 +113,13 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                         .split(",")
                         .map(function (item) {
                             const person: RsvpDetails = {
-                                name: item.trim(),
-                                rsvpResponse: false,
-                                diet: "Standard"
+                                name: item.trim()
                             };
                             return person;
                         });
                     const rsvp: Rsvp = {
                         usertag: user.usertag,
-                        timestamp: 0,
                         people: people,
-                        bachelorparty: false,
-                        bacheloretteparty: false,
                         allowchildren: user.allowchildren
                     };
                     response = {

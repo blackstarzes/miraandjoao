@@ -58,7 +58,23 @@
   },
   "rsvp": {
     "title": "Join Us",
-    "pleaseRespond": "Please respond by 11 May 2019."
+    "pleaseRespond": "Please respond by 11 July 2019.",
+    "forbidden": "We can't seem to figure out who you are. Please click the link in your wedding invitation to RSVP.",
+    "notfound": "We can't seem to find your invitation. Please get in touch so that we can resolve this.",
+    "error": "Something seems to have gone wrong. Please reload the page and try again. If the problem persists, please get in touch so that we can resolve this.",
+    "form": {
+      "name": "Name",
+      "coming": "Coming?",
+      "comingPlaceholder": "Select your response",
+      "yes": "Yes",
+      "no": "No",
+      "dietaryRequirements": "Dietary requirements",
+      "dietPlaceholder": "Select your preference",
+      "standard": "Standard",
+      "vegetarian": "Vegetarian",
+      "allergies": "Do you have any allergies?",
+      "allergiesPlaceholder": "Please let us know if you have any allergies or other dietary requirements"
+    }
   },
   "accommodation": {
     "title": "Accommodation"

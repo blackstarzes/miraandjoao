@@ -63,11 +63,13 @@ describe("Get RSVP tests", function () {
                     people: [{
                         name: "John",
                         diet: "Standard",
-                        rsvpResponse: true
+                        rsvpResponse: true,
+                        allergies: "Eggs"
                     }, {
                         name: "Jane",
                         diet: "Vegetarian",
-                        rsvpResponse: true
+                        rsvpResponse: true,
+                        allergies: ""
                     }],
                     timestamp: 123456,
                     usertag: "abc123"
@@ -111,10 +113,12 @@ describe("Get RSVP tests", function () {
         expect(typedResponse.people[0].name).to.be.equal("John");
         expect(typedResponse.people[0].diet).to.be.equal("Standard");
         expect(typedResponse.people[0].rsvpResponse).to.be.equal(true);
+        expect(typedResponse.people[0].allergies).to.be.equal("Eggs");
         expect(typedResponse.people[1]).to.not.be.null;
         expect(typedResponse.people[1].name).to.be.equal("Jane");
         expect(typedResponse.people[1].diet).to.be.equal("Vegetarian");
         expect(typedResponse.people[1].rsvpResponse).to.be.equal(true);
+        expect(typedResponse.people[1].allergies).to.be.equal("");
         expect(typedResponse.timestamp).to.be.equal(123456);
         expect(typedResponse.usertag).to.be.equal("abc123");
 
@@ -253,19 +257,21 @@ describe("Get RSVP tests", function () {
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
         expect(typedResponse.allowchildren).to.be.equal(true);
-        expect(typedResponse.bacheloretteparty).to.be.equal(false);
-        expect(typedResponse.bachelorparty).to.be.equal(false);
+        expect(typedResponse.bacheloretteparty).to.be.undefined;
+        expect(typedResponse.bachelorparty).to.be.undefined;
         expect(typedResponse.people).to.not.be.null;
         expect(typedResponse.people.length).to.be.equal(2);
         expect(typedResponse.people[0]).to.not.be.null;
         expect(typedResponse.people[0].name).to.be.equal("John");
-        expect(typedResponse.people[0].diet).to.be.equal("Standard");
-        expect(typedResponse.people[0].rsvpResponse).to.be.equal(false);
+        expect(typedResponse.people[0].diet).to.be.undefined;
+        expect(typedResponse.people[0].rsvpResponse).to.be.undefined;
+        expect(typedResponse.people[0].allergies).to.be.undefined;
         expect(typedResponse.people[1]).to.not.be.null;
         expect(typedResponse.people[1].name).to.be.equal("Jane");
-        expect(typedResponse.people[1].diet).to.be.equal("Standard");
-        expect(typedResponse.people[1].rsvpResponse).to.be.equal(false);
-        expect(typedResponse.timestamp).to.be.equal(0);
+        expect(typedResponse.people[1].diet).to.be.undefined;
+        expect(typedResponse.people[1].rsvpResponse).undefined;
+        expect(typedResponse.people[1].allergies).to.be.undefined;
+        expect(typedResponse.timestamp).to.be.undefined;
         expect(typedResponse.usertag).to.be.equal("abc123");
 
         // Cleanup

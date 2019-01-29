@@ -309,9 +309,61 @@
             <h1><%= rsvp.title %></h1>
         </div>
         <div class="container">
-            <div class="row">
+            <div id="rsvp-loading" class="row">
+                <div class="col-12">
+                    <div class="fa-3x">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="rsvp-forbidden" class="row rsvp-hidden">
+                <div class="col-12">
+                    <p><%= rsvp.forbidden %></p>
+                </div>
+            </div>
+            <div id="rsvp-notfound" class="row rsvp-hidden">
+                <div class="col-12">
+                    <p><%= rsvp.notfound %></p>
+                </div>
+            </div>
+            <div id="rsvp-error" class="row rsvp-hidden">
+                <div class="col-12">
+                    <p><%= rsvp.error %></p>
+                </div>
+            </div>
+            <div id="rsvp-available" class="row rsvp-hidden">
                 <div class="col-12">
                     <p><%= rsvp.pleaseRespond %></p>
+                </div>
+                <div class="col-12">
+                    <form>
+                        <div id="grpPeople" class="form-row"
+                             data-people-count="0"
+                             data-i18n-name="<%= rsvp.form.name %>"
+                             data-i18n-coming="<%= rsvp.form.coming %>" data-i18n-comingplaceholder="<%= rsvp.form.comingPlaceholder %>" data-i18n-yes="<%= rsvp.form.yes %>" data-i18n-no="<%= rsvp.form.no %>"
+                             data-i18n-dietaryrequirements="<%= rsvp.form.dietaryRequirements %>" data-i18n-dietplaceholder="<%= rsvp.form.dietPlaceholder %>" data-i18n-standard="<%= rsvp.form.standard %>" data-i18n-vegetarian="<%= rsvp.form.vegetarian %>"
+                             data-i18n-allergies="<%= rsvp.form.allergies %>" data-i18n-allergiesplaceholder="<%= rsvp.form.allergiesPlaceholder %>">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-12 col-md-6">
+                                <div class="form-check">
+                                    <input type="checkbox" id="chkBacheloretteParty" class="form-check-input">
+                                    <label for="chkBacheloretteParty" class="form-check-label">I'm coming to the bachelorette party</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-12 col-md-6">
+                                <div class="form-check">
+                                    <input type="checkbox" id="chkBachelorParty" class="form-check-input">
+                                    <label for="chkBachelorParty" class="form-check-label">I'm coming to the bachelor party</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

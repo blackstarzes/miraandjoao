@@ -418,6 +418,31 @@ section {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  margin-bottom: 74px;
+
+  #rsvp-available {
+    color: $offwhite;
+  }
+
+  #rsvp-loading {
+    color: $offwhite;
+    text-align: center;
+  }
+
+  .rsvp-hidden {
+    display: none;
+  }
+
+  form {
+    .form-control[readonly] {
+      cursor: not-allowed;
+    }
+    select {
+      &:invalid {
+        color: $lightgrey;
+      }
+    }
+  }
 }
 
 /*
