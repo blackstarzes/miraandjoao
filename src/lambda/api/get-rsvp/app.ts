@@ -2,39 +2,10 @@ import AWS = require('aws-sdk');
 import {APIGatewayEvent, Context, ProxyResult} from "aws-lambda";
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import QueryInput = DocumentClient.QueryInput;
-import AttributeMap = DocumentClient.AttributeMap;
 
-export interface RsvpDetails {
-    name: string;
-    rsvpResponse?: boolean;
-    diet?: string;
-    allergies?: string;
-}
-
-export interface Rsvp extends AttributeMap {
-    usertag: string;
-    timestamp?: number;
-    people: RsvpDetails[];
-    bachelorparty?: boolean;
-    bacheloretteparty?: boolean;
-    allowchildren: boolean;
-}
-
-export interface DeliveryDetails extends AttributeMap {
-    savethedate: boolean;
-}
-
-export interface User extends AttributeMap {
-    allowchildren: boolean;
-    delivered: DeliveryDetails;
-    invitedcount: number;
-    invitednames: string;
-    language: string;
-    rsvpcount: number;
-    salutation: string;
-    userid: string;
-    usertag: string;
-}
+import {Rsvp} from "../../miraandjoao-lib/models/rsvp";
+import {RsvpDetails} from "../../miraandjoao-lib/models/rsvpdetails";
+import {User} from "../../miraandjoao-lib/models/user";
 
 export const lambdaHandler = async (event: APIGatewayEvent, context: Context) => {
 

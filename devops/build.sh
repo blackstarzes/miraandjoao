@@ -1,13 +1,26 @@
 echo 'Building web...'
 gulp build
 
-echo 'Building & Testing API...'
+echo 'Building & testing libraries...'
 (
-    cd src/lambda/api/get-rsvp && \
+    cd src/lambda/miraandjoao-lib && \
     npm install && \
     npm run build && \
     npm run test
 )
+
+echo 'Building & testing API...'
+for dir in src/lambda/api/*/
+do
+    dir=${dir%*/}
+    echo "Building & Testing " + ${dir##*/}
+    (
+        cd $dir && \
+        npm install && \
+        npm run build && \
+        npm run test
+    )
+done
 echo 'Building SAM API...'
 sam build --build-dir build/api --base-dir src/lambda/api --template src/lambda/api/template.yaml
 echo 'Packaging SAM API...'

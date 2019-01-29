@@ -1,24 +1,29 @@
+// Test subject
 import app = require("../../app.js");
+
+// External libraries
 import chai from "chai";
 const createEvent = require("aws-event-mocks");
 import {APIGatewayEvent, Context} from "aws-lambda";
 import AWS from 'aws-sdk-mock';
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import QueryInput = DocumentClient.QueryInput;
-import {Rsvp, RsvpDetails, User, DeliveryDetails} from "../../app";
-import QueryOutput = DocumentClient.QueryOutput;
-import {AWSError, Request} from "aws-sdk";
-import {PromiseResult} from "aws-sdk/lib/request";
 
+// Local libraries
+import {Rsvp} from "../../../../miraandjoao-lib/models/rsvp";
+import {User} from "../../../../miraandjoao-lib/models/user";
+
+// Test framework
 const expect = chai.expect;
 
+// Constants
 const DOMAIN_UI = "https://www.example.com";
 const RSVPS_TABLE_NAME = "rsvp-table";
 const USERS_TABLE_NAME = "user-table";
 const USERS_TABLE_USERTAG_INDEX_NAME = "user-table-usertag-index";
-
 let context: Context;
 
+// Tests
 describe("Get RSVP tests", function () {
     it("When UserTag is not provided, should return 403 with message 'UserTag not provided'", async () => {
         // Given
