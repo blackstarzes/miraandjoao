@@ -12,6 +12,7 @@ import QueryInput = DocumentClient.QueryInput;
 // Local libraries
 import {Rsvp} from "../../../../miraandjoao-lib/models/rsvp";
 import {User} from "../../../../miraandjoao-lib/models/user";
+import {Diet} from "../../../../miraandjoao-lib/models/diet";
 
 // Test framework
 const expect = chai.expect;
@@ -67,12 +68,12 @@ describe("Get RSVP tests", function () {
                     bachelorparty: true,
                     people: [{
                         name: "John",
-                        diet: "Standard",
+                        diet: Diet.Standard,
                         rsvpResponse: true,
                         allergies: "Eggs"
                     }, {
                         name: "Jane",
-                        diet: "Vegetarian",
+                        diet: Diet.Vegetarian,
                         rsvpResponse: true,
                         allergies: ""
                     }],
@@ -116,12 +117,12 @@ describe("Get RSVP tests", function () {
         expect(typedResponse.people.length).to.be.equal(2);
         expect(typedResponse.people[0]).to.not.be.null;
         expect(typedResponse.people[0].name).to.be.equal("John");
-        expect(typedResponse.people[0].diet).to.be.equal("Standard");
+        expect(typedResponse.people[0].diet).to.be.equal(Diet.Standard);
         expect(typedResponse.people[0].rsvpResponse).to.be.equal(true);
         expect(typedResponse.people[0].allergies).to.be.equal("Eggs");
         expect(typedResponse.people[1]).to.not.be.null;
         expect(typedResponse.people[1].name).to.be.equal("Jane");
-        expect(typedResponse.people[1].diet).to.be.equal("Vegetarian");
+        expect(typedResponse.people[1].diet).to.be.equal(Diet.Vegetarian);
         expect(typedResponse.people[1].rsvpResponse).to.be.equal(true);
         expect(typedResponse.people[1].allergies).to.be.equal("");
         expect(typedResponse.timestamp).to.be.equal(123456);

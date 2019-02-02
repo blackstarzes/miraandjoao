@@ -4,8 +4,7 @@ import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import QueryInput = DocumentClient.QueryInput;
 
 import {Rsvp} from "../../miraandjoao-lib/models/rsvp";
-import {RsvpDetails} from "../../miraandjoao-lib/models/rsvpdetails";
-import {User} from "../../miraandjoao-lib/models/user";
+import {getPeople, User} from "../../miraandjoao-lib/models/user";
 
 export const lambdaHandler = async (event: APIGatewayEvent, context: Context) => {
 
@@ -78,16 +77,7 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
 
                     // Build an RSVP from the user
                     const user = <User> userQueryResult.Items![0];
-                    const people = user.invitednames
-                        .replace(" and ", ", ")
-                        .replace(" и ", ", ")
-                        .split(",")
-                        .map(function (item) {
-                            const person: RsvpDetails = {
-                                name: item.trim()
-                            };
-                            return person;
-                        });
+                    const people = getPeople(user);
                     const rsvp: Rsvp = {
                         usertag: user.usertag,
                         people: people,
@@ -99,7 +89,6 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                     };
                 } else {
                     console.log("User not found");
-
                     response = {
                         statusCode: 404,
                         body: JSON.stringify({

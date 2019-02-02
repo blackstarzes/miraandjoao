@@ -2,6 +2,7 @@ import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import AttributeMap = DocumentClient.AttributeMap;
 
 import {DeliveryDetails} from "./deliverydetails";
+import {RsvpDetails} from "./rsvpdetails";
 
 export interface User extends AttributeMap {
     allowchildren: boolean;
@@ -13,4 +14,17 @@ export interface User extends AttributeMap {
     salutation: string;
     userid: string;
     usertag: string;
+}
+
+export function getPeople(user: User) {
+    return user.invitednames
+        .replace(" and ", ", ")
+        .replace(" и ", ", ")
+        .split(",")
+        .map(function (item) {
+            const person: RsvpDetails = {
+                name: item.trim()
+            };
+            return person;
+        });
 }
