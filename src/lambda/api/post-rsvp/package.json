@@ -1,0 +1,28 @@
+{
+  "name": "post-rsvp",
+  "version": "1.0.0",
+  "description": "PostRsvp Lambda Function",
+  "main": "src/index.js",
+  "repository": "https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-nodejs",
+  "author": "Joao Lourenco",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha tests/unit/",
+    "import": "cpx \"../../miraandjoao-lib/src/**/*.ts\" miraandjoao-lib"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "aws-event-mocks": "0.0.0",
+    "aws-sdk": "^2.395.0",
+    "aws-sdk-mock": "^4.3.0",
+    "chai": "^4.1.2",
+    "cpx": "^1.5.0",
+    "mocha": "^5.1.1",
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {}
+}
