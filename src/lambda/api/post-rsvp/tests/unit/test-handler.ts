@@ -48,7 +48,7 @@ describe("Post RSVP tests", function () {
         expect(response.message).to.be.equal("UserTag not provided");
     });
 
-    it("When UserTag is provided and no payload is provided, should return 400 with message 'RSVP invalid'", async () => {
+    it("When UserTag is provided and no payload is provided, should return 500 with message 'Unhandled exception'", async () => {
         // Given
         process.env.RSVPS_TABLE_NAME = RSVPS_TABLE_NAME;
         process.env.USERS_TABLE_NAME = USERS_TABLE_NAME;
@@ -83,14 +83,14 @@ describe("Post RSVP tests", function () {
 
         // Then
         expect(result).to.be.an("object");
-        expect(result.statusCode).to.equal(400);
+        expect(result.statusCode).to.equal(500);
         expect(result.body).to.be.an("string");
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
-        expect(response.message).to.be.equal("RSVP invalid");
+        expect(response.message).to.be.equal("Unhandled exception");
 
         // Cleanup
         AWS.restore("DynamoDB.DocumentClient");
@@ -120,9 +120,9 @@ describe("Post RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                body: {
+                body: JSON.stringify({
                     "junk": "junk"
-                },
+                }),
                 pathParameters: {
                     "usertag": "abc123"
                 }
@@ -187,7 +187,7 @@ describe("Post RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                body: rsvp,
+                body: JSON.stringify(rsvp),
                 pathParameters: {
                     "usertag": "abc123"
                 }
@@ -285,7 +285,7 @@ describe("Post RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                body: rsvp,
+                body: JSON.stringify(rsvp),
                 pathParameters: {
                     "usertag": "abc123"
                 }
@@ -383,7 +383,7 @@ describe("Post RSVP tests", function () {
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway",
             merge: {
-                body: rsvp,
+                body: JSON.stringify(rsvp),
                 pathParameters: {
                     "usertag": "abc123"
                 }

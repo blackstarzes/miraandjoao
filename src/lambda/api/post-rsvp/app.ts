@@ -36,12 +36,13 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
             // Validate RSVP structure
             console.log("Validating RSVP...");
             console.log(`UserTag: ${userTag}`);
-            console.log(`Payload: ${JSON.stringify(event.body)}`);
-            if (event.body != null && isRsvp(event.body)) {
+            console.log(`Payload: ${event.body}`);
+            const body = JSON.parse(event.body!);
+            if (body != null && isRsvp(body)) {
                 console.log("RSVP valid");
 
                 // Cast payload to RSVP
-                const rsvp: Rsvp = <Rsvp> event.body;
+                const rsvp: Rsvp = <Rsvp> body;
 
                 // Fetch the user
                 console.log("Fetching user from table...");
