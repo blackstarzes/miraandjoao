@@ -1,11 +1,11 @@
 import AWS = require('aws-sdk');
 import {APIGatewayEvent, Context, ProxyResult} from "aws-lambda";
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
+import PutItemInput = DocumentClient.PutItemInput;
 import QueryInput = DocumentClient.QueryInput;
 
 import {isRsvp, isValidRsvpForUser, Rsvp} from "./miraandjoao-lib/models/rsvp";
 import {User} from "./miraandjoao-lib/models/user";
-import PutItemInput = DocumentClient.PutItemInput;
 
 export const lambdaHandler = async (event: APIGatewayEvent, context: Context) => {
 

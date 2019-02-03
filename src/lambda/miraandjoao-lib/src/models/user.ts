@@ -10,6 +10,7 @@ export interface User extends AttributeMap {
     invitedcount: number;
     invitednames: string;
     language: string;
+    linkeduserid?: string;
     rsvpcount: number;
     salutation: string;
     userid: string;

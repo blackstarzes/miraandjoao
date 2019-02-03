@@ -1,6 +1,7 @@
 import AWS = require('aws-sdk');
 import {APIGatewayEvent, Context, ProxyResult} from "aws-lambda";
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
+import GetItemInput = DocumentClient.GetItemInput;
 import QueryInput = DocumentClient.QueryInput;
 
 import {Rsvp} from "./miraandjoao-lib/models/rsvp";
@@ -32,10 +33,11 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                 })
             };
         } else {
-            // Fetch the latest RSVP from the table
-            console.log("Fetching RSVP from table...");
-            const rsvpQueryParams: QueryInput = {
-                TableName: rsvpsTableName,
+            // Fetch the user
+            console.log("Fetching user from table...");
+            const userQueryParams: QueryInput = {
+                TableName: usersTableName,
+                IndexName: usersTableUserTagIndexName,
                 KeyConditionExpression: "#usertag = :usertag",
                 ExpressionAttributeNames: {
                     "#usertag": "usertag"
@@ -43,40 +45,59 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                 ExpressionAttributeValues: {
                     ":usertag": userTag
                 },
-                ScanIndexForward: true,
                 Limit: 1
             };
-            let rsvpQueryResult = await dynamoDb.query(rsvpQueryParams).promise();
-            if (rsvpQueryResult.Count != 0) {
-                // Return this RSVP response
-                console.log("RSVP found");
-                response = {
-                    statusCode: 200,
-                    body: JSON.stringify(<Rsvp>rsvpQueryResult.Items![0])
-                }
-            } else {
-                console.log("RSVP not found");
+            const userQueryResult = await dynamoDb.query(userQueryParams).promise();
+            if (userQueryResult.Count != 0) {
+                console.log("User found");
 
-                // Fetch the user and return an RSVP response
-                console.log("Fetching user from table...");
-                const userQueryParams: QueryInput = {
-                    TableName: usersTableName,
-                    IndexName: usersTableUserTagIndexName,
+                let user = <User> userQueryResult.Items![0];
+
+                // Check for a linked user
+                if (user.linkeduserid != undefined && user.linkeduserid != null) {
+                    console.log("Fetching linked user...");
+
+                    const linkedUserGetItemParams: GetItemInput = {
+                        TableName: usersTableName,
+                        Key: {
+                            "userid": user.linkeduserid
+                        }
+                    };
+                    const linkedUserResult = await dynamoDb.get(linkedUserGetItemParams).promise();
+                    if (linkedUserResult.Item != null) {
+                        console.log("Linked user found");
+                        user = <User> linkedUserResult.Item;
+                    } else {
+                        console.log("Linked user not found");
+                    }
+                }
+
+                // Fetch the latest RSVP from the table
+                console.log("Fetching RSVP from table...");
+                const rsvpQueryParams: QueryInput = {
+                    TableName: rsvpsTableName,
                     KeyConditionExpression: "#usertag = :usertag",
                     ExpressionAttributeNames: {
                         "#usertag": "usertag"
                     },
                     ExpressionAttributeValues: {
-                        ":usertag": userTag
+                        ":usertag": user.usertag
                     },
+                    ScanIndexForward: true,
                     Limit: 1
                 };
-                let userQueryResult = await dynamoDb.query(userQueryParams).promise();
-                if (userQueryResult.Count != 0) {
-                    console.log("User found");
+                let rsvpQueryResult = await dynamoDb.query(rsvpQueryParams).promise();
+                if (rsvpQueryResult.Count != 0) {
+                    // Return this RSVP response
+                    console.log("RSVP found");
+                    response = {
+                        statusCode: 200,
+                        body: JSON.stringify(<Rsvp>rsvpQueryResult.Items![0])
+                    }
+                } else {
+                    console.log("RSVP not found");
 
-                    // Build an RSVP from the user
-                    const user = <User> userQueryResult.Items![0];
+                    // Create RSVP from user
                     const people = getPeople(user);
                     const rsvp: Rsvp = {
                         usertag: user.usertag,
@@ -87,15 +108,15 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                         statusCode: 200,
                         body: JSON.stringify(rsvp)
                     };
-                } else {
-                    console.log("User not found");
-                    response = {
-                        statusCode: 404,
-                        body: JSON.stringify({
-                            message: "UserTag not found"
-                        })
-                    };
                 }
+            } else {
+                console.log("User not found");
+                response = {
+                    statusCode: 404,
+                    body: JSON.stringify({
+                        message: "UserTag not found"
+                    })
+                };
             }
         }
     } catch (err) {
