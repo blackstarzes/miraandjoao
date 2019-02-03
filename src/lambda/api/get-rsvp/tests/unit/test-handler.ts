@@ -61,7 +61,7 @@ describe("Get RSVP tests", function () {
                 && params.ExpressionAttributeNames!["#usertag"] == "usertag"
                 && params.ExpressionAttributeValues!.hasOwnProperty(":usertag")
                 && params.ExpressionAttributeValues![":usertag"] == "abc123"
-                && params.ScanIndexForward
+                && !params.ScanIndexForward
                 && params.Limit == 1) {
                 const rsvp: Rsvp = {
                     allowchildren: true,
@@ -170,7 +170,7 @@ describe("Get RSVP tests", function () {
                 && params.ExpressionAttributeNames!["#usertag"] == "usertag"
                 && params.ExpressionAttributeValues!.hasOwnProperty(":usertag")
                 && params.ExpressionAttributeValues![":usertag"] == "abc123"
-                && params.ScanIndexForward
+                && !params.ScanIndexForward
                 && params.Limit == 1) {
                 const response: DocumentClient.QueryOutput = {
                     Count: 0,
@@ -231,7 +231,7 @@ describe("Get RSVP tests", function () {
                 && params.ExpressionAttributeNames!["#usertag"] == "usertag"
                 && params.ExpressionAttributeValues!.hasOwnProperty(":usertag")
                 && params.ExpressionAttributeValues![":usertag"] == "abc123"
-                && params.ScanIndexForward
+                && !params.ScanIndexForward
                 && params.Limit == 1) {
                 const response: DocumentClient.QueryOutput = {
                     Count: 0,
@@ -322,7 +322,7 @@ describe("Get RSVP tests", function () {
                 && params.ExpressionAttributeNames!["#usertag"] == "usertag"
                 && params.ExpressionAttributeValues!.hasOwnProperty(":usertag")
                 && params.ExpressionAttributeValues![":usertag"] == "abc123"
-                && params.ScanIndexForward
+                && !params.ScanIndexForward
                 && params.Limit == 1) {
                 const response: DocumentClient.QueryOutput = {
                     Count: 0,
@@ -436,7 +436,7 @@ describe("Get RSVP tests", function () {
                 && params.ExpressionAttributeNames!["#usertag"] == "usertag"
                 && params.ExpressionAttributeValues!.hasOwnProperty(":usertag")
                 && params.ExpressionAttributeValues![":usertag"] == "abc123"
-                && params.ScanIndexForward
+                && !params.ScanIndexForward
                 && params.Limit == 1) {
                 const rsvp: Rsvp = {
                     allowchildren: true,

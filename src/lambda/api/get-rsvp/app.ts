@@ -83,7 +83,7 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                     ExpressionAttributeValues: {
                         ":usertag": user.usertag
                     },
-                    ScanIndexForward: true,
+                    ScanIndexForward: false,
                     Limit: 1
                 };
                 let rsvpQueryResult = await dynamoDb.query(rsvpQueryParams).promise();
