@@ -3,7 +3,6 @@
 // External libraries
 import chai from "chai";
 import {isRsvp, isValidRsvpForUser, Rsvp} from "../../src/models/rsvp";
-import {Diet} from "../../src/models/diet";
 import {User} from "../../src/models/user";
 
 // Local libraries
@@ -37,12 +36,12 @@ describe("miraandjoao-lib tests", function () {
             bachelorparty: true,
             people: [{
                 name: "John",
-                diet: Diet.Standard,
+                diet: "Standard",
                 rsvpResponse: true,
                 allergies: "Eggs"
             }, {
                 name: "Jane",
-                diet: Diet.Vegetarian,
+                diet: "Vegetarian",
                 rsvpResponse: true,
                 allergies: ""
             }],
@@ -66,11 +65,11 @@ describe("miraandjoao-lib tests", function () {
             bachelorparty: true,
             people: [{
                 name: "John",
-                diet: Diet.Standard,
+                diet: "Standard",
                 rsvpResponse: true
             }, {
                 name: "Jane",
-                diet: Diet.Vegetarian,
+                diet: "Vegetarian",
                 rsvpResponse: true
             }],
             timestamp: 123456,
@@ -87,17 +86,17 @@ describe("miraandjoao-lib tests", function () {
 
     it("When an RSVP matches all people in the User, isValidRsvpForUser should return true", async () => {
         // Given
-        const rsvp: Rsvp = {
+        const rsvp: any = {
             allowchildren: true,
             bacheloretteparty: true,
             bachelorparty: true,
             people: [{
                 name: "John",
-                diet: Diet.Standard,
+                diet: "Standard",
                 rsvpResponse: true
             }, {
                 name: "Jane",
-                diet: Diet.Vegetarian,
+                diet: "Vegetarian",
                 rsvpResponse: true
             }],
             timestamp: 123456,
@@ -127,17 +126,17 @@ describe("miraandjoao-lib tests", function () {
 
     it("When an RSVP has a different name than the names in the User, isValidRsvpForUser should return false", async () => {
         // Given
-        const rsvp: Rsvp = {
+        const rsvp: any = {
             allowchildren: true,
             bacheloretteparty: true,
             bachelorparty: true,
             people: [{
                 name: "John",
-                diet: Diet.Standard,
+                diet: "Standard",
                 rsvpResponse: true
             }, {
                 name: "Jen",
-                diet: Diet.Vegetarian,
+                diet: "Vegetarian",
                 rsvpResponse: true
             }],
             timestamp: 123456,
@@ -167,21 +166,21 @@ describe("miraandjoao-lib tests", function () {
 
     it("When an RSVP has an additional name to the names in the User, isValidRsvpForUser should return false", async () => {
         // Given
-        const rsvp: Rsvp = {
+        const rsvp: any = {
             allowchildren: true,
             bacheloretteparty: true,
             bachelorparty: true,
             people: [{
                 name: "John",
-                diet: Diet.Standard,
+                diet: "Standard",
                 rsvpResponse: true
             }, {
                 name: "Jane",
-                diet: Diet.Vegetarian,
+                diet: "Vegetarian",
                 rsvpResponse: true
             }, {
                 name: "Jen",
-                diet: Diet.Vegetarian,
+                diet: "Vegetarian",
                 rsvpResponse: true
             }],
             timestamp: 123456,
@@ -211,13 +210,13 @@ describe("miraandjoao-lib tests", function () {
 
     it("When an RSVP has left out a name that is in the User, isValidRsvpForUser should return false", async () => {
         // Given
-        const rsvp: Rsvp = {
+        const rsvp: any = {
             allowchildren: true,
             bacheloretteparty: true,
             bachelorparty: true,
             people: [{
                 name: "John",
-                diet: Diet.Standard,
+                diet: "Standard",
                 rsvpResponse: true
             }],
             timestamp: 123456,
