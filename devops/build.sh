@@ -17,10 +17,12 @@ do
     (
         cd $dir && \
         npm install && \
+        npm run import && \
         npm run build && \
         npm run test
     )
 done
+
 echo 'Building SAM API...'
 sam build --build-dir build/api --base-dir src/lambda/api --template src/lambda/api/template.yaml
 echo 'Packaging SAM API...'

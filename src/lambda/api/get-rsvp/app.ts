@@ -3,8 +3,8 @@ import {APIGatewayEvent, Context, ProxyResult} from "aws-lambda";
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import QueryInput = DocumentClient.QueryInput;
 
-import {Rsvp} from "../../miraandjoao-lib/models/rsvp";
-import {getPeople, User} from "../../miraandjoao-lib/models/user";
+import {Rsvp} from "./miraandjoao-lib/models/rsvp";
+import {getPeople, User} from "./miraandjoao-lib/models/user";
 
 export const lambdaHandler = async (event: APIGatewayEvent, context: Context) => {
 

@@ -10,9 +10,9 @@ import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 import QueryInput = DocumentClient.QueryInput;
 
 // Local libraries
-import {Rsvp} from "../../../../miraandjoao-lib/models/rsvp";
-import {User} from "../../../../miraandjoao-lib/models/user";
-import {Diet} from "../../../../miraandjoao-lib/models/diet";
+import {Rsvp} from "../../miraandjoao-lib/models/rsvp";
+import {User} from "../../miraandjoao-lib/models/user";
+import {Diet} from "../../miraandjoao-lib/models/diet";
 
 // Test framework
 const expect = chai.expect;

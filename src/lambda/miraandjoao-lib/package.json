@@ -11,13 +11,12 @@
   "license": "MIT",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.18",
+    "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.19",
     "aws-sdk": "^2.395.0",
     "chai": "^4.2.0",
     "mocha": "^5.2.0"
   },
-  "dependencies": {
-    "@types/chai": "^4.1.7"
-  }
+  "dependencies": {}
 }

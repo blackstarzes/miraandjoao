@@ -2,9 +2,9 @@
 
 // External libraries
 import chai from "chai";
-import {isRsvp, isValidRsvpForUser, Rsvp} from "../../models/rsvp";
-import {Diet} from "../../models/diet";
-import {User} from "../../models/user";
+import {isRsvp, isValidRsvpForUser, Rsvp} from "../../src/models/rsvp";
+import {Diet} from "../../src/models/diet";
+import {User} from "../../src/models/user";
 
 // Local libraries
 
