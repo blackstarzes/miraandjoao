@@ -98,6 +98,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#rsvp"><%= nav.rsvp %></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#accommodation"><%= nav.accommodation %></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -311,62 +314,69 @@
         <div class="section-heading">
             <h1><%= rsvp.title %></h1>
         </div>
-        <div class="container">
-            <div id="rsvp-loading" class="row">
-                <div class="col-12">
-                    <div class="fa-3x">
-                        <i class="fas fa-circle-notch fa-spin"></i>
+        <div id="rsvpState" class="rsvp-loading">
+            <div class="container">
+                <div class="row rsvp-state rsvp-loading">
+                    <div class="col-12">
+                        <div class="fa-3x">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="rsvp-forbidden" class="row rsvp-hidden">
-                <div class="col-12">
-                    <p><%= rsvp.forbidden %></p>
-                </div>
-            </div>
-            <div id="rsvp-notfound" class="row rsvp-hidden">
-                <div class="col-12">
-                    <p><%= rsvp.notfound %></p>
-                </div>
-            </div>
-            <div id="rsvp-error" class="row rsvp-hidden">
-                <div class="col-12">
-                    <p><%= rsvp.error %></p>
-                </div>
-            </div>
-            <div id="rsvp-available" class="row rsvp-hidden">
-                <div class="col-12">
-                    <p><%= rsvp.pleaseRespond %></p>
-                </div>
-                <div class="col-12">
-                    <form>
-                        <div id="grpPeople" class="form-row"
-                             data-people-count="0"
-                             data-i18n-name="<%= rsvp.form.name %>"
-                             data-i18n-coming="<%= rsvp.form.coming %>" data-i18n-comingplaceholder="<%= rsvp.form.comingPlaceholder %>" data-i18n-yes="<%= rsvp.form.yes %>" data-i18n-no="<%= rsvp.form.no %>"
-                             data-i18n-dietaryrequirements="<%= rsvp.form.dietaryRequirements %>" data-i18n-dietplaceholder="<%= rsvp.form.dietPlaceholder %>" data-i18n-standard="<%= rsvp.form.standard %>" data-i18n-vegetarian="<%= rsvp.form.vegetarian %>"
-                             data-i18n-allergies="<%= rsvp.form.allergies %>" data-i18n-allergiesplaceholder="<%= rsvp.form.allergiesPlaceholder %>">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-12 col-md-6">
-                                <div class="form-check">
-                                    <input type="checkbox" id="chkBacheloretteParty" class="form-check-input">
-                                    <label for="chkBacheloretteParty" class="form-check-label">I'm coming to the bachelorette party</label>
+                <div class="row rsvp-state rsvp-ok">
+                    <div class="col-12">
+                        <p><%= rsvp.pleaseRespond %></p>
+                    </div>
+                    <div class="col-12">
+                        <form id="rsvpForm" novalidate
+                              data-people-count="0"
+                              data-i18n-name="<%= rsvp.form.name %>"
+                              data-i18n-coming="<%= rsvp.form.coming %>" data-i18n-comingplaceholder="<%= rsvp.form.comingPlaceholder %>" data-i18n-yes="<%= rsvp.form.yes %>" data-i18n-no="<%= rsvp.form.no %>"
+                              data-i18n-dietaryrequirements="<%= rsvp.form.dietaryRequirements %>" data-i18n-dietplaceholder="<%= rsvp.form.dietPlaceholder %>" data-i18n-standard="<%= rsvp.form.standard %>" data-i18n-vegetarian="<%= rsvp.form.vegetarian %>"
+                              data-i18n-allergies="<%= rsvp.form.allergies %>" data-i18n-allergiesplaceholder="<%= rsvp.form.allergiesPlaceholder %>">
+                            <div id="insertPeopleBefore" class="form-row">
+                                <div class="form-group col-12">
+                                    <span><%= rsvp.form.bachPartyMessage %></span>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="chkBacheloretteParty" class="form-check-input">
+                                        <label for="chkBacheloretteParty" class="form-check-label"><%= rsvp.form.bachelorettePartyCheckbox %></label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="chkBachelorParty" class="form-check-input">
+                                        <label for="chkBachelorParty" class="form-check-label"><%= rsvp.form.bachelorPartyCheckbox %></label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group col-12 col-md-6">
-                                <div class="form-check">
-                                    <input type="checkbox" id="chkBachelorParty" class="form-check-input">
-                                    <label for="chkBachelorParty" class="form-check-label">I'm coming to the bachelor party</label>
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <input type="hidden" id="usertag">
+                                    <input type="hidden" id="allowchildren">
+                                    <button id="rsvpButton" type="submit" class="btn btn-primary">
+                                        <%= rsvp.form.submit %>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                </div>
+                <div class="row rsvp-state rsvp-forbidden">
+                    <div class="col-12">
+                        <p><%= rsvp.forbidden %></p>
+                    </div>
+                </div>
+                <div class="row rsvp-state rsvp-notfound">
+                    <div class="col-12">
+                        <p><%= rsvp.notfound %></p>
+                    </div>
+                </div>
+                <div class="row rsvp-state rsvp-error">
+                    <div class="col-12">
+                        <p><%= rsvp.error %></p>
+                    </div>
                 </div>
             </div>
         </div>

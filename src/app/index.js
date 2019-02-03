@@ -68,9 +68,13 @@ function applyTemplate(content, tokens) {
     return content;
 }
 
-const nameId = "txtNameId",
+const indexAttr = "data-index",
+    nameId = "txtNameId",
+    dataI18nNameValidation = "validationName",
     comingId = "selComingId",
+    dataI18nComingValidation = "validationComing",
     dietId = "selDietId",
+    dataI18nDietaryRequirementsValidation = "validationDiet",
     allergiesId = "txtAllergiesId",
     rsvpNoneSelected = "rsvpNoneSelected",
     rsvpYesSelected = "rsvpYesSelected",
@@ -90,30 +94,152 @@ const nameId = "txtNameId",
     dataI18nAllergies = "data-i18n-allergies",
     dataI18nAllergiesPlaceholder = "data-i18n-allergiesplaceholder";
 const personTemplateHtml = `
-<div class="form-group col-12 col-md-4">
-    <label for="<%= ${nameId} %>"><%= ${dataI18nName} %></label>
-    <input id="<%= ${nameId} %>" class="form-control" value="<%= valName %>" readonly required>
-</div>
-<div class="form-group col-12 col-md-2">
-    <label for="<%= ${comingId} %>"><%= ${dataI18nComing} %></label>
-    <select id="<%= ${comingId} %>" class="form-control" required>
-        <option value="" <%= ${rsvpNoneSelected} %> disabled hidden><%= ${dataI18nComingPlaceholder} %></option>
-        <option value="true" <%= ${rsvpYesSelected} %>><%= ${dataI18nYes} %></option>
-        <option value="false" <%= ${rsvpNoSelected} %>><%= ${dataI18nNo} %></option>
-    </select>
-</div>
-<div class="form-group col-12 col-md-6">
-    <label for="<%= ${dietId} %>"><%= ${dataI18nDietaryRequirements} %></label>
-    <select id="<%= ${dietId} %>" class="form-control" required>
-        <option value="" <%= ${dietNoneSelected} %> disabled hidden><%= ${dataI18nDietPlaceholder} %></option>
-        <option value="Standard" <%= ${dietStandardSelected} %>><%= ${dataI18nStandard} %></option>
-        <option value="Vegetarian" <%= ${dietVegetarianSelected} %>><%= ${dataI18nVegetarian} %></option>
-    </select>
-</div>
-<div class="form-group col-12">
-    <label for="<%= ${allergiesId} %>"><%= ${dataI18nAllergies} %></label>
-    <textarea id="<%= ${allergiesId} %>" class="form-control" rows="3" placeholder="<%= ${dataI18nAllergiesPlaceholder} %>"><%= valAllergies %></textarea>
+<div class="form-row rsvp-person" ${indexAttr}="<%= ${indexAttr} %>">
+    <div class="form-group col-12 col-md-4">
+        <label for="<%= ${nameId} %>"><%= ${dataI18nName} %></label>
+        <input id="<%= ${nameId} %>" class="form-control" value="<%= valName %>" readonly required>
+        <div class="invalid-feedback"><%= ${dataI18nNameValidation} %></div>
+    </div>
+    <div class="form-group col-12 col-md-2">
+        <label for="<%= ${comingId} %>"><%= ${dataI18nComing} %></label>
+        <select id="<%= ${comingId} %>" class="form-control" required>
+            <option value="" <%= ${rsvpNoneSelected} %> disabled hidden><%= ${dataI18nComingPlaceholder} %></option>
+            <option value="true" <%= ${rsvpYesSelected} %>><%= ${dataI18nYes} %></option>
+            <option value="false" <%= ${rsvpNoSelected} %>><%= ${dataI18nNo} %></option>
+        </select>
+        <div class="invalid-feedback"><%= ${dataI18nComingValidation} %></div>
+    </div>
+    <div class="form-group col-12 col-md-6">
+        <label for="<%= ${dietId} %>"><%= ${dataI18nDietaryRequirements} %></label>
+        <select id="<%= ${dietId} %>" class="form-control" required>
+            <option value="" <%= ${dietNoneSelected} %> disabled hidden><%= ${dataI18nDietPlaceholder} %></option>
+            <option value="Standard" <%= ${dietStandardSelected} %>><%= ${dataI18nStandard} %></option>
+            <option value="Vegetarian" <%= ${dietVegetarianSelected} %>><%= ${dataI18nVegetarian} %></option>
+        </select>
+        <div class="invalid-feedback"><%= ${dataI18nDietaryRequirementsValidation} %></div>
+    </div>
+    <div class="form-group col-12">
+        <label for="<%= ${allergiesId} %>"><%= ${dataI18nAllergies} %></label>
+        <textarea id="<%= ${allergiesId} %>" class="form-control" rows="3" placeholder="<%= ${dataI18nAllergiesPlaceholder} %>"><%= valAllergies %></textarea>
+    </div>
 </div>`;
+
+function loadRsvp(rsvp) {
+    let rsvpForm = $("#rsvpForm");
+    $(".rsvp-person").remove();
+    rsvpForm.attr("data-people-count", rsvp.people.length);
+    for (let i=0; i<rsvp.people.length; i++) {
+        const person = rsvp.people[i];
+
+        // Build tokens
+        let tokens = {};
+        tokens[indexAttr] = `${i}`;
+        tokens[nameId] = `${nameId}${i}`;
+        tokens[comingId] = `${comingId}${i}`;
+        tokens[dietId] = `${dietId}${i}`;
+        tokens[allergiesId] = `${allergiesId}${i}`;
+        tokens[rsvpYesSelected] = person.rsvpResponse ? "selected" : "";
+        tokens[rsvpNoSelected] = person.rsvpResponse != undefined && person.rsvpResponse != null && !person.rsvpResponse ? "selected" : "";
+        tokens[rsvpNoneSelected] = tokens[rsvpYesSelected] != "selected" && tokens[rsvpNoSelected] != "selected" ? "selected" : "";
+        tokens[dietStandardSelected] = person.diet == "Standard" ? "selected" : "";
+        tokens[dietVegetarianSelected] = person.diet == "Vegetarian" ? "selected" : "";
+        tokens[dietNoneSelected] = person.diet != "Standard" || person.diet != "Vegetarian" ? "selected" : "";
+        tokens[dataI18nName] = rsvpForm.attr(dataI18nName);
+        tokens[dataI18nNameValidation] = rsvpForm.attr(dataI18nNameValidation);
+        tokens[dataI18nComing] = rsvpForm.attr(dataI18nComing);
+        tokens[dataI18nComingValidation] = rsvpForm.attr(dataI18nComingValidation);
+        tokens[dataI18nComingPlaceholder] = rsvpForm.attr(dataI18nComingPlaceholder);
+        tokens[dataI18nYes] = rsvpForm.attr(dataI18nYes);
+        tokens[dataI18nNo] = rsvpForm.attr(dataI18nNo);
+        tokens[dataI18nDietaryRequirements] = rsvpForm.attr(dataI18nDietaryRequirements);
+        tokens[dataI18nDietaryRequirementsValidation] = rsvpForm.attr(dataI18nDietaryRequirementsValidation);
+        tokens[dataI18nDietPlaceholder] = rsvpForm.attr(dataI18nDietPlaceholder);
+        tokens[dataI18nStandard] = rsvpForm.attr(dataI18nStandard);
+        tokens[dataI18nVegetarian] = rsvpForm.attr(dataI18nVegetarian);
+        tokens[dataI18nAllergies] = rsvpForm.attr(dataI18nAllergies);
+        tokens[dataI18nAllergiesPlaceholder] = rsvpForm.attr(dataI18nAllergiesPlaceholder);
+        tokens.valName = person.name;
+        tokens.valAllergies = person.allergies ? person.allergies : "";
+
+        // Apply template
+        const html = applyTemplate(personTemplateHtml, tokens).replace("/\s\s+/g", " ");
+        $(html).insertBefore("#insertPeopleBefore");
+    }
+    if (rsvp.bacheloretteparty) {
+        $("#chkBacheloretteParty").prop("checked", true);
+    }
+    if (rsvp.bachelorparty) {
+        $("#chkBachelorParty").prop("checked", true);
+    }
+    $("#usertag").val(rsvp.usertag);
+    $("#allowchildren").val(rsvp.allowchildren);
+
+    $("#rsvpState").removeClass();
+    $("#rsvpState").addClass("rsvp-ok");
+}
+
+function submitRsvp() {
+    if ($("#rsvpForm")[0].checkValidity()) {
+        // State
+        $("#rsvpButton").addClass("btn-loading");
+
+        // Build the JSON payload
+        let body = {
+            allowchildren: $("#allowchildren").val() == "true",
+            bacheloretteparty: $("#chkBacheloretteParty").prop("checked"),
+            bachelorparty: $("#chkBachelorParty").prop("checked"),
+            people: $(".rsvp-person").toArray().map(function(elem) {
+                const index = $(elem).attr(indexAttr);
+                return {
+                    name: $(`#${nameId}${index}`).val(),
+                    rsvpResponse: $(`#${comingId}${index}`).val() == "true",
+                    diet: $(`#${dietId}${index}`).val(),
+                    allergies: $(`#${allergiesId}${index}`).val()
+                };
+            }),
+            timestamp: Date.now(),
+            usertag: $("#usertag").val()
+        };
+
+        // API Call
+        fetch(`${apiHost}/rsvp/${body.usertag}`, {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(body)
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error(`${response.status}`);
+                }
+            })
+            .then(function(rsvp){
+                loadRsvp(rsvp);
+            })
+            .catch(function (err) {
+                switch (err.message) {
+                    case "403":
+                        $("#rsvpState").removeClass();
+                        $("#rsvpState").addClass("rsvp-forbidden");
+                        break;
+                    case "404":
+                        $("#rsvpState").removeClass();
+                        $("#rsvpState").addClass("rsvp-notfound");
+                        break;
+                    default:
+                        $("#rsvpState").removeClass();
+                        $("#rsvpState").addClass("rsvp-error");
+                        break;
+                }
+            })
+            .finally(function () {
+                // State
+                $("#rsvpButton").removeClass("btn-loading");
+            });
+    }
+    $("#rsvpForm").addClass("was-validated");
+}
 
 function initRsvp() {
     let userTag = getCookie("usertag");
@@ -129,69 +255,32 @@ function initRsvp() {
                 }
             })
             .then(function (rsvp) {
-                let grpPeople = $("#grpPeople");
-                grpPeople.attr("data-people-count", rsvp.people.length);
-                for (let i=0; i<rsvp.people.length; i++) {
-                    const person = rsvp.people[i];
-
-                    // Build tokens
-                    let tokens = {};
-                    tokens[nameId] = `${nameId}${i}`;
-                    tokens[comingId] = `${comingId}${i}`;
-                    tokens[dietId] = `${dietId}${i}`;
-                    tokens[allergiesId] = `${allergiesId}${i}`;
-                    tokens[rsvpNoneSelected] = person.rsvpResponse == undefined || person.rsvpResponse == null ? "selected" : "";
-                    tokens[rsvpYesSelected] = person.rsvpResponse ? "selected" : "";
-                    tokens[rsvpNoSelected] = person.rsvpResponse == undefined || person.rsvpResponse == null || !person.rsvpResponse ? "" : "selected";
-                    tokens[dietNoneSelected] = person.diet == undefined || person.diet == null ? "selected" : "";
-                    tokens[dietStandardSelected] = person.diet == "Standard" ? "selected" : "";
-                    tokens[dietVegetarianSelected] = person.diet == "Vegetarian" ? "selected" : "";
-                    tokens[dataI18nName] = grpPeople.attr(dataI18nName);
-                    tokens[dataI18nComing] = grpPeople.attr(dataI18nComing);
-                    tokens[dataI18nComingPlaceholder] = grpPeople.attr(dataI18nComingPlaceholder);
-                    tokens[dataI18nYes] = grpPeople.attr(dataI18nYes);
-                    tokens[dataI18nNo] = grpPeople.attr(dataI18nNo);
-                    tokens[dataI18nDietaryRequirements] = grpPeople.attr(dataI18nDietaryRequirements);
-                    tokens[dataI18nDietPlaceholder] = grpPeople.attr(dataI18nDietPlaceholder);
-                    tokens[dataI18nStandard] = grpPeople.attr(dataI18nStandard);
-                    tokens[dataI18nVegetarian] = grpPeople.attr(dataI18nVegetarian);
-                    tokens[dataI18nAllergies] = grpPeople.attr(dataI18nAllergies);
-                    tokens[dataI18nAllergiesPlaceholder] = grpPeople.attr(dataI18nAllergiesPlaceholder);
-                    tokens.valName = person.name;
-                    tokens.valAllergies = person.allergies ? person.allergies : "";
-
-                    // Apply template
-                    const html = applyTemplate(personTemplateHtml, tokens).replace("/\s\s+/g", " ");
-                    grpPeople.append(html);
-                }
-                if (rsvp.bacheloretteparty) {
-                    $("#chkBacheloretteParty").prop("checked", true);
-                }
-                if (rsvp.bachelorparty) {
-                    $("#chkBachelorParty").prop("checked", true);
-                }
-                $("#rsvp-available").removeClass("rsvp-hidden");
+                $("#rsvpForm").submit(function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    submitRsvp(event);
+                });
+                loadRsvp(rsvp);
             })
             .catch(function (err) {
                 switch (err.message) {
                     case "403":
-                        $("#rsvp-forbidden").removeClass("rsvp-hidden");
+                        $("#rsvpState").removeClass();
+                        $("#rsvpState").addClass("rsvp-forbidden");
                         break;
                     case "404":
-                        $("#rsvp-notfound").removeClass("rsvp-hidden");
+                        $("#rsvpState").removeClass();
+                        $("#rsvpState").addClass("rsvp-notfound");
                         break;
                     default:
-                        $("#rsvp-error").removeClass("rsvp-hidden");
+                        $("#rsvpState").removeClass();
+                        $("#rsvpState").addClass("rsvp-error");
                         break;
                 }
-
-            })
-            .finally(function () {
-                $("#rsvp-loading").addClass("rsvp-hidden");
             });
     } else {
-        $("#rsvp-loading").addClass("rsvp-hidden");
-        $("#rsvp-forbidden").removeClass("rsvp-hidden");
+        $("#rsvpState").removeClass();
+        $("#rsvpState").addClass("rsvp-forbidden");
     }
 }
 

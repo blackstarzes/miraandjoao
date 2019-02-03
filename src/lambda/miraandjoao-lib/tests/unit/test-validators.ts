@@ -57,6 +57,18 @@ describe("miraandjoao-lib tests", function () {
         expect(result).to.be.true;
     });
 
+    it("When an test object is a valid Rsvp, isRsvp should return true", async () => {
+        // Given
+        const rsvp: any = JSON.parse("{\"allowchildren\":false,\"bacheloretteparty\":false,\"bachelorparty\":false,\"people\":[{\"name\":\"Joao\",\"rsvpResponse\":true,\"diet\":\"Standard\",\"allergies\":\"Wild mushrooms\"}],\"timestamp\":1549193460665,\"usertag\":\"a70745e5-58f5-4f28-80cd-8d4acd4fb7cb\"}");
+
+        // When
+        let result = isRsvp(rsvp);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
     it("When an object is a valid Rsvp without allergies, isRsvp should return true", async () => {
         // Given
         const rsvp: any = {

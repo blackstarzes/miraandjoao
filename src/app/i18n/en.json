@@ -14,7 +14,8 @@
     "wedding": "Wedding",
     "people": "People",
     "gallery": "Gallery",
-    "rsvp": "RSVP"
+    "rsvp": "RSVP",
+    "accommodation": "Accommodation"
   },
   "couple": {
     "title": "The Couple",
@@ -74,7 +75,11 @@
       "standard": "Standard",
       "vegetarian": "Vegetarian",
       "allergies": "Do you have any allergies?",
-      "allergiesPlaceholder": "Please let us know if you have any allergies or other dietary requirements"
+      "allergiesPlaceholder": "Please let us know if you have any allergies or other dietary requirements",
+      "bachPartyMessage": "The bachelorette and bachelor parties will take place in the Algarve on Wednesday 9 October 2019.",
+      "bachelorettePartyCheckbox": "Let me know about the bachelorette party",
+      "bachelorPartyCheckbox": "Let me know about the bachelor party",
+      "submit": "Submit"
     }
   },
   "accommodation": {
