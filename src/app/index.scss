@@ -92,6 +92,24 @@ a.round-icon {
     margin-top: 50px;
   }
 }
+.cover-col {
+  min-height: 400px;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  &#miraFormal {
+    background-image: url(/img/mira-formal.jpg);
+  }
+  &#joaoFormal {
+    background-image: url(/img/joao-formal.jpg);
+  }
+}
 
 /*
   Navigation
