@@ -72,6 +72,11 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                         rsvp.usertag = userTag;
                         rsvp.timestamp = Date.now();
                         rsvp.allowchildren = user.allowchildren;
+                        for (let i=0; i<rsvp.people.length; i++) {
+                            if (rsvp.people[i].allergies == "") {
+                                rsvp.people[i].allergies = undefined;
+                            }
+                        }
 
                         // Persist RSVP
                         const params: PutItemInput = {
