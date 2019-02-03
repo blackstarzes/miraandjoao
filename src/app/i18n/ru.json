@@ -20,7 +20,8 @@
     "title": "O Нас",
     "theBride": {
       "title": "Невеста",
-      "content": "Lorem ipsum..."
+      "content1": "Lorem ipsum...",
+      "content2": "Lorem ipsum..."
     },
     "theGroom": {
       "title": "Жених",
