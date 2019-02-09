@@ -1,4 +1,5 @@
 export enum Diet {
     Standard = "Standard",
-    Vegetarian = "Vegetarian"
+    Vegetarian = "Vegetarian",
+    NotApplicable = "NotApplicable"
 }

@@ -57,9 +57,90 @@ describe("miraandjoao-lib tests", function () {
         expect(result).to.be.true;
     });
 
-    it("When an test object is a valid Rsvp, isRsvp should return true", async () => {
+    it("When a test object is a valid Rsvp, isRsvp should return true", async () => {
         // Given
         const rsvp: any = JSON.parse("{\"allowchildren\":false,\"bacheloretteparty\":false,\"bachelorparty\":false,\"people\":[{\"name\":\"Joao\",\"rsvpResponse\":true,\"diet\":\"Standard\",\"allergies\":\"Wild mushrooms\"}],\"timestamp\":1549193460665,\"usertag\":\"a70745e5-58f5-4f28-80cd-8d4acd4fb7cb\"}");
+
+        // When
+        let result = isRsvp(rsvp);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
+    it("When an object is a valid Rsvp with a yes response and a NotApplicable diet, isRsvp should return false", async () => {
+        // Given
+        const rsvp: any = {
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "NotApplicable",
+                rsvpResponse: true
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isRsvp(rsvp);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.false;
+    });
+
+    it("When an object is a valid Rsvp with a no response and a NotApplicable diet, isRsvp should return true", async () => {
+        // Given
+        const rsvp: any = {
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "NotApplicable",
+                rsvpResponse: false
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isRsvp(rsvp);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
+    it("When an object is a valid Rsvp with a no response and a non-NotApplicable diet, isRsvp should return true", async () => {
+        // Given
+        const rsvp: any = {
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: false
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
 
         // When
         let result = isRsvp(rsvp);

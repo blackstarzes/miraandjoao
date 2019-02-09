@@ -483,8 +483,28 @@ section {
         color: $lightgrey;
       }
     }
+    textarea::placeholder {
+      color: $lightgrey;
+    }
 
     .rsvp-person {
+      background-color: rgba($white, 0.1);
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-top: 30px;
+
+      .rsvp-yes {
+        display: none;
+      }
+
+      &.rsvp-yes {
+        .rsvp-yes {
+          display: unset;
+        }
+      }
+
       :after {
 
       }

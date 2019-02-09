@@ -68,57 +68,68 @@ function applyTemplate(content, tokens) {
     return content;
 }
 
-const indexAttr = "data-index",
+const selected = "selected",
+    indexAttr = "data-index",
+    rsvpPersonClass = "rsvp-person",
+    rsvpYes = "rsvpYes",
+    rsvpYesClass = "rsvp-yes",
     nameId = "txtNameId",
-    dataI18nNameValidation = "validationName",
     comingId = "selComingId",
-    dataI18nComingValidation = "validationComing",
+    dietFormGroupId = "grpDietId",
     dietId = "selDietId",
-    dataI18nDietaryRequirementsValidation = "validationDiet",
+    allergiesFormGroupId = "grpAllergiesId",
     allergiesId = "txtAllergiesId",
     rsvpNoneSelected = "rsvpNoneSelected",
     rsvpYesSelected = "rsvpYesSelected",
     rsvpNoSelected = "rsvpNoSelected",
+    dietStandard = "Standard",
+    dietVegetarian = "Vegetarian",
+    dietNotApplicable = "NotApplicable",
     dietNoneSelected = "dietNoneSelected",
     dietStandardSelected = "dietStandardSelected",
     dietVegetarianSelected = "dietVegetarianSelected",
+    dietNotApplicableSelected = "dietNotApplicableSelected",
     dataI18nName = "data-i18n-name",
+    dataI18nNameValidation = "data-i18n-namevalidation",
     dataI18nComing = "data-i18n-coming",
     dataI18nComingPlaceholder = "data-i18n-comingplaceholder",
+    dataI18nComingValidation = "data-i18n-comingvalidation",
     dataI18nYes = "data-i18n-yes",
     dataI18nNo = "data-i18n-no",
     dataI18nDietaryRequirements = "data-i18n-dietaryrequirements",
-    dataI18nDietPlaceholder = "data-i18n-dietplaceholder",
+    dataI18nDietaryRequirementsPlaceholder = "data-i18n-dietaryrequirementsplaceholder",
+    dataI18nDietaryRequirementsValidation = "data-i18n-dietaryrequirementsvalidation",
     dataI18nStandard = "data-i18n-standard",
     dataI18nVegetarian = "data-i18n-vegetarian",
     dataI18nAllergies = "data-i18n-allergies",
     dataI18nAllergiesPlaceholder = "data-i18n-allergiesplaceholder";
 const personTemplateHtml = `
-<div class="form-row rsvp-person" ${indexAttr}="<%= ${indexAttr} %>">
-    <div class="form-group col-12 col-md-4">
+<div class="form-row ${rsvpPersonClass} <%= ${rsvpYes} %>" ${indexAttr}="<%= ${indexAttr} %>">
+    <div class="form-group col-12 col-md-6">
         <label for="<%= ${nameId} %>"><%= ${dataI18nName} %></label>
         <input id="<%= ${nameId} %>" class="form-control" value="<%= valName %>" readonly required>
         <div class="invalid-feedback"><%= ${dataI18nNameValidation} %></div>
     </div>
-    <div class="form-group col-12 col-md-2">
+    <div class="form-group col-12 col-md-6">
         <label for="<%= ${comingId} %>"><%= ${dataI18nComing} %></label>
-        <select id="<%= ${comingId} %>" class="form-control" required>
+        <select id="<%= ${comingId} %>" class="form-control coming-select" required>
             <option value="" <%= ${rsvpNoneSelected} %> disabled hidden><%= ${dataI18nComingPlaceholder} %></option>
             <option value="true" <%= ${rsvpYesSelected} %>><%= ${dataI18nYes} %></option>
             <option value="false" <%= ${rsvpNoSelected} %>><%= ${dataI18nNo} %></option>
         </select>
         <div class="invalid-feedback"><%= ${dataI18nComingValidation} %></div>
     </div>
-    <div class="form-group col-12 col-md-6">
+    <div id="<%= ${dietFormGroupId} %>" class="form-group col-12 rsvp-yes">
         <label for="<%= ${dietId} %>"><%= ${dataI18nDietaryRequirements} %></label>
         <select id="<%= ${dietId} %>" class="form-control" required>
-            <option value="" <%= ${dietNoneSelected} %> disabled hidden><%= ${dataI18nDietPlaceholder} %></option>
-            <option value="Standard" <%= ${dietStandardSelected} %>><%= ${dataI18nStandard} %></option>
-            <option value="Vegetarian" <%= ${dietVegetarianSelected} %>><%= ${dataI18nVegetarian} %></option>
+            <option value="" <%= ${dietNoneSelected} %> disabled hidden><%= ${dataI18nDietaryRequirementsPlaceholder} %></option>
+            <option value="${dietNotApplicable}" <%= ${dietNotApplicableSelected} %> hidden><%= ${dataI18nDietaryRequirementsPlaceholder} %></option>
+            <option value="${dietStandard}" <%= ${dietStandardSelected} %>><%= ${dataI18nStandard} %></option>
+            <option value="${dietVegetarian}" <%= ${dietVegetarianSelected} %>><%= ${dataI18nVegetarian} %></option>
         </select>
         <div class="invalid-feedback"><%= ${dataI18nDietaryRequirementsValidation} %></div>
     </div>
-    <div class="form-group col-12">
+    <div id="<%= ${allergiesFormGroupId} %>" class="form-group col-12 rsvp-yes">
         <label for="<%= ${allergiesId} %>"><%= ${dataI18nAllergies} %></label>
         <textarea id="<%= ${allergiesId} %>" class="form-control" rows="3" placeholder="<%= ${dataI18nAllergiesPlaceholder} %>"><%= valAllergies %></textarea>
     </div>
@@ -126,7 +137,8 @@ const personTemplateHtml = `
 
 function loadRsvp(rsvp) {
     let rsvpForm = $("#rsvpForm");
-    $(".rsvp-person").remove();
+    $(".coming-select").unbind("change");
+    $(`.${rsvpPersonClass}`).remove();
     rsvpForm.attr("data-people-count", rsvp.people.length);
     for (let i=0; i<rsvp.people.length; i++) {
         const person = rsvp.people[i];
@@ -134,16 +146,20 @@ function loadRsvp(rsvp) {
         // Build tokens
         let tokens = {};
         tokens[indexAttr] = `${i}`;
+        tokens[rsvpYes] = person.rsvpResponse ? rsvpYesClass : "";
         tokens[nameId] = `${nameId}${i}`;
         tokens[comingId] = `${comingId}${i}`;
+        tokens[dietFormGroupId] = `${dietFormGroupId}${i}`;
         tokens[dietId] = `${dietId}${i}`;
+        tokens[allergiesFormGroupId] = `${allergiesFormGroupId}${i}`;
         tokens[allergiesId] = `${allergiesId}${i}`;
-        tokens[rsvpYesSelected] = person.rsvpResponse ? "selected" : "";
-        tokens[rsvpNoSelected] = person.rsvpResponse != undefined && person.rsvpResponse != null && !person.rsvpResponse ? "selected" : "";
-        tokens[rsvpNoneSelected] = tokens[rsvpYesSelected] != "selected" && tokens[rsvpNoSelected] != "selected" ? "selected" : "";
-        tokens[dietStandardSelected] = person.diet == "Standard" ? "selected" : "";
-        tokens[dietVegetarianSelected] = person.diet == "Vegetarian" ? "selected" : "";
-        tokens[dietNoneSelected] = person.diet != "Standard" || person.diet != "Vegetarian" ? "selected" : "";
+        tokens[rsvpYesSelected] = person.rsvpResponse ? selected : "";
+        tokens[rsvpNoSelected] = person.rsvpResponse != undefined && person.rsvpResponse != null && !person.rsvpResponse ? selected : "";
+        tokens[rsvpNoneSelected] = tokens[rsvpYesSelected] != selected && tokens[rsvpNoSelected] != selected ? selected : "";
+        tokens[dietStandardSelected] = person.diet == dietStandard ? selected : "";
+        tokens[dietVegetarianSelected] = person.diet == dietVegetarian ? selected : "";
+        tokens[dietNotApplicableSelected] = person.diet == dietNotApplicable ? selected : "";
+        tokens[dietNoneSelected] = person.diet != dietStandard || person.diet != dietVegetarian || person.diet != dietNotApplicable ? selected : "";
         tokens[dataI18nName] = rsvpForm.attr(dataI18nName);
         tokens[dataI18nNameValidation] = rsvpForm.attr(dataI18nNameValidation);
         tokens[dataI18nComing] = rsvpForm.attr(dataI18nComing);
@@ -153,7 +169,7 @@ function loadRsvp(rsvp) {
         tokens[dataI18nNo] = rsvpForm.attr(dataI18nNo);
         tokens[dataI18nDietaryRequirements] = rsvpForm.attr(dataI18nDietaryRequirements);
         tokens[dataI18nDietaryRequirementsValidation] = rsvpForm.attr(dataI18nDietaryRequirementsValidation);
-        tokens[dataI18nDietPlaceholder] = rsvpForm.attr(dataI18nDietPlaceholder);
+        tokens[dataI18nDietaryRequirementsPlaceholder] = rsvpForm.attr(dataI18nDietaryRequirementsPlaceholder);
         tokens[dataI18nStandard] = rsvpForm.attr(dataI18nStandard);
         tokens[dataI18nVegetarian] = rsvpForm.attr(dataI18nVegetarian);
         tokens[dataI18nAllergies] = rsvpForm.attr(dataI18nAllergies);
@@ -164,6 +180,28 @@ function loadRsvp(rsvp) {
         // Apply template
         const html = applyTemplate(personTemplateHtml, tokens).replace("/\s\s+/g", " ");
         $(html).insertBefore("#insertPeopleBefore");
+
+        // Add onchange event to elements
+        const sel = $(`#${comingId}${i}`);
+        sel.on("change", function() {
+            const coming = this.value == "true";
+            const rsvpPerson = $(this).closest(`.${rsvpPersonClass}`);
+            const dietSel = $(`#${dietId}${rsvpPerson.attr(indexAttr)}`);
+            if (coming) {
+                // Hide the unnecessary form fields
+                rsvpPerson.addClass(rsvpYesClass);
+                if (dietSel.val() == dietNotApplicable) {
+                    // Set the value back to nothing for validation as it is currently not applicable
+                    dietSel.val("");
+                }
+            } else {
+                // Show the necessary form fields
+                rsvpPerson.removeClass(rsvpYesClass);
+                if (!dietSel.val()) {
+                    dietSel.val(dietNotApplicable);
+                }
+            }
+        });
     }
     if (rsvp.bacheloretteparty) {
         $("#chkBacheloretteParty").prop("checked", true);
