@@ -322,7 +322,6 @@ function initRsvp() {
     }
 }
 
-/*
 // Maps
 function initMaps() {
     let vilaVita = {lat: 37.101457, lng: -8.3824047, placeId: 'ChIJX4iNCUTRGg0RSrvhjFgQ3VE'};
@@ -341,4 +340,4 @@ function initMaps() {
 
     let vilaVitaMarker = new google.maps.Marker({position: vilaVita, map: map});
     let ourLadyMarker = new google.maps.Marker({position: ourLady, map: map});
-}*/
+}

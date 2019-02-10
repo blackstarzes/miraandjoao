@@ -531,6 +531,66 @@ section {
  */
 #accommodation {
   background-color: $burgundy;
+
+  hr {
+    border: none;
+    height: 2px;
+    background-color: $offwhite;
+    color: $offwhite;
+  }
+
+  h2 {
+    color: $offwhite;
+  }
+
+  a {
+    color: $offwhite;
+    &:hover {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+  .card {
+
+    border-color: $salmon;
+    border-radius: 0;
+
+    img.card-img-top {
+      background-color: $darkgrey;
+      border-radius: 0;
+      max-height: 100%;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+
+      &.logo-border {
+        padding: 32px;
+      }
+    }
+
+    h4 {
+      color: $burgundy;
+    }
+
+    p {
+      color: $darkgrey;
+    }
+
+    a {
+      color: $salmon;
+      &:hover {
+        color: $burgundy;
+        text-decoration: none;
+      }
+    }
+  }
+
+  #googleMap {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 32px;
+  }
 }
 
 /*

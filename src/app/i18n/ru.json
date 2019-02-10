@@ -86,7 +86,47 @@
     }
   },
   "accommodation": {
-    "title": "Жилье"
+    "title": "Жилье",
+    "receptionVenue": "Reception venue",
+    "receptionDescription": "We have secured preferential rates for our guests with Rita Pimentel at Vila Vita Parc. They are offering 10% off their normal rates.",
+    "ceremony": "Ceremony",
+    "reception": "Reception",
+    "hour": "hour",
+    "minutes": "minutes",
+    "enquire": "Enquire",
+    "suggestedHotels": "Suggested hotels",
+    "suggestedHotelsDescription": "There are some other options close to the reception venue.",
+    "pestanaViking": {
+      "title": "Pestana Viking",
+      "address": "Praia Senhora da Rocha, Porches/Lagoa, 8400-450 Armação de Pêra, Portugal",
+      "description": "Pestana Viking is a 4-star hotel 5 minutes' drive from the reception."
+    },
+    "vilaGaleNautico": {
+      "title": "Vila Gale Nautico",
+      "address": "R. de Vale do Olival, 8365-158 Armação de Pêra, Portugal",
+      "description": "Vila Gale Nautico is a 4-star hotel 5 minutes' drive from the reception."
+    },
+    "alternativeProviders": "Alternative providers",
+    "alternativeProvidersDescription": "If the suggested accommodation is fully booked or unsuitable, you can make alternative arrangements. For your reference, we have provided the ceremony and reception locations below:",
+    "findRooms": "Find rooms",
+    "airbnb": {
+      "title": "Airbnb",
+      "description": "Airbnb is an online marketplace which lets people rent out their properties or spare rooms to guests.",
+      "discountInstruction": "If you have not used Airbnb before, get a discount for your stay by using this link:",
+      "discountLink": "Airbnb discounts"
+    },
+    "booking": {
+      "title": "Booking.com",
+      "description": "Booking.com is a travel fare aggregator website and travel metasearch engine for lodging reservations.",
+      "discountInstruction": "If you have not used booking.com before, get a discount for your stay by using this link:",
+      "discountLink": "Booking.com discounts"
+    },
+    "hotels": {
+      "title": "Hotels.com",
+      "description": "Hotels.com is a website for booking hotel rooms online and by telephone. Its inventory includes hotels and B&Bs, and some condos and other types of commercial lodging.",
+      "discountInstruction": "If you have not used Hotels.com before, get a discount for your stay by using this link:",
+      "discountLink": "Hotels.com discounts"
+    }
   },
   "registry": {
     "title": "Реестр Подарков"
