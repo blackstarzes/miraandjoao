@@ -28,7 +28,7 @@ $(function(){
         const secondsInDay = secondsInHour*24;
         const targetDate = moment.tz("2019-10-11 14:00", "Europe/Lisbon").utc();
         const localTimezone = moment.tz.guess(true);
-        var timer = setInterval(function() {
+        let timer = setInterval(function() {
             let now = moment().tz(localTimezone).utc();
             if (now < targetDate) {
                 const delta = targetDate.diff(now, 'seconds');
@@ -329,7 +329,8 @@ function initMaps() {
     let places = [
         vilaVita,
         ourLady
-    ]
+    ];
+
     let map = new google.maps.Map($('#googleMap')[0], {
         center: {
             lat: places.reduce(function(a, b) { return a.lat + b.lat; })/places.length,
@@ -338,6 +339,12 @@ function initMaps() {
         zoom: 13
     });
 
-    let vilaVitaMarker = new google.maps.Marker({position: vilaVita, map: map});
-    let ourLadyMarker = new google.maps.Marker({position: ourLady, map: map});
+    let vilaVitaMarker = new google.maps.Marker({
+        position: vilaVita,
+        map: map
+    });
+    let ourLadyMarker = new google.maps.Marker({
+        position: ourLady,
+        map: map
+    });
 }

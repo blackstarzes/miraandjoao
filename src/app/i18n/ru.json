@@ -14,24 +14,24 @@
     "wedding": "Свадьба",
     "people": "Люди",
     "gallery": "Галерея",
-    "rsvp": "RSVP",
+    "rsvp": "Подтвердить",
     "accommodation": "Жилье"
   },
   "couple": {
     "title": "O Нас",
     "theBride": {
       "title": "Невеста",
-      "content1": "История о том, как мы с Жоао встретились, уникальна и необычна. Это заставляет меня верить в судьбу и Божью силу. Мы оба привносим в этот союз разнообразие культур, языков и этнических групп. Однако именно наши общие ценности, высочайший уровень уважения друг к другу и безусловная любовь так сильно нас связывают. С первого дня, когда я встретил Хуана, я понял, что он мой родственный душ. Я счастлива связать свою жизнь с таким удивительным, добрым и любящим человеком.",
-      "content2": "Я так взволнован, чтобы отметить наш особый день с нашей самой близкой семьей и друзьями."
+      "content1": "История как мы с Жоао встретились уникальна и необычна. Она заставляет нас верить в судьбу и силу Всевышнего.  Мы оба вкладываем в этот союз разнообразие культур, языков и этнического колорита. Однако нас больше всего связывают общие ценности, огромное уважение друг к другу и безусловная любовь и забота. С первого дня встречи с Жоао я увидела родного и близкого по душе человека. Я счастлива связать свою жизнь с таким удивительным, добрым и любящим человеком.",
+      "content2": "Мы безгранично рады отпраздновать этот особый день с нашими семьями и друзьями."
     },
     "theGroom": {
       "title": "Жених",
-      "content1": "Мира - мой напарник, моя родственная душа, моя лучшая половина и, самое главное, моя любовь. Без нее я был бы потерян в этом мире. Я с нетерпением жду, чтобы сказать «я делаю», создать семью и провести остаток своей жизни с этой невероятной женщиной.",
+      "content1": "Мира - мой напарник, моя родственная душа, моя лучшая половина и, самое главное, моя любовь. Без нее я был бы потерян в этом мире. Я с нетерпение жду момента сказать «да», создать семью и провести остаток своей жизни с этим невероятным человеком.",
       "content2": "Я так рад поделиться этим особенным днем со всеми вами!"
     }
   },
   "countdown": {
-    "countingDown": "Мы отсчитываем дни...",
+    "countingDown": "До нашей свадьбы осталось...",
     "days": "дней",
     "hours": "часов",
     "minutes": "минут",
@@ -42,17 +42,17 @@
     "seeLocation": "Посмотреть карту",
     "ceremony": {
       "title": "Церемония",
-      "name": "Церковь Богоматери Воплощения",
+      "name": "Церкви Богоматери Воплощения",
       "location": "R. do Correio 12, 8400-498 Porches, Португалия",
       "date": "11 октября 2019 года 14:00 - 15:30",
-      "description": "Мы были поражены спокойствием и красотой этой церкви. Возведенная в 16 веке, эта церковь в стиле барокко на вершине холма в деревне Порше, известная как Igreja de Nossa Senhora da Encarnação, украшена красивой плиткой азулехо, установленной повсюду в ее нефе, дополненной позолоченным резным деревянным алтарем. Посвященный Марии, он имеет особое значение для Жоао, который родился в праздник Богоматери."
+      "description": "Мы были поражены спокойствием и красотой этой церкви. Возведенная в 16 веке, эта церковь в стиле барокко на вершине холма в деревне Порше, известная как Igreja de Nossa Senhora da Encarnação, украшена красивой плиткой азулехо, установленной повсюду в ее нефе, а также позолоченным резным деревянным алтарем. Посвященный Марии, он имеет особое значение для Жоао, который родился в праздник Богоматери."
     },
     "reception": {
       "title": "Основное торжество",
-      "name": "Вила Вита Парк",
+      "name": "Вилла Вита Парк",
       "location": "Rua Anneliese Pohl, Alporchinhos, 8400-450 Porches, Португалия",
       "date": "11 октября 2019 года 15:45 - 01:00",
-      "description": "Мы знали, что это был тот, когда мы приехали. Огромные ухоженные сады, усеянные тропической флорой и изысканными водными объектами, простираются от задней части стойки регистрации до Атлантического океана, в конечном итоге уступая место прибрежным скалам из песчаника, которыми славится регион Алгарве, который, в свою очередь, предлагает уединенный частный пляж. Мы не можем дождаться, чтобы отпраздновать наш союз с вами в этом идиллическом уголке рая!"
+      "description": "По приезду в Вилла Вита Парк мы знали, что это будет нашим местом для проведения торжества. Огромные ухоженные сады, усеянные тропической флорой и изысканными фонтанами простираются вдоль побережья Атлантического океана. Вилла Вита Парк окружён прибрежными скалами из песчаника, которыми славится регион Алгарв. Мы очень ждём дня, когда мы отпразднуем наш союз в этом уголке рая."
     }
   },
   "people": {
@@ -87,49 +87,50 @@
   },
   "accommodation": {
     "title": "Жилье",
-    "receptionVenue": "Reception venue",
-    "receptionDescription": "We have secured preferential rates for our guests with Rita Pimentel at Vila Vita Parc. They are offering 10% off their normal rates.",
-    "ceremony": "Ceremony",
-    "reception": "Reception",
-    "hour": "hour",
-    "minutes": "minutes",
-    "enquire": "Enquire",
-    "suggestedHotels": "Suggested hotels",
-    "suggestedHotelsDescription": "There are some other options close to the reception venue.",
+    "receptionVenue": "Место основное торжество",
+    "receptionDescription": "Мы обеспечили льготные тарифы для наших гостей с Rita Pimentel в Vila Vita Parc Они предлагают 10% от своих нормальных ставок.",
+    "ceremony": "Церемония",
+    "reception": "Основное торжество",
+    "hour": "час",
+    "minutes": "минута",
+    "enquire": "Справляться о",
+    "suggestedHotels": "Предлагаемые отели",
+    "suggestedHotelsDescription": "Есть несколько других вариантов рядом со место основное торжество.",
     "pestanaViking": {
-      "title": "Pestana Viking",
-      "address": "Praia Senhora da Rocha, Porches/Lagoa, 8400-450 Armação de Pêra, Portugal",
-      "description": "Pestana Viking is a 4-star hotel 5 minutes' drive from the reception."
+      "title": "Пестана Викинг",
+      "address": "Pestana Viking, Praia Senhora da Rocha, Porches/Lagoa, 8400-450 Armação de Pêra, Португалия",
+      "description": "4-звездочный отель Пестана Викинг находится в 5 минутах езды от основное торжество."
     },
     "vilaGaleNautico": {
-      "title": "Vila Gale Nautico",
-      "address": "R. de Vale do Olival, 8365-158 Armação de Pêra, Portugal",
-      "description": "Vila Gale Nautico is a 4-star hotel 5 minutes' drive from the reception."
+      "title": "Вилла Гале Наутико",
+      "address": "Vila Gale Nautico, R. de Vale do Olival, 8365-158 Armação de Pêra, Португалия",
+      "description": "4-звездочный отель Вилла Гале Наутико находится в 5 минутах езды от основное торжество."
     },
-    "alternativeProviders": "Alternative providers",
-    "alternativeProvidersDescription": "If the suggested accommodation is fully booked or unsuitable, you can make alternative arrangements. For your reference, we have provided the ceremony and reception locations below:",
-    "findRooms": "Find rooms",
+    "alternativeProviders": "Альтернативное жилье",
+    "alternativeProvidersDescription": "Если предлагаемое жилье полностью забронировано или не подходит, вы можете принять альтернативные меры. Для справки мы предоставили места проведения церемонии и основное торжество ниже:",
+    "findRooms": "Найти комнаты",
     "airbnb": {
       "title": "Airbnb",
-      "description": "Airbnb is an online marketplace which lets people rent out their properties or spare rooms to guests.",
-      "discountInstruction": "If you have not used Airbnb before, get a discount for your stay by using this link:",
-      "discountLink": "Airbnb discounts"
+      "description": "Airbnb - это онлайновая торговая площадка, которая позволяет людям сдавать в аренду свою недвижимость или комнаты для гостей.",
+      "discountInstruction": "Если вы ранее не пользовались Airbnb, получите скидку на проживание по этой ссылке:",
+      "discountLink": "Airbnb скидку"
     },
     "booking": {
       "title": "Booking.com",
-      "description": "Booking.com is a travel fare aggregator website and travel metasearch engine for lodging reservations.",
-      "discountInstruction": "If you have not used booking.com before, get a discount for your stay by using this link:",
-      "discountLink": "Booking.com discounts"
+      "description": "Booking.com - это веб-сайт, объединяющий стоимость проезда и механизм поиска метаданных для бронирования мест.",
+      "discountInstruction": "Если вы ранее не пользовались booking.com, получите скидку на проживание по этой ссылке:",
+      "discountLink": "Booking.com скидку"
     },
     "hotels": {
       "title": "Hotels.com",
-      "description": "Hotels.com is a website for booking hotel rooms online and by telephone. Its inventory includes hotels and B&Bs, and some condos and other types of commercial lodging.",
-      "discountInstruction": "If you have not used Hotels.com before, get a discount for your stay by using this link:",
-      "discountLink": "Hotels.com discounts"
+      "description": "Hotels.com - это сайт для бронирования гостиничных номеров онлайн и по телефону. Его инвентарь включает в себя отели и B & B, а также некоторые квартиры и другие виды коммерческого жилья.",
+      "discountInstruction": "Если вы ранее не пользовались Hotels.com, воспользуйтесь этой ссылкой, чтобы получить скидку на проживание:",
+      "discountLink": "Hotels.com скидку"
     }
   },
   "registry": {
-    "title": "Реестр Подарков"
+    "title": "Список подарков",
+    "comingSoon": "Скоро будет..."
   },
   "areGettingMarried" : "женятся",
   "saveTheDate": "Дата свадьбы",

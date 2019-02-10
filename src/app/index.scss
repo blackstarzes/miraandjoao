@@ -256,11 +256,11 @@ section {
         position: relative;
         top: 50%;
         left: 50%;
-        margin-left: -50px;
-        margin-top: -50px;
+        margin-left: -62.5px;
+        margin-top: -75px;
         display: block;
-        width: 100px;
-        height: 100px;
+        width: 125px;
+        height: 125px;
         font-size: 1.3em;
         font-weight: bolder;
         text-transform: uppercase;
@@ -281,7 +281,7 @@ section {
 
         div {
           position: absolute;
-          top: 0px;
+          top: 12.5px;
           width: 100%;
 
           &:nth-child(odd) {
@@ -598,6 +598,7 @@ section {
  */
 #registry {
   margin-top: 0px;
+  text-align: center;
 }
 
 /*

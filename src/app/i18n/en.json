@@ -129,7 +129,8 @@
     }
   },
   "registry": {
-    "title": "Gift Registry"
+    "title": "Gift Registry",
+    "comingSoon": "Coming soon..."
   },
   "areGettingMarried" : "are getting married",
   "saveTheDate": "Save the Date",
