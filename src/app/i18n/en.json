@@ -117,13 +117,13 @@
     },
     "booking": {
       "title": "Booking.com",
-      "description": "Booking.com is a travel fare aggregator website and travel metasearch engine for lodging reservations.",
+      "description": "Booking.com is a popular search engine for finding and reserving accommodation.",
       "discountInstruction": "If you have not used booking.com before, get a discount for your stay by using this link:",
       "discountLink": "Booking.com discounts"
     },
     "hotels": {
       "title": "Hotels.com",
-      "description": "Hotels.com is a website for booking hotel rooms online and by telephone. Its inventory includes hotels and B&Bs, and some condos and other types of commercial lodging.",
+      "description": "Hotels.com is a website for booking hotel rooms online and by telephone.",
       "discountInstruction": "If you have not used Hotels.com before, get a discount for your stay by using this link:",
       "discountLink": "Hotels.com discounts"
     }
