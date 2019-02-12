@@ -284,17 +284,9 @@ section {
           top: 12.5px;
           width: 100%;
 
-          &:nth-child(odd) {
-            animation: opacityOnAndOff 3s infinite;
-            animation-delay: 0.75s;
-            opacity: 0;
-          }
-
-          &:nth-child(even) {
-            animation: opacityOnAndOff 3s infinite;
-            animation-delay: 2.25s;
-            opacity: 0;
-          }
+          animation: opacityOnAndOff 3s infinite;
+          animation-delay: 0.75s;
+          opacity: 0;
         }
       }
 
@@ -314,7 +306,7 @@ section {
 
       @keyframes opacityOnAndOff {
         0% {
-          opacity: 0;
+          opacity: 1;
         }
         25% {
           opacity: 0;
@@ -329,7 +321,7 @@ section {
           opacity: 0;
         }
         100% {
-          opacity: 0;
+          opacity: 1;
         }
       }
     }
