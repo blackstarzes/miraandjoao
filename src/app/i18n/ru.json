@@ -163,6 +163,18 @@
       "weddingDate": "11 Oктября 2019",
       "invitationsToFollow": "Oфициальное приглашение следует"
     },
+    "invitation": {
+      "title": "Приглашение",
+      "preview": "Приглашение - Мира и Жоао женятся!",
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "Мира и Жоао женятся!",
+      "cta": "Подтвердить",
+      "where": "Где",
+      "algarvePortugal": "Алгарве, Португалия",
+      "when": "Когда",
+      "weddingDate": "11 Oктября 2019",
+      "invitationsToFollow": "Пожалуйста, ответьте до 11 июля 2019 года."
+    },
     "footer": {
       "visitOurSite": "Посетите наш сайт",
       "emailUs": "Пишите нам",

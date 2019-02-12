@@ -163,6 +163,18 @@
       "weddingDate": "11 October 2019",
       "invitationsToFollow": "Formal invitations to follow"
     },
+    "invitation": {
+      "title": "Invitation",
+      "preview": "Invitation - Mira & Joao are getting married!",
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "Mira & Joao are getting married!",
+      "cta": "RSVP",
+      "where": "Where",
+      "algarvePortugal": "Algarve, Portugal",
+      "when": "When",
+      "weddingDate": "11 October 2019",
+      "invitationsToFollow": "Please respond by 11 July 2019."
+    },
     "footer": {
       "visitOurSite": "Visit our site",
       "emailUs": "Email us",
