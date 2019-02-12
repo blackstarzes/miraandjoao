@@ -324,8 +324,8 @@ function initRsvp() {
 
 // Maps
 function initMaps() {
-    let vilaVita = {lat: 37.101457, lng: -8.3824047, placeId: 'ChIJX4iNCUTRGg0RSrvhjFgQ3VE', image: '/img/reception-map-icon.png'};
-    let ourLady = {lat: 37.1254143, lng: -8.4011588, placeId: 'ChIJ0UW4BtXWGg0R2XoubH9KSsk', image: '/img/ceremony-map-icon.png'};
+    let vilaVita = {lat: 37.101457, lng: -8.380216, placeId: 'ChIJX4iNCUTRGg0RSrvhjFgQ3VE', image: '/img/reception-map-icon.png'};
+    let ourLady = {lat: 37.1254143, lng: -8.3989701, placeId: 'ChIJ0UW4BtXWGg0R2XoubH9KSsk', image: '/img/ceremony-map-icon.png'};
     let places = [
         vilaVita,
         ourLady
