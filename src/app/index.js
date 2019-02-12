@@ -324,27 +324,58 @@ function initRsvp() {
 
 // Maps
 function initMaps() {
-    let vilaVita = {lat: 37.101457, lng: -8.3824047, placeId: 'ChIJX4iNCUTRGg0RSrvhjFgQ3VE'};
-    let ourLady = {lat: 37.1254143, lng: -8.4011588, placeId: 'ChIJ0UW4BtXWGg0R2XoubH9KSsk'};
+    let vilaVita = {lat: 37.101457, lng: -8.3824047, placeId: 'ChIJX4iNCUTRGg0RSrvhjFgQ3VE', image: '/img/reception-map-icon.png'};
+    let ourLady = {lat: 37.1254143, lng: -8.4011588, placeId: 'ChIJ0UW4BtXWGg0R2XoubH9KSsk', image: '/img/ceremony-map-icon.png'};
     let places = [
         vilaVita,
         ourLady
     ];
+    let center = {
+        lat: places.reduce(function(a, b) { return a.lat + b.lat; })/places.length,
+        lng: places.reduce(function(a, b) { return a.lng + b.lng; })/places.length,
+    };
+    let portugalBounds = {
+        north: 42,
+        south: 37,
+        west: -10,
+        east: -5,
+    };
 
+    // Set up map
     let map = new google.maps.Map($('#googleMap')[0], {
-        center: {
-            lat: places.reduce(function(a, b) { return a.lat + b.lat; })/places.length,
-            lng: places.reduce(function(a, b) { return a.lng + b.lng; })/places.length,
+        center: center,
+        restriction: {
+            latLngBounds: portugalBounds,
+            strictBounds: false,
         },
         zoom: 13
     });
 
+    // Set up markers
     let vilaVitaMarker = new google.maps.Marker({
         position: vilaVita,
-        map: map
+        map: map,
+        icon: {
+            url: vilaVita.image,
+            size: new google.maps.Size(32, 32),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(32, 0)
+        }
     });
     let ourLadyMarker = new google.maps.Marker({
         position: ourLady,
-        map: map
+        map: map,
+        icon: {
+            url: ourLady.image,
+            size: new google.maps.Size(32, 32),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(32, 0)
+        }
+    });
+    vilaVitaMarker.addListener('click', function() {
+        window.open("https://www.google.com/maps/search/?api=1&query=Vila+Vita+Parc,+Porches,+Portugal", "_blank");
+    });
+    ourLadyMarker.addListener('click', function() {
+        window.open("https://www.google.com/maps/search/?api=1&query=Church+of+Our+Lady+of+the+Incarnation,+Porches,+Portugal", "_blank");
     });
 }
