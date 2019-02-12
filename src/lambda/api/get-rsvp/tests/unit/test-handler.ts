@@ -44,6 +44,10 @@ describe("Get RSVP tests", function () {
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         expect(response.message).to.be.equal("UserTag not provided");
@@ -133,6 +137,10 @@ describe("Get RSVP tests", function () {
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
@@ -211,6 +219,10 @@ describe("Get RSVP tests", function () {
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         expect(response.message).to.be.equal("UserTag not found");
@@ -285,6 +297,10 @@ describe("Get RSVP tests", function () {
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
@@ -399,6 +415,10 @@ describe("Get RSVP tests", function () {
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
@@ -531,6 +551,10 @@ describe("Get RSVP tests", function () {
         expect(result.headers).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
         expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
         let response = JSON.parse(result.body);
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;

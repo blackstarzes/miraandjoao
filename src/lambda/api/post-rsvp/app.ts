@@ -128,7 +128,9 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
     }
 
     response.headers = {
-        "access-control-allow-origin": process.env.HEADER_ACAO!
+        "access-control-allow-origin": process.env.HEADER_ACAO!,
+        "content-type": "application/json",
+        "x-content-type-options": "nosniff"
     };
 
     return response;
