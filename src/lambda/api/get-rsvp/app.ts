@@ -99,10 +99,14 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
 
                     // Create RSVP from user
                     const people = getPeople(user);
+                    if (user.accommodationprovided == undefined || user.accommodationprovided == null) {
+                        user.accommodationprovided = 0;
+                    }
                     const rsvp: Rsvp = {
                         usertag: user.usertag,
                         people: people,
-                        allowchildren: user.allowchildren
+                        allowchildren: user.allowchildren,
+                        accommodationprovided: user.accommodationprovided
                     };
                     response = {
                         statusCode: 200,
@@ -134,7 +138,6 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
         "access-control-allow-origin": process.env.HEADER_ACAO!,
         "content-type": "application/json",
         "x-content-type-options": "nosniff"
-
     };
 
     return response;

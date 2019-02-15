@@ -5,6 +5,7 @@ import {DeliveryDetails} from "./deliverydetails";
 import {RsvpDetails} from "./rsvpdetails";
 
 export interface User extends AttributeMap {
+    accommodationprovided?: number;
     allowchildren: boolean;
     delivered: DeliveryDetails;
     invitedcount: number;

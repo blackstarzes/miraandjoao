@@ -82,11 +82,13 @@
       "bachPartyMessage": "The bachelorette and bachelor parties will take place in the Algarve on Wednesday 9 October 2019.",
       "bachelorettePartyCheckbox": "Let me know about the bachelorette party",
       "bachelorPartyCheckbox": "Let me know about the bachelor party",
-      "submit": "Submit"
+      "submit": "Submit",
+      "thanks": "Thank you!"
     }
   },
   "accommodation": {
     "title": "Accommodation",
+    "accommodationProvided": "Accommodation is provided for you at Pestana Viking for 9-12 October 2019. If you would like to extend this, please enquire below.",
     "receptionVenue": "Reception venue",
     "receptionDescription": "We have secured preferential rates for our guests with Rita Pimentel at Vila Vita Parc. They are offering 10% off their normal rates.",
     "ceremony": "Travel time to ceremony",

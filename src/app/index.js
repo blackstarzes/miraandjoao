@@ -210,6 +210,10 @@ function loadRsvp(rsvp) {
         $("#chkBachelorParty").prop("checked", true);
     }
     $("#usertag").val(rsvp.usertag);
+    if (rsvp.accommodationprovided > 0) {
+        $("#accommodationProvided").removeClass("accommodation-provided-hidden");
+    }
+    $("#accommodationProvidedCount").val(rsvp.accommodationprovided);
     $("#allowchildren").val(rsvp.allowchildren);
 
     $("#rsvpState").removeClass();
@@ -223,6 +227,7 @@ function submitRsvp() {
 
         // Build the JSON payload
         let body = {
+            accommodationprovided: parseInt($("#accommodationProvidedCount").val()),
             allowchildren: $("#allowchildren").val() == "true",
             bacheloretteparty: $("#chkBacheloretteParty").prop("checked"),
             bachelorparty: $("#chkBachelorParty").prop("checked"),
@@ -274,6 +279,7 @@ function submitRsvp() {
             .finally(function () {
                 // State
                 $("#rsvpButton").removeClass("btn-loading");
+                $("#rsvpThanks").removeClass("rsvp-submit-hidden");
             });
     }
     $("#rsvpForm").addClass("was-validated");

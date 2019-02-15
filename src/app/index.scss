@@ -515,6 +515,12 @@ section {
         }
       }
     }
+
+    #rsvpThanks {
+      &.rsvp-submit-hidden {
+        display: none;
+      }
+    }
   }
 }
 
@@ -523,6 +529,10 @@ section {
  */
 #accommodation {
   background-color: $burgundy;
+
+  #accommodationProvided.accommodation-provided-hidden {
+    display: none;
+  }
 
   hr {
     border: none;

@@ -11,6 +11,7 @@ export interface Rsvp extends AttributeMap {
     bachelorparty?: boolean;
     bacheloretteparty?: boolean;
     allowchildren: boolean;
+    accommodationprovided?: number;
 }
 
 export function isRsvp(arg: any): arg is Rsvp {
@@ -20,12 +21,21 @@ export function isRsvp(arg: any): arg is Rsvp {
         && arg.people != undefined && arg.people != null && arg.people.every((p: any) => isRsvpDetails(p))
         && arg.bachelorparty != undefined && arg.bachelorparty != null && typeof(arg.bachelorparty) == "boolean"
         && arg.bacheloretteparty != undefined && arg.bacheloretteparty != null && typeof(arg.bacheloretteparty) == "boolean"
-        && arg.allowchildren != undefined && arg.allowchildren != null && typeof(arg.allowchildren) == "boolean";
+        && arg.allowchildren != undefined && arg.allowchildren != null && typeof(arg.allowchildren) == "boolean"
+        && (
+            arg.accommodationprovided == undefined
+            || arg.accommodationprovided == null
+            || typeof(arg.accommodationprovided) == "number"
+        );
 }
 
 export function isValidRsvpForUser(rsvp: Rsvp, user: User): boolean {
     // Ensure that the people match up
     let userPeople = getPeople(user);
     return userPeople.length == rsvp.people.length
-        && rsvp.people.every(p => userPeople.some(up => up.name == p.name));
+        && rsvp.people.every(p => userPeople.some(up => up.name == p.name))
+        && (
+            ((user.accommodationprovided == undefined || user.accommodationprovided == null) && rsvp.accommodationprovided == 0)
+            || rsvp.accommodationprovided == user.accommodationprovided
+        );
 }

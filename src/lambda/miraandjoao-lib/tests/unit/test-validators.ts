@@ -177,6 +177,66 @@ describe("miraandjoao-lib tests", function () {
         expect(result).to.be.true;
     });
 
+    it("When an object is a valid Rsvp with null accommodationprovided, isRsvp should return true", async () => {
+        // Given
+        const rsvp: any = {
+            accommodationprovided: null,
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true,
+                allergies: "Eggs"
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: true,
+                allergies: ""
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isRsvp(rsvp);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
+    it("When an object is a valid Rsvp with numeric accommodationprovided, isRsvp should return true", async () => {
+        // Given
+        const rsvp: any = {
+            accommodationprovided: 1,
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true,
+                allergies: "Eggs"
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: true,
+                allergies: ""
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isRsvp(rsvp);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
     it("When an RSVP matches all people in the User, isValidRsvpForUser should return true", async () => {
         // Given
         const rsvp: any = {
@@ -316,6 +376,172 @@ describe("miraandjoao-lib tests", function () {
             usertag: "abc123"
         };
         const user: User = {
+            allowchildren: true,
+            delivered: {
+                savethedate: true
+            },
+            invitedcount: 2,
+            invitednames: "John and Jane",
+            language: "en",
+            rsvpcount: 0,
+            salutation: "Dear",
+            userid: "johnandjane@example.com",
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isValidRsvpForUser(rsvp, user);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.false;
+    });
+
+    it("When an RSVP accommodation and User accommodation matches, isValidRsvpForUser should return true", async () => {
+        // Given
+        const rsvp: any = {
+            accommodationprovided: 2,
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: true
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+        const user: User = {
+            accommodationprovided: 2,
+            allowchildren: true,
+            delivered: {
+                savethedate: true
+            },
+            invitedcount: 2,
+            invitednames: "John and Jane",
+            language: "en",
+            rsvpcount: 0,
+            salutation: "Dear",
+            userid: "johnandjane@example.com",
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isValidRsvpForUser(rsvp, user);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
+    it("When an RSVP accommodation is 0 and User does not have accommodation, isValidRsvpForUser should return true", async () => {
+        // Given
+        const rsvp: any = {
+            accommodationprovided: 0,
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: true
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+        const user: User = {
+            allowchildren: true,
+            delivered: {
+                savethedate: true
+            },
+            invitedcount: 2,
+            invitednames: "John and Jane",
+            language: "en",
+            rsvpcount: 0,
+            salutation: "Dear",
+            userid: "johnandjane@example.com",
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isValidRsvpForUser(rsvp, user);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.true;
+    });
+
+    it("When an RSVP has accommodation and User does not, isValidRsvpForUser should return false", async () => {
+        // Given
+        const rsvp: any = {
+            accommodationprovided: 2,
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: true
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+        const user: User = {
+            allowchildren: true,
+            delivered: {
+                savethedate: true
+            },
+            invitedcount: 2,
+            invitednames: "John and Jane",
+            language: "en",
+            rsvpcount: 0,
+            salutation: "Dear",
+            userid: "johnandjane@example.com",
+            usertag: "abc123"
+        };
+
+        // When
+        let result = isValidRsvpForUser(rsvp, user);
+
+        // Then
+        expect(result).to.be.an("boolean");
+        expect(result).to.be.false;
+    });
+
+    it("When an RSVP accommodation does not match User accommodation, isValidRsvpForUser should return false", async () => {
+        // Given
+        const rsvp: any = {
+            accommodationprovided: 2,
+            allowchildren: true,
+            bacheloretteparty: true,
+            bachelorparty: true,
+            people: [{
+                name: "John",
+                diet: "Standard",
+                rsvpResponse: true
+            }, {
+                name: "Jane",
+                diet: "Vegetarian",
+                rsvpResponse: true
+            }],
+            timestamp: 123456,
+            usertag: "abc123"
+        };
+        const user: User = {
+            accommodationprovided: 1,
             allowchildren: true,
             delivered: {
                 savethedate: true

@@ -356,9 +356,13 @@
                                 <div class="col-12">
                                     <input type="hidden" id="usertag">
                                     <input type="hidden" id="allowchildren">
+                                    <input type="hidden" id="accommodationProvidedCount">
                                     <button id="rsvpButton" type="submit" class="btn btn-primary">
                                         <%= rsvp.form.submit %>
                                     </button>
+                                    <p id="rsvpThanks" class="rsvp-submit-hidden">
+                                        <%= rsvp.form.thanks %>
+                                    </p>
                                 </div>
                             </div>
                         </form>
@@ -387,6 +391,13 @@
             <h1><%= accommodation.title %></h1>
         </div>
         <div class="container">
+            <div id="accommodationProvided" class="row accommodation-provided-hidden">
+                <div class="col-12">
+                    <p>
+                        <%= accommodation.accommodationProvided %>
+                    </p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <h2><%= accommodation.receptionVenue %></h2>
