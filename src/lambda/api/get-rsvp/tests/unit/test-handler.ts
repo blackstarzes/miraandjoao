@@ -305,8 +305,8 @@ describe("Get RSVP tests", function () {
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
         expect(typedResponse.allowchildren).to.be.equal(true);
-        expect(typedResponse.bacheloretteparty).to.be.undefined;
-        expect(typedResponse.bachelorparty).to.be.undefined;
+        expect(typedResponse.bacheloretteparty).to.be.true;
+        expect(typedResponse.bachelorparty).to.be.true;
         expect(typedResponse.people).to.not.be.null;
         expect(typedResponse.people.length).to.be.equal(2);
         expect(typedResponse.people[0]).to.not.be.null;
@@ -423,8 +423,8 @@ describe("Get RSVP tests", function () {
         expect(response).to.be.an("object");
         let typedResponse = <Rsvp> response;
         expect(typedResponse.allowchildren).to.be.equal(true);
-        expect(typedResponse.bacheloretteparty).to.be.undefined;
-        expect(typedResponse.bachelorparty).to.be.undefined;
+        expect(typedResponse.bacheloretteparty).to.be.true;
+        expect(typedResponse.bachelorparty).to.be.true;
         expect(typedResponse.people).to.not.be.null;
         expect(typedResponse.people.length).to.be.equal(2);
         expect(typedResponse.people[0]).to.not.be.null;

@@ -106,7 +106,9 @@ export const lambdaHandler = async (event: APIGatewayEvent, context: Context) =>
                         usertag: user.usertag,
                         people: people,
                         allowchildren: user.allowchildren,
-                        accommodationprovided: user.accommodationprovided
+                        accommodationprovided: user.accommodationprovided,
+                        bachelorparty: true,
+                        bacheloretteparty: true
                     };
                     response = {
                         statusCode: 200,
