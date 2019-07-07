@@ -24,9 +24,9 @@ do
 done
 
 echo 'Building SAM API...'
-sam build --build-dir build/api --base-dir src/lambda/api --template src/lambda/api/template.yaml
+sam build --build-dir build/api --base-dir src/lambda/api --template src/lambda/api/template.yaml --profile joao
 echo 'Packaging SAM API...'
 (
     cd build/api &&
-    sam package --output-template-file packaged.yaml --s3-bucket miraandjoao.com-build
+    sam package --output-template-file packaged.yaml --s3-bucket miraandjoao.com-build --profile joao
 )
