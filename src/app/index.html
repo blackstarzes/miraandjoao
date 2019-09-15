@@ -101,6 +101,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#accommodation"><%= nav.accommodation %></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#registry"><%= nav.registry %></a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -324,7 +327,7 @@
                 </div>
                 <div class="row rsvp-state rsvp-ok">
                     <div class="col-12">
-                        <p><%= rsvp.pleaseRespond %></p>
+                        <p><%= rsvp.rsvpReceived %></p>
                     </div>
                     <div class="col-12">
                         <form id="rsvpForm" novalidate
@@ -334,20 +337,28 @@
                               data-i18n-yes="<%= rsvp.form.yes %>" data-i18n-no="<%= rsvp.form.no %>"
                               data-i18n-dietaryrequirements="<%= rsvp.form.dietaryRequirements %>" data-i18n-dietaryrequirementsplaceholder="<%= rsvp.form.dietaryRequirementsPlaceholder %>" data-i18n-dietaryrequirementsvalidation="<%= rsvp.form.dietaryRequirementsValidation %>"
                               data-i18n-standard="<%= rsvp.form.standard %>" data-i18n-vegetarian="<%= rsvp.form.vegetarian %>"
-                              data-i18n-allergies="<%= rsvp.form.allergies %>" data-i18n-allergiesplaceholder="<%= rsvp.form.allergiesPlaceholder %>">
+                              data-i18n-allergies="<%= rsvp.form.allergies %>" data-i18n-allergiesplaceholder="<%= rsvp.form.allergiesPlaceholder %>"
+                              data-i18n-somethingwrongsubject="<%= rsvp.form.somethingWrongSubject %>" data-i18n-somethingwrongbody="<%= rsvp.form.somethingWrongBody %>">
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <button id="rsvpButton" type="submit" class="btn btn-primary">
+                                        <%= rsvp.form.submit %>
+                                    </button>
+                                </div>
+                            </div>
                             <div id="insertPeopleBefore" class="form-row">
                                 <div class="form-group col-12">
                                     <span><%= rsvp.form.bachPartyMessage %></span>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <div class="form-check">
-                                        <input type="checkbox" id="chkBacheloretteParty" class="form-check-input">
+                                        <input type="checkbox" id="chkBacheloretteParty" class="form-check-input" onclick="return false;">
                                         <label for="chkBacheloretteParty" class="form-check-label"><%= rsvp.form.bachelorettePartyCheckbox %></label>
                                     </div>
                                 </div>
                                 <div class="form-group col-12 col-md-6">
                                     <div class="form-check">
-                                        <input type="checkbox" id="chkBachelorParty" class="form-check-input">
+                                        <input type="checkbox" id="chkBachelorParty" class="form-check-input" onclick="return false;">
                                         <label for="chkBachelorParty" class="form-check-label"><%= rsvp.form.bachelorPartyCheckbox %></label>
                                     </div>
                                 </div>
@@ -357,12 +368,6 @@
                                     <input type="hidden" id="usertag">
                                     <input type="hidden" id="allowchildren">
                                     <input type="hidden" id="accommodationProvidedCount">
-                                    <button id="rsvpButton" type="submit" class="btn btn-primary">
-                                        <%= rsvp.form.submit %>
-                                    </button>
-                                    <p id="rsvpThanks" class="rsvp-submit-hidden">
-                                        <%= rsvp.form.thanks %>
-                                    </p>
                                 </div>
                             </div>
                         </form>
@@ -657,15 +662,27 @@
             <h1><%= registry.title %></h1>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p><%= registry.comingSoon %></p>
-                    <!--<div style="width:200px;margin:0 auto;">
-                        <a href="http://www.honeyfund.com/wedding/MiraAndJoao" target="_blank" style="text-align:left;background:url('http://www.honeyfund.com/share/honeyfund3.png') no-repeat;display:block;width:200px;height:100px;text-indent:-9999em;">
-                            Visit our honeyfund at Honeyfund.com, the free honeymoon registry
-                        </a>
-                    </div>-->
+            <div class="card mb-4">
+                <a href="http://www.honeyfund.com/wedding/MiraAndJoao" target="_blank">
+                    <img class="card-img-top img-fluid" src="/img/honeymoon.jpg">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title"><%= registry.honeymoon %></h4>
+                    <p><%= registry.content1 %></p>
+                    <p><%= registry.content2 %></p>
                 </div>
+                <div class="card-footer">
+                    <a href="http://www.honeyfund.com/wedding/MiraAndJoao" target="_blank" class="card-link">
+                        <i class="fas fa-gift fa-fw"></i>
+                        <%= registry.title %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 thank-you">
+                <p><%= registry.content3 %></p>
             </div>
         </div>
     </section>

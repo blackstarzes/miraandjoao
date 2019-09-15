@@ -112,26 +112,26 @@ const personTemplateHtml = `
     </div>
     <div class="form-group col-12 col-md-6">
         <label for="<%= ${comingId} %>"><%= ${dataI18nComing} %></label>
-        <select id="<%= ${comingId} %>" class="form-control coming-select" required>
+        <select id="<%= ${comingId} %>" class="form-control coming-select" readonly required>
             <option value="" <%= ${rsvpNoneSelected} %> disabled hidden><%= ${dataI18nComingPlaceholder} %></option>
-            <option value="true" <%= ${rsvpYesSelected} %>><%= ${dataI18nYes} %></option>
-            <option value="false" <%= ${rsvpNoSelected} %>><%= ${dataI18nNo} %></option>
+            <option value="true" <%= ${rsvpYesSelected} %> disabled><%= ${dataI18nYes} %></option>
+            <option value="false" <%= ${rsvpNoSelected} %> disabled><%= ${dataI18nNo} %></option>
         </select>
         <div class="invalid-feedback"><%= ${dataI18nComingValidation} %></div>
     </div>
     <div id="<%= ${dietFormGroupId} %>" class="form-group col-12 rsvp-yes">
         <label for="<%= ${dietId} %>"><%= ${dataI18nDietaryRequirements} %></label>
-        <select id="<%= ${dietId} %>" class="form-control" required>
+        <select id="<%= ${dietId} %>" class="form-control" readonly required>
             <option value="" <%= ${dietNoneSelected} %> disabled hidden><%= ${dataI18nDietaryRequirementsPlaceholder} %></option>
             <option value="${dietNotApplicable}" <%= ${dietNotApplicableSelected} %> hidden><%= ${dataI18nDietaryRequirementsPlaceholder} %></option>
-            <option value="${dietStandard}" <%= ${dietStandardSelected} %>><%= ${dataI18nStandard} %></option>
-            <option value="${dietVegetarian}" <%= ${dietVegetarianSelected} %>><%= ${dataI18nVegetarian} %></option>
+            <option value="${dietStandard}" <%= ${dietStandardSelected} %> disabled><%= ${dataI18nStandard} %></option>
+            <option value="${dietVegetarian}" <%= ${dietVegetarianSelected} %> disabled><%= ${dataI18nVegetarian} %></option>
         </select>
         <div class="invalid-feedback"><%= ${dataI18nDietaryRequirementsValidation} %></div>
     </div>
     <div id="<%= ${allergiesFormGroupId} %>" class="form-group col-12 rsvp-yes">
         <label for="<%= ${allergiesId} %>"><%= ${dataI18nAllergies} %></label>
-        <textarea id="<%= ${allergiesId} %>" class="form-control" rows="3" placeholder="<%= ${dataI18nAllergiesPlaceholder} %>"><%= valAllergies %></textarea>
+        <textarea id="<%= ${allergiesId} %>" class="form-control" rows="3" placeholder="<%= ${dataI18nAllergiesPlaceholder} %>" readonly><%= valAllergies %></textarea>
     </div>
 </div>`;
 
@@ -222,67 +222,12 @@ function loadRsvp(rsvp) {
 
 function submitRsvp() {
     if ($("#rsvpForm")[0].checkValidity()) {
-        // State
-        $("#rsvpButton").addClass("btn-loading");
-
-        // Build the JSON payload
-        let body = {
-            accommodationprovided: parseInt($("#accommodationProvidedCount").val()),
-            allowchildren: $("#allowchildren").val() == "true",
-            bacheloretteparty: $("#chkBacheloretteParty").prop("checked"),
-            bachelorparty: $("#chkBachelorParty").prop("checked"),
-            people: $(".rsvp-person").toArray().map(function(elem) {
-                const index = $(elem).attr(indexAttr);
-                return {
-                    name: $(`#${nameId}${index}`).val(),
-                    rsvpResponse: $(`#${comingId}${index}`).val() == "true",
-                    diet: $(`#${dietId}${index}`).val(),
-                    allergies: $(`#${allergiesId}${index}`).val()
-                };
-            }),
-            timestamp: Date.now(),
-            usertag: $("#usertag").val()
-        };
-
-        // API Call
-        fetch(`${apiHost}/rsvp/${body.usertag}`, {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify(body)
-        })
-            .then(function (response) {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error(`${response.status}`);
-                }
-            })
-            .then(function(rsvp){
-                loadRsvp(rsvp);
-            })
-            .catch(function (err) {
-                switch (err.message) {
-                    case "403":
-                        $("#rsvpState").removeClass();
-                        $("#rsvpState").addClass("rsvp-forbidden");
-                        break;
-                    case "404":
-                        $("#rsvpState").removeClass();
-                        $("#rsvpState").addClass("rsvp-notfound");
-                        break;
-                    default:
-                        $("#rsvpState").removeClass();
-                        $("#rsvpState").addClass("rsvp-error");
-                        break;
-                }
-            })
-            .finally(function () {
-                // State
-                $("#rsvpButton").removeClass("btn-loading");
-                $("#rsvpThanks").removeClass("rsvp-submit-hidden");
-            });
+        let rsvpForm = $("#rsvpForm");
+        let subject = rsvpForm.attr("data-i18n-somethingwrongsubject"),
+            body = rsvpForm.attr("data-i18n-somethingwrongbody");
+        let mailto = "mailto:wedding@miraandjoao.com?subject=" +  encodeURIComponent(subject);
+        location.href = mailto;
     }
-    $("#rsvpForm").addClass("was-validated");
 }
 
 function initRsvp() {

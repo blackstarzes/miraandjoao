@@ -475,6 +475,9 @@ section {
         color: $lightgrey;
       }
     }
+    input#chkBacheloretteParty, input#chkBachelorParty {
+      cursor: not-allowed;
+    }
     textarea::placeholder {
       color: $lightgrey;
     }
@@ -504,6 +507,7 @@ section {
 
     #rsvpButton {
       font-size: x-large;
+      margin-bottom: 16px;
 
       .fa-circle-notch {
         display: none;
@@ -600,7 +604,45 @@ section {
  */
 #registry {
   margin-top: 0px;
-  text-align: center;
+
+  .card {
+
+    border-color: $lightgrey;
+    border-radius: 0;
+
+    img.card-img-top {
+      background-color: $darkgrey;
+      border-radius: 0;
+      max-height: 100%;
+      max-width: 100%;
+      height: auto;
+      width: auto;
+
+      &.logo-border {
+        padding: 32px;
+      }
+    }
+
+    h4 {
+      color: $burgundy;
+    }
+
+    p {
+      color: $darkgrey;
+    }
+
+    a {
+      color: $salmon;
+      &:hover {
+        color: $burgundy;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .thank-you {
+    text-align: center;
+  }
 }
 
 /*

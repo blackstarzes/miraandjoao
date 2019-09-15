@@ -15,7 +15,8 @@
     "people": "People",
     "gallery": "Gallery",
     "rsvp": "RSVP",
-    "accommodation": "Accommodation"
+    "accommodation": "Accommodation",
+    "registry": "Registry"
   },
   "couple": {
     "title": "The Couple",
@@ -60,7 +61,7 @@
   },
   "rsvp": {
     "title": "Join Us",
-    "pleaseRespond": "Please respond by 11 July 2019.",
+    "rsvpReceived": "We have received your RSVP. If your plans have changed, please let us know as soon as possible.",
     "forbidden": "We can't seem to figure out who you are. Please click the link in your wedding invitation to RSVP.",
     "notfound": "We can't seem to find your invitation. Please get in touch so that we can resolve this.",
     "error": "Something seems to have gone wrong. Please reload the page and try again. If the problem persists, please get in touch so that we can resolve this.",
@@ -82,8 +83,9 @@
       "bachPartyMessage": "The bachelorette and bachelor parties will take place in the Algarve on Wednesday 9 October 2019.",
       "bachelorettePartyCheckbox": "Let me know about the bachelorette party",
       "bachelorPartyCheckbox": "Let me know about the bachelor party",
-      "submit": "Submit",
-      "thanks": "Thank you!"
+      "submit": "Contact us",
+      "thanks": "Thank you!",
+      "somethingWrongSubject": "Plans have changed!"
     }
   },
   "accommodation": {
@@ -132,7 +134,10 @@
   },
   "registry": {
     "title": "Gift Registry",
-    "comingSoon": "Coming soon..."
+    "honeymoon": "Our Honeymoon",
+    "content1": "We are honoured you will share in our special day. Your presence is our gift!",
+    "content2": "We're lucky to already have a home full of everything we need, so please enjoy browsing this wish list, where you can contribute to our dream honeymoon in Cancún, Mexico!",
+    "content3": "Thanks for visiting and we can't wait to see you on our big day!"
   },
   "areGettingMarried" : "are getting married",
   "saveTheDate": "Save the Date",
