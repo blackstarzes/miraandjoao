@@ -203,6 +203,28 @@
       "weddingDate": "11 October 2019",
       "invitationsToFollow": "Please respond by 11 July 2019."
     },
+    "ontheday": {
+      "title": "Important Wedding Information",
+      "preview": "Important Wedding Information - Mira & Joao are getting married!",
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "We cannot believe that we are only 3 weeks away from our big day!",
+      "favour": "We have 3 simple favours to ask of you:",
+      "step1cta": "Check your RSVP",
+      "step1message": "If your plans have changed, please let us know as soon as possible.",
+      "step2cta": "Know what is happening on the day",
+      "step2message1": "Dress code - <strong>cocktail attire</strong>.",
+      "step2message2": "We will be providing transport by bus for all guests from the reception venue to the ceremony venue and back. There is <strong>very limited</strong> parking at the ceremony venue. The bus will leave from the reception at Vila Vita Parc <strong>promptly at 13:30</strong>.",
+      "step3cta": "Visit our gift registry",
+      "step3message": "Your presence is our gift! We're lucky to already have a home full of everything we need, so please enjoy browsing this wish list, where you can contribute to our dream honeymoon in Cancún, Mexico!",
+      "ctarsvp": "Check RSVP",
+      "ctainfo": "More Info",
+      "ctaregistry": "Gift registry",
+      "where": "Where",
+      "algarvePortugal": "Algarve, Portugal",
+      "when": "When",
+      "weddingDate": "11 October 2019",
+      "invitationsToFollow": "We can't wait to see you on our big day!"
+    },
     "footer": {
       "visitOurSite": "Visit our site",
       "emailUs": "Email us",
