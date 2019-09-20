@@ -250,6 +250,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-12">
+                    <img src="/img/wedding-day.jpg" class="img-fluid"/>
+                </div>
+                <div class="col-md-6 col-12 wedding-content">
+                    <h2><%= wedding.weddingday.title %></h2>
+                    <h3 class="calligraphy"><%= at %> <%= wedding.weddingday.name %></h3>
+                    <p>
+                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                        <%= wedding.weddingday.location %>
+                    </p>
+                    <p>
+                        <i class="fas fa-clock fa-fw"></i>
+                        <%= wedding.weddingday.date %>
+                    </p>
+                    <p><%= wedding.weddingday.description %></p>
+                    <p><%= wedding.weddingday.note %></p>
+                    <p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Church+of+Our+Lady+of+the+Incarnation,+Porches,+Portugal" target="_blank">
+                            <%= wedding.seeLocation %>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="row top50">
+                <div class="col-md-6 col-12">
                     <img src="/img/church.jpg" class="img-fluid"/>
                 </div>
                 <div class="col-md-6 col-12 wedding-content">

@@ -41,6 +41,14 @@
   "wedding": {
     "title": "Wedding Details",
     "seeLocation": "See location",
+    "weddingday": {
+      "title": "On the Day",
+      "name": "Vila Vita Parc",
+      "location": "Rua Anneliese Pohl, Alporchinhos, 8400-450 Porches, Portugal",
+      "date": "11 October 2019 13:30",
+      "description": "Dress code - <strong>cocktail attire</strong>.",
+      "note": "We will be providing transport by bus for all guests from the reception venue to the ceremony venue and back. There is <strong>very limited</strong> parking at the ceremony venue. The bus will leave from the reception at Vila Vita Parc <strong>promptly at 13:30</strong>."
+    },
     "ceremony": {
       "title": "The Ceremony",
       "name": "The Church of Our Lady of the Incarnation",
@@ -135,9 +143,9 @@
   "registry": {
     "title": "Gift Registry",
     "honeymoon": "Our Honeymoon",
-    "content1": "We are honoured you will share in our special day. Your presence is our gift!",
-    "content2": "We're lucky to already have a home full of everything we need, so please enjoy browsing this wish list, where you can contribute to our dream honeymoon in Cancún, Mexico!",
-    "content3": "Thanks for visiting and we can't wait to see you on our big day!"
+    "content1": "We are honoured you will share in our special day.",
+    "content2": "Your presence is our gift! We're lucky to already have a home full of everything we need, so please enjoy browsing this wish list, where you can contribute to our dream honeymoon in Cancún, Mexico!",
+    "content3": "We can't wait to see you on our big day!"
   },
   "areGettingMarried" : "are getting married",
   "saveTheDate": "Save the Date",
