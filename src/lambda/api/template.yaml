@@ -30,6 +30,7 @@ Globals:
         USERS_TABLE_USERTAG_INDEX_NAME: usertag-index
         RSVPS_TABLE_NAME:
           Ref: RsvpTable
+        RSVP_ALLOWED_DATE: '2019-07-13T00:00:00Z'
   Api:
     Cors: !Join [ "", [ "'", !FindInMap [!Ref Environment, !Ref 'AWS::Region', DomainNameUi], "'" ] ]
 

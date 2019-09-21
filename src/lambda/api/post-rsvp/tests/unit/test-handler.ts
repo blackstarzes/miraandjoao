@@ -23,12 +23,43 @@ const RSVPS_TABLE_NAME = "rsvp-table";
 const USERS_TABLE_NAME = "user-table";
 const USERS_TABLE_USERTAG_INDEX_NAME = "user-table-usertag-index";
 let context: Context;
+const now: Date = new Date();
+const allowedDate = new Date(now.getTime() + (60*1000)).toISOString();
+const notAllowedDate = new Date(now.getTime() - (60*1000)).toISOString();
 
 // Tests
 describe("Post RSVP tests", function () {
+    it("When allowed date is passed, should return 500 with message 'RSVPs closed'", async () => {
+        // Given
+        process.env.HEADER_ACAO = DOMAIN_UI;
+        process.env.RSVP_ALLOWED_DATE = notAllowedDate;
+        let event: APIGatewayEvent = createEvent({
+            template: "aws:apiGateway"
+        });
+
+        // When
+        const result = await app.lambdaHandler(event, context);
+
+        // Then
+        expect(result).to.be.an("object");
+        expect(result.statusCode).to.equal(500);
+        expect(result.body).to.be.an("string");
+        expect(result.headers).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.not.be.null;
+        expect(result.headers!["access-control-allow-origin"]).to.be.equal(DOMAIN_UI);
+        expect(result.headers!["content-type"]).to.not.be.null;
+        expect(result.headers!["content-type"]).to.be.equal("application/json");
+        expect(result.headers!["x-content-type-options"]).to.not.be.null;
+        expect(result.headers!["x-content-type-options"]).to.be.equal("nosniff");
+        let response = JSON.parse(result.body);
+        expect(response).to.be.an("object");
+        expect(response.message).to.be.equal("RSVPs closed");
+    });
+
     it("When UserTag is not provided, should return 403 with message 'UserTag not provided'", async () => {
         // Given
         process.env.HEADER_ACAO = DOMAIN_UI;
+        process.env.RSVP_ALLOWED_DATE = allowedDate;
         let event: APIGatewayEvent = createEvent({
             template: "aws:apiGateway"
         });
@@ -57,6 +88,7 @@ describe("Post RSVP tests", function () {
         process.env.RSVPS_TABLE_NAME = RSVPS_TABLE_NAME;
         process.env.USERS_TABLE_NAME = USERS_TABLE_NAME;
         process.env.USERS_TABLE_USERTAG_INDEX_NAME = USERS_TABLE_USERTAG_INDEX_NAME;
+        process.env.RSVP_ALLOWED_DATE = allowedDate;
         AWS.mock("DynamoDB.DocumentClient", "query", function (params: QueryInput, callback: any) {
             if (params.TableName == USERS_TABLE_NAME
                 && params.IndexName == USERS_TABLE_USERTAG_INDEX_NAME
@@ -109,6 +141,7 @@ describe("Post RSVP tests", function () {
         process.env.RSVPS_TABLE_NAME = RSVPS_TABLE_NAME;
         process.env.USERS_TABLE_NAME = USERS_TABLE_NAME;
         process.env.USERS_TABLE_USERTAG_INDEX_NAME = USERS_TABLE_USERTAG_INDEX_NAME;
+        process.env.RSVP_ALLOWED_DATE = allowedDate;
         AWS.mock("DynamoDB.DocumentClient", "query", function (params: QueryInput, callback: any) {
             if (params.TableName == USERS_TABLE_NAME
                 && params.IndexName == USERS_TABLE_USERTAG_INDEX_NAME
@@ -164,6 +197,7 @@ describe("Post RSVP tests", function () {
         process.env.RSVPS_TABLE_NAME = RSVPS_TABLE_NAME;
         process.env.USERS_TABLE_NAME = USERS_TABLE_NAME;
         process.env.USERS_TABLE_USERTAG_INDEX_NAME = USERS_TABLE_USERTAG_INDEX_NAME;
+        process.env.RSVP_ALLOWED_DATE = allowedDate;
         AWS.mock("DynamoDB.DocumentClient", "query", function (params: QueryInput, callback: any) {
             if (params.TableName == USERS_TABLE_NAME
                 && params.IndexName == USERS_TABLE_USERTAG_INDEX_NAME
@@ -233,6 +267,7 @@ describe("Post RSVP tests", function () {
         process.env.RSVPS_TABLE_NAME = RSVPS_TABLE_NAME;
         process.env.USERS_TABLE_NAME = USERS_TABLE_NAME;
         process.env.USERS_TABLE_USERTAG_INDEX_NAME = USERS_TABLE_USERTAG_INDEX_NAME;
+        process.env.RSVP_ALLOWED_DATE = allowedDate;
         AWS.mock("DynamoDB.DocumentClient", "query", function (params: QueryInput, callback: any) {
             if (params.TableName == RSVPS_TABLE_NAME
                 && params.KeyConditionExpression == "#usertag = :usertag"
@@ -335,6 +370,7 @@ describe("Post RSVP tests", function () {
         process.env.RSVPS_TABLE_NAME = RSVPS_TABLE_NAME;
         process.env.USERS_TABLE_NAME = USERS_TABLE_NAME;
         process.env.USERS_TABLE_USERTAG_INDEX_NAME = USERS_TABLE_USERTAG_INDEX_NAME;
+        process.env.RSVP_ALLOWED_DATE = allowedDate;
         AWS.mock("DynamoDB.DocumentClient", "query", function (params: QueryInput, callback: any) {
             if (params.TableName == RSVPS_TABLE_NAME
                 && params.KeyConditionExpression == "#usertag = :usertag"
