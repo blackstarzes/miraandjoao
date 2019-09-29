@@ -12,7 +12,7 @@
     "couple": "O нас",
     "story": "Наша история",
     "wedding": "Свадьба",
-    "people": "Люди",
+    "weddingparty": "Участики Бракосочетания",
     "gallery": "Галерея",
     "rsvp": "Подтвердить",
     "accommodation": "Жилье",
@@ -65,7 +65,31 @@
     }
   },
   "people": {
-    "title": "Подружки Невесты и Жениха"
+    "title": "Участики Бракосочетания",
+    "janelle": "Шанель Стивенсон",
+    "maidOfHonour": "Подружка Невесты",
+    "kieron": "Кирон Стивенсон",
+    "bestMan": "Дружка Жениха",
+    "diana": "Диана Цой",
+    "christine": "Кристин Хонг",
+    "bridesmaid": "Подружка",
+    "marcelo": "Марсело Лоренсо",
+    "brotherOfGroom": "Брат Жениха",
+    "andrew": "Эндрю Уадингтон",
+    "groomsman": "Дружка",
+    "masterOfCeremonies": "Тамада",
+    "ravilya": "Равиля Егембердиева",
+    "motherOfBride": "Мама Невесты",
+    "danette": "Данет Лоренсо",
+    "motherOfGroom": "Мама Жениха",
+    "joldas": "Жолдас Егембердиев",
+    "fatherOfBride": "Отец Невесты",
+    "john": "Джон Лоренсо",
+    "fatherOfGroom": "Отец Жениха",
+    "yelzhan": "Ельжан Егембердиев",
+    "brotherOfBride": "Брат Невесты",
+    "verena": "Верена Лоренсо",
+    "sisterOfGroom": "Сестра Жениха"
   },
   "rsvp": {
     "title": "Присоединяйтесь к Нам",
@@ -223,7 +247,7 @@
       "algarvePortugal": "Алгарв, Португалия",
       "when": "Когда",
       "weddingDate": "11 Oктября 2019",
-      "invitationsToFollow": "Мы очень ждём Вас на нашем особенном дне!"
+      "invitationsToFollow": "Мы очень ждём Вас на нашем особенном дне"
     },
     "footer": {
       "visitOurSite": "Посетите наш сайт",

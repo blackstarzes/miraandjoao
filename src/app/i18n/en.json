@@ -12,7 +12,7 @@
     "couple": "Couple",
     "story": "Our story",
     "wedding": "Wedding",
-    "people": "People",
+    "weddingparty": "Wedding Party",
     "gallery": "Gallery",
     "rsvp": "RSVP",
     "accommodation": "Accommodation",
@@ -65,7 +65,31 @@
     }
   },
   "people": {
-    "title": "Bridesmaids & Groomsmen"
+    "title": "Wedding Party",
+    "janelle": "Jánelle Stevenson",
+    "maidOfHonour": "Maid of Honour",
+    "kieron": "Kieron Stevenson",
+    "bestMan": "Best Man",
+    "diana": "Diana Tsoy",
+    "christine": "Christine Hong",
+    "bridesmaid": "Bridesmaid",
+    "marcelo": "Marcelo Lourenço",
+    "brotherOfGroom": "Brother of the Groom",
+    "andrew": "Andrew Waddington",
+    "groomsman": "Groomsman",
+    "masterOfCeremonies": "Master of Ceremonies",
+    "ravilya": "Ravilya Yegemberdiyeva",
+    "motherOfBride": "Mother of the Bride",
+    "danette": "Danette Lourenço",
+    "motherOfGroom": "Mother of the Groom",
+    "joldas": "Joldas Yegemberdiyev",
+    "fatherOfBride": "Father of the Bride",
+    "john": "John Lourenço",
+    "fatherOfGroom": "Father of the Groom",
+    "yelzhan": "Yelzhan Yegemberdiyev",
+    "brotherOfBride": "Brother of the Bride",
+    "verena": "Verena Lourenço",
+    "sisterOfGroom": "Sister of the Groom"
   },
   "rsvp": {
     "title": "Join Us",
@@ -217,13 +241,13 @@
       "step3cta": "Visit our gift registry",
       "step3message": "Your presence is our gift! We're lucky to already have a home full of everything we need, so please enjoy browsing this wish list, where you can contribute to our dream honeymoon in Cancún, Mexico!",
       "ctarsvp": "Check RSVP",
-      "ctainfo": "More Info",
+      "ctainfo": "More info",
       "ctaregistry": "Gift registry",
       "where": "Where",
       "algarvePortugal": "Algarve, Portugal",
       "when": "When",
       "weddingDate": "11 October 2019",
-      "invitationsToFollow": "We can't wait to see you on our big day!"
+      "invitationsToFollow": "We can't wait to see you on our big day"
     },
     "footer": {
       "visitOurSite": "Visit our site",

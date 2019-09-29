@@ -418,6 +418,39 @@ section {
 }
 
 /*
+  Wedding party
+ */
+#weddingparty {
+  h3 {
+    @include calligraphy();
+  }
+
+  div {
+    text-align: center;
+  }
+
+  img.person {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border: 10px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $offwhite, $lightgrey);
+    background-clip: padding-box;
+    padding: 10px;
+  }
+
+  img.person::after {
+    position: absolute;
+    top: -10px; bottom: -10px;
+    left: -10px; right: -10px;
+    content: '';
+    z-index: -1;
+    border-radius: 50%;
+  }
+}
+
+/*
   RSVP content
  */
 #rsvp {
