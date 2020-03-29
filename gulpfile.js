@@ -12,6 +12,7 @@ const concat = require("gulp-concat");
 const path = require("path");
 const through2 = require("through2");
 const fs = require("fs");
+const nunjucksRender = require('gulp-nunjucks-render');
 const data = require("gulp-data");
 const template = require("gulp-template");
 const groupAggregate = require('gulp-group-aggregate');
@@ -52,27 +53,16 @@ function cleanBuild() {
         .pipe(clean());
 }
 
-function applyLayout(pageContents) {
-    let layoutString = pageContents.substring(0, pageContents.indexOf("\n"));
-    let match = layoutString.match(/<!--layout="([^"]+)" title="([^"]+)"(?: preview="([^"]+)")?-->/);
-    if (match) {
-        let layout = fs.readFileSync(appLayoutFolder + "/" + match[1]).toString();
-        layout = layout
-            .replace("<!--title-->", match[2])
-            .replace("<!--content-->", pageContents.substring(pageContents.indexOf("\n")+1))
-            .replace("<!--preview-->", match.length == 4 ? match[3] : "")
-            .replace(/\n/g, "")
-            .replace(/\s\s+/g, " ");
-        return layout;
-    }
-    return pageContents;
-}
-
 function pages() {
     return gulp.src([
-        appFolder + "/*.html",
-        appFolder + "/**/*.html"
+        appFolder + "/*.njk",
+        appFolder + "/**/*.njk",
+        "!" + appFolder + "/_layout/*.njk",
+        "!" + appFolder + "/_layout/**/*.njk"
     ])
+        .pipe(nunjucksRender({
+            path: [appLayoutFolder]
+        }))
         .pipe(through2.obj(function(file, enc, next) {
             let pageContents = file.contents.toString();
             let pagePath = path.parse(file.path);
@@ -82,9 +72,6 @@ function pages() {
                 next();
                 return;
             }
-
-            // Apply layout
-            pageContents = applyLayout(pageContents);
 
             // Emit file per language
             let i = 0, len = languages.length;

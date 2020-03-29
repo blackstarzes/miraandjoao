@@ -23,6 +23,7 @@
     "gulp-html2txt": "^1.2.1",
     "gulp-htmlmin": "^5.0.1",
     "gulp-modify-file": "^1.0.1",
+    "gulp-nunjucks-render": "^2.2.3",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-template": "^5.0.0",

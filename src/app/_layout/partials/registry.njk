@@ -1,0 +1,29 @@
+<section id="registry">
+    <div class="section-heading">
+        <h1><%= registry.title %></h1>
+    </div>
+    <div class="container">
+        <div class="card mb-4">
+            <a href="http://www.honeyfund.com/wedding/MiraAndJoao" target="_blank">
+                <img class="card-img-top img-fluid" src="/img/honeymoon.jpg">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title"><%= registry.honeymoon %></h4>
+                <p><%= registry.content1 %></p>
+                <p><%= registry.content2 %></p>
+            </div>
+            <div class="card-footer">
+                <a href="http://www.honeyfund.com/wedding/MiraAndJoao" target="_blank" class="card-link">
+                    <i class="fas fa-gift fa-fw"></i>
+                    <%= registry.link %>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 thank-you">
+            <p><%= registry.content3 %></p>
+        </div>
+    </div>
+</section>

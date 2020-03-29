@@ -1,0 +1,266 @@
+<section id="accommodation" class="dark">
+    <div class="section-heading">
+        <h1><%= accommodation.title %></h1>
+    </div>
+    <div class="container">
+        <div id="accommodationProvided" class="row accommodation-provided-hidden">
+            <div class="col-12">
+                <p>
+                    <%= accommodation.accommodationProvided %>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2><%= accommodation.receptionVenue %></h2>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <a href="https://vilavitaparc.com/" target="_blank">
+                <img class="card-img-top img-fluid" src="/img/accommodation-vila-vita-parc.jpg">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title"><%= wedding.reception.name %></h4>
+                <p>
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <%= wedding.reception.location %>
+                </p>
+                <p class="card-text"><%= accommodation.receptionDescription %></p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <small class="text-muted">
+                            <div class="container text-muted">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <%= accommodation.ceremony %>
+                                    </div>
+                                    <div class="col-6">
+                                        <%= accommodation.reception %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <i class="fas fa-walking fa-fw"></i>
+                                        1 <%= accommodation.hour %>
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fas fa-walking fa-fw"></i>
+                                        0 <%= accommodation.minutes %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <i class="fas fa-car  fa-fw"></i>
+                                        10 <%= accommodation.minutes %>
+                                    </div>
+                                    <div class="col-6">
+                                        <i class="fas fa-car  fa-fw"></i>
+                                        0 <%= accommodation.minutes %>
+                                    </div>
+                                </div>
+                            </div>
+                        </small>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <a href="mailto:rpimentel@vilavitaparc.com?subject=Accommodation%20enquiry%20for%20Mira%20and%20Joao%27s%20wedding%20-%2011%20October%202019" target="_blank" class="card-link">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <%= accommodation.enquire %>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2><%= accommodation.suggestedHotels %></h2>
+                <p><%= accommodation.suggestedHotelsDescription %></p>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class="card mb-4">
+                <a href="https://www.pestana.com/en/hotel/pestana-viking" target="_blank">
+                    <img class="card-img-top img-fluid" src="/img/accommodation-pestana-viking.jpg">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title"><%= accommodation.pestanaViking.title %></h4>
+                    <p>
+                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                        <%= accommodation.pestanaViking.address %>
+                    </p>
+                    <p class="card-text"><%= accommodation.pestanaViking.description %></p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <small class="text-muted">
+                                <div class="container text-muted">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <%= accommodation.ceremony %>
+                                        </div>
+                                        <div class="col-6">
+                                            <%= accommodation.reception %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fas fa-walking fa-fw"></i>
+                                            1 <%= accommodation.hour %>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fas fa-walking fa-fw"></i>
+                                            15 <%= accommodation.minutes %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fas fa-car  fa-fw"></i>
+                                            10 <%= accommodation.minutes %>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fas fa-car  fa-fw"></i>
+                                            5 <%= accommodation.minutes %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </small>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="mailto:bookings@ecoviagens.pt?subject=Accommodation%20enquiry%20for%20Mira%20and%20Joao%27s%20wedding%20-%2011%20October%202019" target="_blank" class="card-link">
+                        <i class="fas fa-envelope fa-fw"></i>
+                        <%= accommodation.enquire %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 1 on sm--></div>
+            <div class="card mb-4">
+                <a href="https://www.vilagale.com/en/hotels/algarve/vila-gale-nautico" target="_blank">
+                    <img class="card-img-top img-fluid" src="/img/accommodation-vila-gale-nautico.jpg">
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title"><%= accommodation.vilaGaleNautico.title %></h4>
+                    <p>
+                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                        <%= accommodation.vilaGaleNautico.address %>
+                    </p>
+                    <p class="card-text"><%= accommodation.vilaGaleNautico.description %></p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <small class="text-muted">
+                                <div class="container text-muted">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <%= accommodation.ceremony %>
+                                        </div>
+                                        <div class="col-6">
+                                            <%= accommodation.reception %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fas fa-walking fa-fw"></i>
+                                            1 <%= accommodation.hour %>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fas fa-walking fa-fw"></i>
+                                            25 <%= accommodation.minutes %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <i class="fas fa-car  fa-fw"></i>
+                                            10 <%= accommodation.minutes %>
+                                        </div>
+                                        <div class="col-6">
+                                            <i class="fas fa-car  fa-fw"></i>
+                                            5 <%= accommodation.minutes %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </small>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="mailto:bookings@ecoviagens.pt?subject=Accommodation%20enquiry%20for%20Mira%20and%20Joao%27s%20wedding%20-%2011%20October%202019" target="_blank" class="card-link">
+                        <i class="fas fa-envelope fa-fw"></i>
+                        <%= accommodation.enquire %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <h2><%= accommodation.alternativeProviders %></h2>
+                <p><%= accommodation.alternativeProvidersDescription %></p>
+            </div>
+            <div class="col-12">
+                <div id="googleMap"></div>
+            </div>
+        </div>
+        <div class="card-deck">
+            <div class="card mb-4">
+                <img class="card-img-top img-fluid logo-border" src="/img/airbnb-horizontal.png">
+                <div class="card-body">
+                    <h4 class="card-title"><%= accommodation.airbnb.title %></h4>
+                    <p class="card-text"><%= accommodation.airbnb.description %></p>
+                    <p>
+                        <%= accommodation.airbnb.discountInstructions %>
+                        <a href="https://www.airbnb.com.au/c/jlourenco7?currency=AUD" target="_blank"><%= accommodation.airbnb.discountLink %></a>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://www.airbnb.com/s/Alporchinhos--Portugal/homes?query=Alporchinhos%2C%20Portugal&checkin=2019-10-09&checkout=2019-10-12" target="_blank" class="card-link">
+                        <%= accommodation.findRooms %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 1 on sm--></div>
+            <div class="card mb-4">
+                <img class="card-img-top img-fluid logo-border" src="/img/booking-horizontal.png">
+                <div class="card-body">
+                    <h4 class="card-title"><%= accommodation.booking.title %></h4>
+                    <p class="card-text"><%= accommodation.booking.description %></p>
+                    <p>
+                        <%= accommodation.booking.discountInstructions %>
+                        <a href="https://www.booking.com/s/35_6/991d2d60" target="_blank"><%= accommodation.booking.discountLink %></a>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://www.booking.com/searchresults.html?ss=Alporchinhos,%20Portugal&checkin_monthday=9&checkin_month=10&checkin_year=2019&checkout_monthday=12&checkout_month=10&checkout_year=2019" target="_blank" class="card-link">
+                        <%= accommodation.findRooms %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 1 on sm--></div>
+            <div class="card mb-4">
+                <img class="card-img-top img-fluid logo-border" src="/img/hotels-horizontal.png">
+                <div class="card-body">
+                    <h4 class="card-title"><%= accommodation.hotels.title %></h4>
+                    <p class="card-text"><%= accommodation.hotels.description %></p>
+                    <p>
+                        <%= accommodation.hotels.discountInstructions %>
+                        <a href="https://refer.hotels.com/x/2EOjJX" target="_blank"><%= accommodation.hotels.discountLink %></a>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="https://hotels.com/search.do?q-destination=Alporchinhos,%20Portugal&q-check-in=2019-10-09&q-check-out=2019-10-12" target="_blank" class="card-link">
+                        <%= accommodation.findRooms %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

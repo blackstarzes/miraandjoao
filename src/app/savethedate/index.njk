@@ -1,4 +1,8 @@
-<!--layout="master.html" title="<%= title %> - <%= saveTheDatePage.title %>"-->
+{% extends "layout.njk" %}
+
+{% block title %}<%= title %> - <%= saveTheDatePage.title %>{% endblock %}
+
+{% block content %}
 <div class="main-content">
     <div class="headline">
         <h1 class="headline-title calligraphy"><%= miraAndJoao %></h1>
@@ -72,3 +76,8 @@
     <div class="floral-separator"></div>
     <div class="footline readable"><%= invitationsToFollow %></div>
 </div>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="/main.css">
+{% endblock %}

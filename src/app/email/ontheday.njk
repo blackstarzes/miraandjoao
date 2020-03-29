@@ -1,4 +1,10 @@
-<!--layout="email.html" title="<%= email.ontheday.title %>" preview="<%= email.ontheday.preview %>"-->
+{% extends "email.njk" %}
+
+{% block title %}<%= email.ontheday.title %>{% endblock %}
+
+{% block preview %}<%= email.ontheday.preview %>{% endblock %}
+
+{% block content %}
 <tr>
     <td style="background-color: #ffffff;">
         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -121,3 +127,4 @@
         </table>
     </td>
 </tr>
+{% endblock %}

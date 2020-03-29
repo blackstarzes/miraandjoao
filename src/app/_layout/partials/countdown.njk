@@ -1,0 +1,57 @@
+<section id="countdown">
+    <div class="countdown-background">
+        <div class="countdown-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 countdown-message">
+                        <p class="calligraphy">
+                            <%= countdown.countingDown %>
+                        </p>
+                    </div>
+                </div>
+                <div class="row digital justify-content-center">
+                    <div class="col-md-2 col-sm-3 col-6">
+                        <div class="countdown-element">
+                            <p id="countdown-days" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                <%= countdown.days %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-3 col-6">
+                        <div class="countdown-element">
+                            <p id="countdown-hours" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                <%= countdown.hours %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-3 col-6">
+                        <div class="countdown-element">
+                            <p id="countdown-minutes" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                <%= countdown.minutes %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-3 col-6">
+                        <div class="countdown-element">
+                            <p id="countdown-seconds" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                <%= countdown.seconds %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

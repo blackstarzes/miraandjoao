@@ -54,17 +54,19 @@
         }
     </script>
 
-    <meta charset="UTF-8">
-    <title><!--title--></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
     <link rel="icon" type="image/png" sizes="192x192"  href="/favicon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="stylesheet" href="/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Great+Vibes|Marck+Script" rel="stylesheet">
+    {% block stylesheets %} {% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Great+Vibes|Marck+Script|Dosis" rel="stylesheet">
 </head>
-<body>
-<!--content-->
-<div class="copyright">© Joao Lourenco 2019 | <a href="/privacy/"><%= privacyPolicyPage.title %></a></div>
+<body data-spy="scroll" data-target="#navbar" data-offset-top="148">
+    {% block content %} {% endblock %}
+    <div class="copyright">© Joao Lourenco 2019 | <a href="/privacy/"><%= privacyPolicyPage.title %></a></div>
+    {% block scripts %} {% endblock %}
 </body>
 </html>

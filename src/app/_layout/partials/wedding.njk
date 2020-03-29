@@ -1,0 +1,84 @@
+<section id="wedding">
+    <div class="section-heading">
+        <h1><%= wedding.title %></h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <img src="/img/wedding-day.jpg" class="img-fluid"/>
+            </div>
+            <div class="col-md-6 col-12 wedding-content">
+                <h2><%= wedding.weddingday.title %></h2>
+                <h3 class="calligraphy"><%= at %> <%= wedding.weddingday.name %></h3>
+                <p>
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <%= wedding.weddingday.location %>
+                </p>
+                <p>
+                    <i class="fas fa-clock fa-fw"></i>
+                    <%= wedding.weddingday.date %>
+                </p>
+                <p><%= wedding.weddingday.description %></p>
+                <p><%= wedding.weddingday.note %></p>
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Church+of+Our+Lady+of+the+Incarnation,+Porches,+Portugal" target="_blank">
+                        <%= wedding.seeLocation %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="row top50">
+            <div class="col-md-6 col-12">
+                <img src="/img/church.jpg" class="img-fluid"/>
+            </div>
+            <div class="col-md-6 col-12 wedding-content">
+                <h2><%= wedding.ceremony.title %></h2>
+                <h3 class="calligraphy"><%= at %> <%= wedding.ceremony.name %></h3>
+                <p>
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <%= wedding.ceremony.location %>
+                </p>
+                <p>
+                    <i class="fas fa-clock fa-fw"></i>
+                    <%= wedding.ceremony.date %>
+                </p>
+                <p>
+                    <%= wedding.ceremony.description %>
+                </p>
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Church+of+Our+Lady+of+the+Incarnation,+Porches,+Portugal" target="_blank">
+                        <%= wedding.seeLocation %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="row top50">
+            <div class="col-md-6 col-12">
+                <img src="/img/reception.jpg" class="img-fluid"/>
+            </div>
+            <div class="col-md-6 col-12 wedding-content">
+                <h2><%= wedding.reception.title %></h2>
+                <h3 class="calligraphy"><%= at %> <%= wedding.reception.name %></h3>
+                <p>
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <%= wedding.reception.location %>
+                </p>
+                <p>
+                    <i class="fas fa-clock fa-fw"></i>
+                    <%= wedding.reception.date %>
+                </p>
+                <p>
+                    <%= wedding.reception.description %>
+                </p>
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Vila+Vita+Parc,+Porches,+Portugal" target="_blank">
+                        <%= wedding.seeLocation %>
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
