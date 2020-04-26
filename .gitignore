@@ -68,3 +68,9 @@ fabric.properties
 # Build
 build/
 node_modules/
+
+# Nunjucks intermediate files
+*.njk.data.json
+
+# Gallery
+src/app/gallery/**/*.jpg

@@ -6,6 +6,10 @@ body, html {
   margin: 0;
   padding: 0;
 }
+
+body {
+  margin-top: 58px;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -394,10 +398,6 @@ section {
 }
 
 /*
-  Story content
- */
-
-/*
   Wedding content
  */
 #wedding {
@@ -448,6 +448,90 @@ section {
     z-index: -1;
     border-radius: 50%;
   }
+}
+
+/*
+  Gallery content
+ */
+#gallery {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(/img/rsvp-bg.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom: 74px;
+  color: $offwhite;
+
+  #gallery-carousel {
+    padding-top: 79px;
+    margin-top: -79px;
+    padding-bottom: 10px;
+
+    .gallery-image-container {
+      display: block !important;
+      height: 70vh;
+      width: 100% !important;
+      background-color: rgba($darkgrey, 0.5);
+
+      .gallery-image {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        will-change: opacity;
+
+        &.gallery-image-loader {
+          //filter: blur(1.5vw);
+          //transform: scale(1.05);
+        }
+
+        &.gallery-image-view.reveal {
+          animation: reveal 1s ease-out;
+        }
+      }
+    }
+  }
+
+  .gallery-index-link {
+    color: $offwhite;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 10px;
+    opacity: 0.5;
+
+    &:hover, &.selected {
+      color: $white;
+      text-decoration: none;
+      opacity: 1;
+    }
+
+    .gallery-index-link-image {
+      background-repeat: no-repeat;
+      background-position: center;
+      -webkit-background-size: contain;
+      -moz-background-size: contain;
+      -o-background-size: contain;
+      background-size: contain;
+      width: 100%;
+      height: 10vh;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .gallery-index-link-text {
+      text-align: center;
+    }
+  }
+}
+
+@keyframes reveal {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 /*

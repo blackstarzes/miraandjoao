@@ -1,3 +1,6 @@
+echo 'Installing dependencies...'
+npm install
+
 echo 'Building web...'
 gulp build
 

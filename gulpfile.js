@@ -1,22 +1,27 @@
 const gulp = require("gulp");
-const clean = require('gulp-clean');
 const babel = require("gulp-babel");
-const htmlmin = require('gulp-htmlmin');
-const html2txt = require('gulp-html2txt');
-const modifyFile = require('gulp-modify-file');
-const rename = require("gulp-rename");
-const uglify = require("gulp-uglify");
-const sass = require('gulp-sass');
+const browserSync = require("browser-sync");
+const clean = require('gulp-clean');
 const cleanCss = require("gulp-clean-css");
 const concat = require("gulp-concat");
-const path = require("path");
-const through2 = require("through2");
-const fs = require("fs");
-const nunjucksRender = require('gulp-nunjucks-render');
 const data = require("gulp-data");
-const template = require("gulp-template");
+const filelist = require('gulp-filelist');
+const filter = require('gulp-filter');
+const fs = require("fs");
 const groupAggregate = require('gulp-group-aggregate');
-const browserSync = require("browser-sync");
+const html2txt = require('gulp-html2txt');
+const htmlmin = require('gulp-htmlmin');
+const imageResize = require('gulp-image-resize');
+const modifyFile = require('gulp-modify-file');
+const nunjucksRender = require('gulp-nunjucks-render');
+const os = require("os");
+const parallel = require('concurrent-transform');
+const path = require("path");
+const rename = require("gulp-rename");
+const sass = require('gulp-sass');
+const template = require("gulp-template");
+const through2 = require("through2");
+const uglify = require("gulp-uglify");
 
 // Configuration
 const srcFolder = "src";
@@ -36,21 +41,172 @@ const thirdPartyStyles = [
 
 // Web App
 const appFolder = srcFolder + "/app";
+const appGalleryFolder = appFolder + "/gallery";
 const appLayoutFolder = appFolder + "/_layout";
 const buildAppFolder = buildFolder + "/app";
 const buildAppImgFolder = buildAppFolder + "/img";
+const buildAppGalleryFolder = buildAppFolder + "/gallery";
+const buildDataFolder = buildFolder + "/data";
 const buildEmailFolder = buildFolder + "/email";
 
-function cleanBuild() {
-    return gulp.src(
-        [
-            buildAppFolder,
-            buildEmailFolder
-        ], {
-            read: false,
-            allowEmpty: true
-        })
+function cleanAll() {
+    return gulp.src([
+        buildFolder + "/*/"
+    ], {
+        read: false,
+        allowEmpty: true
+    })
         .pipe(clean());
+}
+
+function cleanBuild() {
+    return gulp.src([
+        buildFolder + "/**/*"
+    ], {
+        read: false,
+        allowEmpty: true,
+        nodir: true
+    })
+        .pipe(filter([
+            "**",
+            "!" + buildAppGalleryFolder + "/**/*-loader.jpg",
+            "!" + buildAppGalleryFolder + "/**/*-thumbnail*.jpg",
+            "!" + buildAppGalleryFolder + "/**/*-view*.jpg",
+        ]))
+        .pipe(clean());
+}
+
+function cleanGalleryOptimisation() {
+    return gulp.src([
+        buildAppGalleryFolder + "/**/*-loader.jpg",
+        buildAppGalleryFolder + "/**/*-thumbnail*.jpg",
+        buildAppGalleryFolder + "/**/*-view*.jpg",
+    ], {
+        read: false,
+        allowEmpty: true
+    })
+        .pipe(clean());
+}
+
+function optimiseImages(maxWidthHeight, suffix) {
+    return gulp.src([
+        appGalleryFolder + "/**/*.jpg"
+        // appGalleryFolder + "/**/*.jpg"
+    ])
+        .pipe(parallel(
+            imageResize({
+                width: maxWidthHeight,
+                height: maxWidthHeight,
+                imageMagick: true,
+                noProfile: true
+            }),
+            os.cpus().length
+        ))
+        .pipe(rename(function(path) {
+            path.basename += suffix;
+        }))
+        .pipe(gulp.dest(buildAppGalleryFolder));
+}
+
+function galleryLoaders() {
+    return optimiseImages(16, "-loader");
+}
+
+function galleryThumbnails() {
+    return optimiseImages(100, "-thumbnail");
+}
+
+function galleryThumbnails2x() {
+    return optimiseImages(200, "-thumbnail-2x");
+}
+
+function galleryThumbnails3x() {
+    return optimiseImages(300, "-thumbnail-3x");
+}
+
+function galleryViews() {
+    return optimiseImages(800, "-view");
+}
+
+function galleryViews2x() {
+    return optimiseImages(1600, "-view-2x");
+}
+
+function galleryViews3x() {
+    return optimiseImages(2400, "-view-3x");
+}
+
+function galleryOriginals() {
+    return gulp.src([
+        appGalleryFolder + "/**/*.jpg"
+    ])
+        .pipe(gulp.dest(buildAppGalleryFolder));
+}
+
+function staticData() {
+    return gulp.src([
+        appFolder + "/*.njk.data.json",
+        appFolder + "/**/*.njk.data.json"
+    ])
+        .pipe(gulp.dest(buildDataFolder));
+}
+
+function galleryData() {
+    return gulp.src(JSON.parse(fs.readFileSync(appFolder + "/gallery/gallery.json")), {
+        root: appFolder + "/gallery",
+        base: appFolder
+    })
+        .pipe(filelist("gallery.json", { relative: true }))
+        .pipe(modifyFile(function(content, path, file) {
+            // Prepare transformed object
+            let data = {
+                galleryIndex: [],
+                galleryData: []
+            };
+
+            // Process files
+            let currentNameI18nKey = "";
+            let currentIndex = {};
+            let currentGroup = {};
+            let galleryFiles = JSON.parse(content);
+            for (let i=0; i<galleryFiles.length; i++) {
+                let galleryFile = galleryFiles[i];
+                let nameI18nKey = galleryFile
+                    .split("/")[1];
+
+                // Check if we have moved on to a new group
+                if (nameI18nKey !== currentNameI18nKey) {
+                    currentNameI18nKey = nameI18nKey;
+                    currentGroup = {
+                        nameI18nKey: currentNameI18nKey,
+                        images: []
+                    }
+                    currentIndex = {
+                        nameI18nKey: currentNameI18nKey,
+                        index: i
+                    };
+                    data.galleryIndex.push(currentIndex);
+                    data.galleryData.push(currentGroup);
+                }
+
+                //Add the current file to the group
+                currentGroup.images.push({
+                    loader: "/" + galleryFile.replace(".jpg", "") + "-loader.jpg",
+                    thumbnail: "/" + galleryFile.replace(".jpg", "") + "-thumbnail.jpg",
+                    thumbnail2x: "/" + galleryFile.replace(".jpg", "") + "-thumbnail-2x.jpg",
+                    thumbnail3x: "/" + galleryFile.replace(".jpg", "") + "-thumbnail-3x.jpg",
+                    view: "/" + galleryFile.replace(".jpg", "") + "-view.jpg",
+                    view2x: "/" + galleryFile.replace(".jpg", "") + "-view-2x.jpg",
+                    view3x: "/" + galleryFile.replace(".jpg", "") + "-view-3x.jpg",
+                    original: "/" + galleryFile,
+                    alt: "description"
+                });
+            }
+
+            return JSON.stringify(data, null, 4);
+        }))
+        .pipe(rename("index.njk.data.json"))
+        .pipe(gulp.dest(buildDataFolder));
 }
 
 function pages() {
@@ -60,6 +216,13 @@ function pages() {
         "!" + appFolder + "/_layout/*.njk",
         "!" + appFolder + "/_layout/**/*.njk"
     ])
+        .pipe(data(function(file) {
+            const dataPath = file.path.replace("/src/app/", "/build/data/") + ".data.json";
+            if (fs.existsSync(dataPath)) {
+                return JSON.parse(fs.readFileSync(dataPath));
+            }
+            return {};
+        }))
         .pipe(nunjucksRender({
             path: [appLayoutFolder]
         }))
@@ -118,7 +281,7 @@ function email2txt() {
 
 function emailTemplates() {
     return gulp.src([
-        buildEmailFolder + "/**/*.*"
+        buildEmailFolder + "/**/*.(html|txt)"
     ])
         .pipe(groupAggregate({
             group: function(file) {
@@ -250,7 +413,9 @@ function watch() {
     return gulp.watch([
         appFolder + "/*.*",
         appFolder + "/**/*.*"
-    ] , gulp.series("build"));
+    ] , {
+        debounceDelay: 2000
+    }, gulp.series("build"));
 }
 
 function serve() {
@@ -262,7 +427,22 @@ function serve() {
     });
 }
 
-gulp.task("clean", cleanBuild);
+gulp.task("cleanAll", cleanAll)
+gulp.task("cleanBuild", cleanBuild);
+gulp.task("galleryLoaders", galleryLoaders);
+gulp.task("galleryThumbnails", gulp.series(
+    galleryThumbnails,
+    galleryThumbnails2x,
+    galleryThumbnails3x
+));
+gulp.task("galleryViews", gulp.series(
+    galleryViews,
+    galleryViews2x,
+    galleryViews3x
+));
+gulp.task("galleryOriginals", galleryOriginals);
+gulp.task("staticData", staticData);
+gulp.task("galleryData", galleryData);
 gulp.task("pages", pages);
 gulp.task("email2txt", email2txt);
 gulp.task("emailTemplates", emailTemplates);
@@ -274,10 +454,19 @@ gulp.task("scriptsThirdParty", scriptsThirdParty);
 gulp.task("favicons", favicons);
 gulp.task("images", images);
 
+gulp.task("cleanGalleryOptimisation", cleanGalleryOptimisation);
+gulp.task("galleryOptimisation", gulp.series(
+    "galleryLoaders",
+    "galleryThumbnails",
+    "galleryViews"
+));
+
 gulp.task("build", gulp.series(
-    "clean",
+    "cleanBuild",
     gulp.parallel(
         gulp.series(
+            "staticData",
+            "galleryData",
             "pages",
             "email2txt",
             "emailTemplates",
@@ -288,7 +477,8 @@ gulp.task("build", gulp.series(
         "scripts",
         "scriptsThirdParty",
         "favicons",
-        "images"
+        "images",
+        "galleryOriginals"
     )
 ));
 gulp.task("watch", watch);

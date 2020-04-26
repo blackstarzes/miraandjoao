@@ -90,6 +90,14 @@
     "verena": "Verena Lourenço",
     "sisterOfGroom": "Sister of the Groom"
   },
+  "gallery": {
+    "gettingready": "Getting Ready",
+    "ceremony": "Ceremony",
+    "couple": "Couple",
+    "cocktail": "Cocktail",
+    "dinner": "Dinner",
+    "party": "Party"
+  },
   "rsvp": {
     "title": "Join Us",
     "rsvpReceived": "We have received your RSVP. If your plans have changed, please let us know as soon as possible.",
