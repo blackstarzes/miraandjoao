@@ -13,6 +13,7 @@
     "@babel/preset-env": "^7.9.0",
     "browser-sync": "^2.26.7",
     "compass-mixins": "^0.12.10",
+    "concurrent-transform": "^1.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
