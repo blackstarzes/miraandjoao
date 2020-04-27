@@ -1,10 +1,12 @@
 $(function(){
     // Navigation
     let initNav = function() {
+        const navbar = $('.navbar-collapse');
+        const htmlAndBody = $('html, body');
         $("a[href^='#']").click(function () {
             let sectionTo = $(this).attr('href');
-            $('.navbar-collapse').collapse('hide');
-            $('html, body').animate({
+            navbar.collapse('hide');
+            htmlAndBody.animate({
                 scrollTop: $(sectionTo).offset().top
             }, 'slow');
         });
@@ -25,6 +27,11 @@ $(function(){
         const secondsInDay = secondsInHour*24;
         const targetDate = moment.tz('2019-10-11 14:00', 'Europe/Lisbon').utc();
         const localTimezone = moment.tz.guess(true);
+        const yearsElement = $('#countdown-years');
+        const daysElement = $('#countdown-days');
+        const hoursElement = $('#countdown-hours');
+        const minutesElement = $('#countdown-minutes');
+        const secondsElement = $('#countdown-seconds');
         let timer = setInterval(function() {
             let now = moment().tz(localTimezone).utc();
             if (targetDate < now) {
@@ -35,19 +42,19 @@ $(function(){
                 const minutes = Math.floor((delta - (days*secondsInDay) - (hours*secondsInHour))/secondsInMinute);
                 const seconds = Math.floor(delta - (days*secondsInDay) - (hours*secondsInHour) - (minutes*secondsInMinute));
 
-                $('#countdown-years').html(years);
-                $('#countdown-days').html(days);
-                $('#countdown-hours').html(hours);
-                $('#countdown-minutes').html(minutes);
-                $('#countdown-seconds').html(seconds);
+                yearsElement.html(years);
+                daysElement.html(days);
+                hoursElement.html(hours);
+                minutesElement.html(minutes);
+                secondsElement.html(seconds);
             } else {
                 clearInterval(timer);
 
-                $('#countdown-years').html('00');
-                $('#countdown-days').html('00');
-                $('#countdown-hours').html('00');
-                $('#countdown-minutes').html('00');
-                $('#countdown-seconds').html('00');
+                yearsElement.html('00');
+                daysElement.html('00');
+                hoursElement.html('00');
+                minutesElement.html('00');
+                secondsElement.html('00');
             }
         }, 1000);
     };
@@ -58,9 +65,22 @@ $(function(){
     initGallery();
 });
 
+const debounce = (callback, delay = 250) => {
+    let timeoutId;
+    return (cancel = false) => {
+        clearTimeout(timeoutId);
+        if (!cancel) {
+            timeoutId = setTimeout(() => {
+                timeoutId = null
+                callback()
+            }, delay);
+        }
+    };
+};
+
 function initGallery() {
     const sessionStorageKey = 'galleryIndex';
-    const galleryCarouselSelector = '#gallery-carousel';
+    const galleryCarousel = $('#gallery-carousel');
     const scrollOptions = { behavior: 'smooth' };
     const playClass = 'play';
     const fullscreenClass = 'gallery-fullscreen';
@@ -69,51 +89,71 @@ function initGallery() {
     $('.gallery-index-link').on('click', function(e) {
         let carousel = $(e.target).data('target');
         $(carousel).carousel(parseInt($(e.target).data('slide-to')));
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarousel[0].scrollIntoView(scrollOptions);
+    });
+
+    // Auto-fade gallery controls
+    const galleryCarouselContainer = $('#gallery-carousel-container');
+    const galleryControls = $('#gallery-controls,#gallery-options');
+    const unfocus = function() {
+        galleryControls.fadeOut();
+    };
+    const debouncedUnfocus = debounce(unfocus, 5000);
+    $('#gallery-carousel').on('mousemove', function(e) {
+        galleryControls.fadeIn();
+        debouncedUnfocus();
+    });
+    galleryControls.on('mouseenter', function(e) {
+        galleryControls.fadeIn();
+        debouncedUnfocus(true);
+    });
+    galleryControls.on('mouseleave', function(e) {
+        galleryControls.fadeIn();
+        debouncedUnfocus();
     });
 
     // Gallery controls
+    const allIndexes = $('.gallery-index-link');
     let getIndex = function(offset) {
         // Get the current index
-        let allIndexes = $('.gallery-index-link');
         let currentIndex = allIndexes.index($('.gallery-index-link.selected'));
         let targetIndex = (currentIndex + offset + allIndexes.length) % allIndexes.length;
-        $(galleryCarouselSelector).carousel(parseInt($(allIndexes.get(targetIndex)).data('slide-to')));
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarousel.carousel(parseInt($(allIndexes.get(targetIndex)).data('slide-to')));
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     };
     $('#gallery-control-previous-index').on('click', function(e) {
-        $(galleryCarouselSelector).carousel(getIndex(-1));
+        galleryCarousel.carousel(getIndex(-1));
     });
     $('#gallery-control-previous').on('click', function(e) {
-        $(galleryCarouselSelector).carousel('prev');
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarousel.carousel('prev');
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     });
     $('#gallery-control-play').on('click', function(e) {
-        $('#gallery-carousel-container').addClass(playClass);
-        $(galleryCarouselSelector).carousel('cycle');
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarouselContainer.addClass(playClass);
+        galleryCarousel.carousel('cycle');
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     });
     $('#gallery-control-pause').on('click', function(e) {
-        $('#gallery-carousel-container').removeClass(playClass);
-        $(galleryCarouselSelector).carousel('pause');
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarouselContainer.removeClass(playClass);
+        galleryCarousel.carousel('pause');
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     });
     $('#gallery-control-next').on('click', function(e) {
-        $(galleryCarouselSelector).carousel('next');
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarousel.carousel('next');
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     });
     $('#gallery-control-next-index').on('click', function(e) {
-        $(galleryCarouselSelector).carousel(getIndex(1));
+        galleryCarousel.carousel(getIndex(1));
     });
     $('#gallery-control-full-screen').on('click', function(e) {
         $('body').addClass(fullscreenClass);
-        $('#gallery-carousel-container').addClass('fullscreen');
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarouselContainer.addClass('fullscreen');
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     });
     $('#gallery-control-restore-screen').on('click', function(e) {
         $('body').removeClass(fullscreenClass);
-        $('#gallery-carousel-container').removeClass('fullscreen');
-        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+        galleryCarouselContainer.removeClass('fullscreen');
+        galleryCarousel[0].scrollIntoView(scrollOptions);
     });
 
     // Lazy-loading
@@ -138,17 +178,17 @@ function initGallery() {
         if (img.complete) addImg();
         else img.onload = addImg;
     }
-    let first = $(galleryCarouselSelector).find('div.carousel-item.active');
+    let first = galleryCarousel.find('div.carousel-item.active');
     lazyLoadLoaderImages(first.find('img.gallery-image-loader[data-src]'));
     lazyLoadViewImages(first.find('a.gallery-image-link'));
     lazyLoadLoaderImages(first.next().find('img.gallery-image-loader[data-src]'));
-    $(galleryCarouselSelector).on('slid.bs.carousel', function(ev) {
+    const dl = $('#gallery-control-download');
+    galleryCarousel.on('slid.bs.carousel', function(ev) {
         // Update the index in session storage
         sessionStorage.setItem(sessionStorageKey, ev.to);
         const target = $(ev.relatedTarget);
 
         // Update the download link
-        const dl = $('#gallery-control-download');
         const original = target.find('.gallery-image-link').data('original');
         const dlPrefix = dl.data('download-prefix');
         const dlNumber = original.substring(original.lastIndexOf('-') + 1).replace('.jpg', '');
@@ -173,6 +213,6 @@ function initGallery() {
     // Reload the previous image position
     let sessionTarget = sessionStorage.getItem(sessionStorageKey);
     if (sessionTarget) {
-        $(galleryCarouselSelector).carousel(parseInt(sessionTarget));
+        galleryCarousel.carousel(parseInt(sessionTarget));
     }
 }
