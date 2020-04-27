@@ -1,7 +1,4 @@
-const apiHost = "https://api.miraandjoao.com";
-
 $(function(){
-
     // Navigation
     let initNav = function() {
         $("a[href^='#']").click(function () {
@@ -26,18 +23,19 @@ $(function(){
         const secondsInMinute = 60;
         const secondsInHour = secondsInMinute*60;
         const secondsInDay = secondsInHour*24;
-        const targetDate = moment.tz("2019-10-11 14:00", "Europe/Lisbon").utc();
+        const targetDate = moment.tz('2019-10-11 14:00', 'Europe/Lisbon').utc();
         const localTimezone = moment.tz.guess(true);
         let timer = setInterval(function() {
             let now = moment().tz(localTimezone).utc();
-            if (now < targetDate) {
-                const delta = targetDate.diff(now, 'seconds');
-                //console.log(delta);
+            if (targetDate < now) {
+                const years = now.diff(targetDate, 'years');
+                const delta = now.diff(targetDate.subtract(years, 'years'), 'seconds');
                 const days = Math.floor(delta/secondsInDay);
                 const hours = Math.floor((delta - (days*secondsInDay))/secondsInHour);
                 const minutes = Math.floor((delta - (days*secondsInDay) - (hours*secondsInHour))/secondsInMinute);
                 const seconds = Math.floor(delta - (days*secondsInDay) - (hours*secondsInHour) - (minutes*secondsInMinute));
 
+                $('#countdown-years').html(years);
                 $('#countdown-days').html(days);
                 $('#countdown-hours').html(hours);
                 $('#countdown-minutes').html(minutes);
@@ -45,6 +43,7 @@ $(function(){
             } else {
                 clearInterval(timer);
 
+                $('#countdown-years').html('00');
                 $('#countdown-days').html('00');
                 $('#countdown-hours').html('00');
                 $('#countdown-minutes').html('00');
@@ -58,15 +57,6 @@ $(function(){
     initCountdown();
     initGallery();
 });
-
-function applyTemplate(content, tokens) {
-    for (let prop in tokens) {
-        if (tokens.hasOwnProperty(prop)) {
-            content = content.replace(new RegExp(`<%= ${prop} %>`, "g"), tokens[prop]);
-        }
-    }
-    return content;
-}
 
 function initGallery() {
     const sessionStorageKey = 'galleryIndex';
@@ -185,62 +175,4 @@ function initGallery() {
     if (sessionTarget) {
         $(galleryCarouselSelector).carousel(parseInt(sessionTarget));
     }
-}
-
-// Maps
-function initMaps() {
-    let vilaVita = {lat: 37.101457, lng: -8.380216, placeId: 'ChIJX4iNCUTRGg0RSrvhjFgQ3VE', image: '/img/reception-map-icon.png'};
-    let ourLady = {lat: 37.1254143, lng: -8.3989701, placeId: 'ChIJ0UW4BtXWGg0R2XoubH9KSsk', image: '/img/ceremony-map-icon.png'};
-    let places = [
-        vilaVita,
-        ourLady
-    ];
-    let center = {
-        lat: places.reduce(function(a, b) { return a.lat + b.lat; })/places.length,
-        lng: places.reduce(function(a, b) { return a.lng + b.lng; })/places.length,
-    };
-    let portugalBounds = {
-        north: 42,
-        south: 37,
-        west: -10,
-        east: -5,
-    };
-
-    // Set up map
-    let map = new google.maps.Map($('#googleMap')[0], {
-        center: center,
-        restriction: {
-            latLngBounds: portugalBounds,
-            strictBounds: false,
-        },
-        zoom: 13
-    });
-
-    // Set up markers
-    let vilaVitaMarker = new google.maps.Marker({
-        position: vilaVita,
-        map: map,
-        icon: {
-            url: vilaVita.image,
-            size: new google.maps.Size(32, 32),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(32, 0)
-        }
-    });
-    let ourLadyMarker = new google.maps.Marker({
-        position: ourLady,
-        map: map,
-        icon: {
-            url: ourLady.image,
-            size: new google.maps.Size(32, 32),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(32, 0)
-        }
-    });
-    vilaVitaMarker.addListener('click', function() {
-        window.open("https://www.google.com/maps/search/?api=1&query=Vila+Vita+Parc,+Porches,+Portugal", "_blank");
-    });
-    ourLadyMarker.addListener('click', function() {
-        window.open("https://www.google.com/maps/search/?api=1&query=Church+of+Our+Lady+of+the+Incarnation,+Porches,+Portugal", "_blank");
-    });
 }

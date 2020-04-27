@@ -31,11 +31,13 @@
     }
   },
   "countdown": {
-    "countingDown": "До нашей свадьбы осталось...",
+    "countingDown1": "Прошло",
+    "years": "года",
     "days": "дней",
     "hours": "часов",
     "minutes": "минут",
-    "seconds": "секунд"
+    "seconds": "секунд",
+    "countingDown2": "с нашей свадьбы!"
   },
   "wedding": {
     "title": "Детали Свадьбы",
@@ -185,6 +187,7 @@
   "areGettingMarried" : "женятся",
   "saveTheDate": "Дата свадьбы",
   "weddingDate": "11 Oктября 2019",
+  "weddingDatePlace": "11 Oкт 2019 • Португалия",
   "abbrMonday": "П",
   "abbrTuesday": "В",
   "abbrWednesday": "С",

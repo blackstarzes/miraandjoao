@@ -110,7 +110,6 @@ a.round-icon {
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
-  background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -122,6 +121,12 @@ a.round-icon {
   &#joaoFormal {
     background-image: url(/img/joao-formal.jpg);
   }
+}
+.cover-col-center {
+  background-position: center;
+}
+.cover-col-top {
+  background-position: top;
 }
 
 /*
@@ -216,7 +221,7 @@ section {
   padding-bottom: unset;
   border-radius: unset;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
   background-image: url(/img/main-image.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -346,6 +351,7 @@ section {
  */
 #couple {
   margin-top: unset;
+  margin-bottom: 74px;
 
   .couple-content {
     background-color: $offwhite;
@@ -505,19 +511,23 @@ section {
     #gallery-controls {
       margin-top: -70vh;
 
-      #gallery-control-full-screen {
-        display: unset;
-      }
-
-      #gallery-control-restore-screen {
-        display: none;
-      }
-
       #gallery-control-play {
         display: unset;
       }
 
       #gallery-control-pause {
+        display: none;
+      }
+    }
+
+    #gallery-options {
+      margin-top: -38px;
+
+      #gallery-control-full-screen {
+        display: unset;
+      }
+
+      #gallery-control-restore-screen {
         display: none;
       }
     }
@@ -531,13 +541,15 @@ section {
         margin-top: -5px !important;
 
         .gallery-image-container {
-          height: 90vh !important;
+          height: 95vh !important;
         }
       }
 
       #gallery-controls {
-        margin-top: -90vh !important;
+        margin-top: -95vh !important;
+      }
 
+      #gallery-options {
         #gallery-control-full-screen {
           display: none !important;
         }
@@ -545,6 +557,10 @@ section {
         #gallery-control-restore-screen {
           display: unset !important;
         }
+      }
+
+      #gallery-index-links-container {
+        display: none;
       }
     }
 

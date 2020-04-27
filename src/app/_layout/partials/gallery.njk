@@ -50,6 +50,10 @@
                 <button id="gallery-control-next-index" type="button" class="btn btn-secondary">
                     <i class="fas fa-fast-forward"></i>
                 </button>
+            </div>
+        </div>
+        <div id="gallery-options" class="btn-toolbar float-right" role="toolbar">
+            <div class="btn-group" role="group">
                 <a id="gallery-control-download" type="button" class="btn btn-secondary" data-download-prefix="<%= gallery.controls.downloadPrefix %>">
                     <i class="fas fa-download"></i>
                 </a>
@@ -61,7 +65,7 @@
                 </button>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div id="gallery-index-links-container" class="row justify-content-center">
             {% for index in galleryIndex %}
             <div class="col-xl-1 col-sm-2 col-4">
                 <a class="gallery-index-link {{'selected' if loop.first}}" data-category="<%= gallery.{{index.nameI18nKey}} %>" data-target="#gallery-carousel" data-slide-to="{{index.index}}">

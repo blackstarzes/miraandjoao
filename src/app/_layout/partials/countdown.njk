@@ -5,11 +5,21 @@
                 <div class="row">
                     <div class="col-12 countdown-message">
                         <p class="calligraphy">
-                            <%= countdown.countingDown %>
+                            <%= countdown.countingDown1 %>
                         </p>
                     </div>
                 </div>
                 <div class="row digital justify-content-center">
+                    <div class="col-md-2 col-sm-3 col-6">
+                        <div class="countdown-element">
+                            <p id="countdown-years" class="countdown-number">
+                                --
+                            </p>
+                            <p class="countdown-unit">
+                                <%= countdown.years %>
+                            </p>
+                        </div>
+                    </div>
                     <div class="col-md-2 col-sm-3 col-6">
                         <div class="countdown-element">
                             <p id="countdown-days" class="countdown-number">
@@ -49,6 +59,13 @@
                                 <%= countdown.seconds %>
                             </p>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 countdown-message">
+                        <p class="calligraphy">
+                            <%= countdown.countingDown2 %>
+                        </p>
                     </div>
                 </div>
             </div>

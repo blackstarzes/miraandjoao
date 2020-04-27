@@ -31,11 +31,13 @@
     }
   },
   "countdown": {
-    "countingDown": "We are counting down the days...",
+    "countingDown1": "It has been",
+    "years": "years",
     "days": "days",
     "hours": "hours",
     "minutes": "minutes",
-    "seconds": "seconds"
+    "seconds": "seconds",
+    "countingDown2": "since we got married!"
   },
   "wedding": {
     "title": "Wedding Details",
@@ -185,6 +187,7 @@
   "areGettingMarried" : "are getting married",
   "saveTheDate": "Save the Date",
   "weddingDate": "11 October 2019",
+  "weddingDatePlace": "11 Oct 2019 • Portugal",
   "abbrMonday": "M",
   "abbrTuesday": "T",
   "abbrWednesday": "W",
