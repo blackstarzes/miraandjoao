@@ -4,6 +4,10 @@
 
 {% block preview %}<%= email.reminder.preview %>{% endblock %}
 
+{% block image %}https://miraandjoao.com/img/miraandjoao.jpg{% endblock %}
+
+{% block year %}2019{% endblock %}
+
 {% block content %}
 <tr>
     <td style="background-color: #ffffff;">
@@ -19,7 +23,7 @@
                     <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: auto;">
                         <tr>
                             <td class="button-td button-td-primary" style="border-radius: 4px; background: #880903;">
-                                <a class="button-a button-a-primary" href="https://miraandjoao.com/?utm_source={{source}}&utm_medium=email&utm_campaign={{campaign}}&utm_content=cta&ut={{usertag}}" style="background: #880903; border: 1px solid #880903; font-family: 'Amatic SC', sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px;"><%= email.reminder.cta %></a>
+                                <a class="button-a button-a-primary" href="https://miraandjoao.com/?utm_source=<%= email.tokens.source %>&utm_medium=email&utm_campaign=<%= email.tokens.campaign %>&utm_content=cta&ut=<%= email.tokens.usertag %>" style="background: #880903; border: 1px solid #880903; font-family: 'Amatic SC', sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 13px 17px; color: #ffffff; display: block; border-radius: 4px;"><%= email.reminder.cta %></a>
                             </td>
                         </tr>
                     </table>

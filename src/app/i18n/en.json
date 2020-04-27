@@ -262,6 +262,27 @@
       "weddingDate": "11 October 2019",
       "invitationsToFollow": "We can't wait to see you on our big day"
     },
+    "thankyou": {
+      "title": "Thank You!",
+      "preview": "Thank You! - Mira & Joao's Wedding!",
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "Thank you so much for sharing our wedding celebration with us! It was the best day of our lives, and it would not have been the same without your presence. We are incredibly grateful for your effort to travel, the warm wishes that we received, and the love that we felt from you in the Algarve.",
+      "personalisedmessage": "{{personalisedmessage}}",
+      "ctamessage": "We hope that you enjoy these photos from our special day.",
+      "cta": "Gallery",
+      "where": "Where",
+      "algarvePortugal": "Algarve, Portugal",
+      "when": "When",
+      "weddingDate": "11 October 2019",
+      "withlove": "With love,",
+      "miraandjoaolourenco": "Mira & Joao Lourenco"
+    },
+    "tokens": {
+      "source": "{{source}}",
+      "campaign": "{{campaign}}",
+      "usertag": "{{usertag}}",
+      "tracking": "{{tracking}}"
+    },
     "footer": {
       "visitOurSite": "Visit our site",
       "emailUs": "Email us",

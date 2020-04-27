@@ -262,6 +262,27 @@
       "weddingDate": "11 Oктября 2019",
       "invitationsToFollow": "Мы очень ждём Вас на нашем особенном дне"
     },
+    "thankyou": {
+      "title": "Thank You!",
+      "preview": "Thank You for coming to Mira & Joao's Wedding!",
+      "salutation": "{{salutation}} {{invitednames}},",
+      "message": "Большое спасибо, что в день нашей свадьбы Вы разделили и приумножили нашу радость.  Ваше присутствие сделало этот день самым памятным событием в нашей жизни. Мы очень признательны за ваше усилие приехать в Алгарв, добрые пожелания и любовь, подаренную нам.",
+      "personalisedmessage": "{{personalisedmessage}}",
+      "ctamessage": "Надеемся Вы с удовольствием посмотрите фотографии со свадьбы.",
+      "cta": "Галерея",
+      "where": "Где",
+      "algarvePortugal": "Алгарв, Португалия",
+      "when": "Когда",
+      "weddingDate": "11 Oктября 2019",
+      "withlove": "С любовью,",
+      "miraandjoaolourenco": "Мира и Жоао Лоренсо"
+    },
+    "tokens": {
+      "source": "{{source}}",
+      "campaign": "{{campaign}}",
+      "usertag": "{{usertag}}",
+      "tracking": "{{tracking}}"
+    },
     "footer": {
       "visitOurSite": "Посетите наш сайт",
       "emailUs": "Пишите нам",

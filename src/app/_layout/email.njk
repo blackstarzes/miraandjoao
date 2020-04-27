@@ -150,7 +150,7 @@
         <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: 0 auto;">
             <tr>
                 <td style="background-color: #ffffff;">
-                    <img src="https://miraandjoao.com/img/miraandjoao.jpg" width="600" height="" alt="Mira & Joao" border="0" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto;" class="g-img">
+                    <img src="{% block image %}{% endblock %}" width="600" height="" alt="Mira & Joao" border="0" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto;" class="g-img">
                 </td>
             </tr>
             {% block content %}{% endblock %}
@@ -159,17 +159,17 @@
             <tr>
                 <td style="padding: 20px; font-family: sans-serif; line-height: 15px; text-align: center; color: #FFFFFF;">
                     <p>
-                        <a href="https://miraandjoao.com/?utm_source={{source}}&utm_medium=email&utm_campaign={{campaign}}&utm_content=footer&ut={{usertag}}" target="_blank" style="color: #FFFFFF; font-size: 12px !important; text-decoration:underline;"><%= email.footer.visitOurSite %></a>
+                        <a href="https://miraandjoao.com/?utm_source=<%= email.tokens.source %>&utm_medium=email&utm_campaign=<%= email.tokens.campaign %>&utm_content=footer&ut=<%= email.tokens.usertag %>" target="_blank" style="color: #FFFFFF; font-size: 12px !important; text-decoration:underline;"><%= email.footer.visitOurSite %></a>
                         <span style="font-size: 12px !important;">|</span>
                         <a href="mailto:wedding@miraandjoao.com" target="_blank" style="color: #FFFFFF; font-size: 12px !important; text-decoration:underline;"><%= email.footer.emailUs %></a>
                         <span style="font-size: 12px !important;">|</span>
-                        <a href="https://miraandjoao.com/privacy/?utm_source={{source}}&utm_medium=email&utm_campaign={{campaign}}&utm_content=footer&ut={{usertag}}" target="_blank" style="color: #FFFFFF; font-size: 12px !important; text-decoration:underline;"><%= email.footer.privacyPolicy %></a>
+                        <a href="https://miraandjoao.com/privacy/?utm_source=<%= email.tokens.source %>&utm_medium=email&utm_campaign=<%= email.tokens.campaign %>&utm_content=footer&ut=<%= email.tokens.usertag %>" target="_blank" style="color: #FFFFFF; font-size: 12px !important; text-decoration:underline;"><%= email.footer.privacyPolicy %></a>
                     </p>
                     <p style="margin: 0; font-size: 12px !important; line-height: 12px;">
-                        <span style="font-size: 12px !important;"><%= email.footer.sentBy %> <a href="https://miraandjoao.com/?utm_source={{source}}&utm_medium=email&utm_campaign={{campaign}}&utm_content=sentby&ut={{usertag}}" target="_blank" style="color:#FFFFFF; font-size: 12px !important; text-decoration:underline;">miraandjoao.com</a></span>
+                        <span style="font-size: 12px !important;"><%= email.footer.sentBy %> <a href="https://miraandjoao.com/?utm_source=<%= email.tokens.source %>&utm_medium=email&utm_campaign=<%= email.tokens.campaign %>&utm_content=sentby&ut=<%= email.tokens.usertag %>" target="_blank" style="color:#FFFFFF; font-size: 12px !important; text-decoration:underline;">miraandjoao.com</a></span>
                     </p>
                     <p style="margin: 0; font-size: 12px !important; line-height: 12px;">
-                        <span style="font-size: 12px !important;">© Joao Lourenco 2019</span>
+                        <span style="font-size: 12px !important;">© Joao Lourenco {% block year %}{% endblock %}</span>
                     </p>
                 </td>
             </tr>
@@ -186,6 +186,6 @@
     </table>
     <![endif]-->
 </center>
-<img src="{{tracking}}" width="1" height="1"/>
+<img src="<%= email.tokens.tracking %>" width="1" height="1"/>
 </body>
 </html>
