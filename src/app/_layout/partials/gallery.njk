@@ -2,15 +2,15 @@
     <div class="section-heading">
         <h1><%= nav.gallery %></h1>
     </div>
-    <div class="container">
-        <div id="gallery-carousel" class="carousel slide" data-ride="carousel" data-touch="true">
+    <div id="gallery-carousel-container" class="container">
+        <div id="gallery-carousel" class="carousel slide" data-pause="false">
             <div class="carousel-inner">
                 {% for category in galleryData %}
                 {% set outer_loop = loop %}
                 {% for image in category.images %}
-                <div class="carousel-item img-fluid {{'active' if outer_loop.first and loop.first}}" data-category="{{category.nameI18nKey}}">
+                <div class="carousel-item img-fluid {{'active' if outer_loop.first and loop.first}}" data-category="<%= gallery.{{category.nameI18nKey}} %>">
                     <div class="gallery-image-container">
-                        <a class="gallery-image-link" href="{{image.original}}">
+                        <a class="gallery-image-link" data-original="{{image.original}}">
                             <img class="gallery-image gallery-image-loader"
                                  data-loader="{{image.loader}}"
                                  data-src="{{image.view}}"
@@ -30,11 +30,42 @@
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
+        <div id="gallery-controls" class="btn-toolbar float-right" role="toolbar">
+            <div class="btn-group" role="group">
+                <button id="gallery-control-previous-index" type="button" class="btn btn-secondary">
+                    <i class="fas fa-fast-backward"></i>
+                </button>
+                <button id="gallery-control-previous" type="button" class="btn btn-secondary">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button id="gallery-control-play" type="button" class="btn btn-secondary">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="gallery-control-pause" type="button" class="btn btn-secondary">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button id="gallery-control-next" type="button" class="btn btn-secondary">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <button id="gallery-control-next-index" type="button" class="btn btn-secondary">
+                    <i class="fas fa-fast-forward"></i>
+                </button>
+                <a id="gallery-control-download" type="button" class="btn btn-secondary" data-download-prefix="<%= gallery.controls.downloadPrefix %>">
+                    <i class="fas fa-download"></i>
+                </a>
+                <button id="gallery-control-full-screen" type="button" class="btn btn-secondary">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button id="gallery-control-restore-screen" type="button" class="btn btn-secondary">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                </button>
+            </div>
+        </div>
         <div class="row justify-content-center">
             {% for index in galleryIndex %}
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4">
-                <a href="#gallery-carousel" class="gallery-index-link {{'selected' if loop.first}}" data-category="{{index.nameI18nKey}}" data-target="#gallery-carousel" data-slide-to="{{index.index}}">
-                    <div class="gallery-index-link-image {{index.nameI18nKey}}">
+            <div class="col-xl-1 col-sm-2 col-4">
+                <a class="gallery-index-link {{'selected' if loop.first}}" data-category="<%= gallery.{{index.nameI18nKey}} %>" data-target="#gallery-carousel" data-slide-to="{{index.index}}">
+                    <div class="gallery-index-link-image">
                         {% switch index.nameI18nKey %}
                         {% case 'gettingready' %}
                         {% set thumb_src = 'Portugal-Wedding-Photography-Mira-Joao-0128' %}

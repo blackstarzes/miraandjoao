@@ -9,6 +9,15 @@ body, html {
 
 body {
   margin-top: 58px;
+
+  &.gallery-fullscreen {
+    margin-top: unset;
+    overflow: hidden;
+
+    nav {
+      display: none;
+    }
+  }
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -464,67 +473,125 @@ section {
   margin-bottom: 74px;
   color: $offwhite;
 
-  #gallery-carousel {
-    padding-top: 79px;
-    margin-top: -79px;
-    padding-bottom: 10px;
+  #gallery-carousel-container {
+    #gallery-carousel {
+      padding-top: 79px;
+      margin-top: -79px;
 
-    .gallery-image-container {
-      display: block !important;
-      height: 70vh;
-      width: 100% !important;
-      background-color: rgba($darkgrey, 0.5);
+      .gallery-image-container {
+        display: block !important;
+        height: 70vh;
+        width: 100% !important;
+        background-color: rgba($darkgrey, 0.5);
 
-      .gallery-image {
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-        will-change: opacity;
+        .gallery-image {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+          will-change: opacity;
 
-        &.gallery-image-loader {
-          //filter: blur(1.5vw);
-          //transform: scale(1.05);
-        }
+          &.gallery-image-loader {
+            //filter: blur(1.5vw);
+            //transform: scale(1.05);
+          }
 
-        &.gallery-image-view.reveal {
-          animation: reveal 1s ease-out;
+          &.gallery-image-view.reveal {
+            animation: reveal 1s ease-out;
+          }
         }
       }
     }
-  }
 
-  .gallery-index-link {
-    color: $offwhite;
-    width: 100%;
-    display: inline-block;
-    margin-bottom: 10px;
-    opacity: 0.5;
+    #gallery-controls {
+      margin-top: -70vh;
 
-    &:hover, &.selected {
-      color: $white;
-      text-decoration: none;
-      opacity: 1;
+      #gallery-control-full-screen {
+        display: unset;
+      }
+
+      #gallery-control-restore-screen {
+        display: none;
+      }
+
+      #gallery-control-play {
+        display: unset;
+      }
+
+      #gallery-control-pause {
+        display: none;
+      }
     }
 
-    .gallery-index-link-image {
-      background-repeat: no-repeat;
-      background-position: center;
-      -webkit-background-size: contain;
-      -moz-background-size: contain;
-      -o-background-size: contain;
-      background-size: contain;
+    &.fullscreen {
+      max-width: 100% !important;
+      height: 100vh !important;
+
+      #gallery-carousel {
+        padding-top: 5px !important;
+        margin-top: -5px !important;
+
+        .gallery-image-container {
+          height: 90vh !important;
+        }
+      }
+
+      #gallery-controls {
+        margin-top: -90vh !important;
+
+        #gallery-control-full-screen {
+          display: none !important;
+        }
+
+        #gallery-control-restore-screen {
+          display: unset !important;
+        }
+      }
+    }
+
+    &.play {
+      #gallery-control-play {
+        display: none !important;
+      }
+
+      #gallery-control-pause {
+        display: unset !important;
+      }
+    }
+
+    .gallery-index-link {
+      color: $offwhite;
       width: 100%;
-      height: 10vh;
+      display: inline-block;
+      margin-bottom: 10px;
+      opacity: 0.5;
 
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+      &:hover, &.selected {
+        color: $white;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 1;
       }
-    }
 
-    .gallery-index-link-text {
-      text-align: center;
+      .gallery-index-link-image {
+        background-repeat: no-repeat;
+        background-position: center;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain;
+        width: 100%;
+        height: 10vh;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .gallery-index-link-text {
+        text-align: center;
+      }
     }
   }
 }

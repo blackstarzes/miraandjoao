@@ -70,11 +70,60 @@ function applyTemplate(content, tokens) {
 
 function initGallery() {
     const sessionStorageKey = 'galleryIndex';
+    const galleryCarouselSelector = '#gallery-carousel';
+    const scrollOptions = { behavior: 'smooth' };
+    const playClass = 'play';
+    const fullscreenClass = 'gallery-fullscreen';
 
     // Gallery index links
     $('.gallery-index-link').on('click', function(e) {
         let carousel = $(e.target).data('target');
         $(carousel).carousel(parseInt($(e.target).data('slide-to')));
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    });
+
+    // Gallery controls
+    let getIndex = function(offset) {
+        // Get the current index
+        let allIndexes = $('.gallery-index-link');
+        let currentIndex = allIndexes.index($('.gallery-index-link.selected'));
+        let targetIndex = (currentIndex + offset + allIndexes.length) % allIndexes.length;
+        $(galleryCarouselSelector).carousel(parseInt($(allIndexes.get(targetIndex)).data('slide-to')));
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    };
+    $('#gallery-control-previous-index').on('click', function(e) {
+        $(galleryCarouselSelector).carousel(getIndex(-1));
+    });
+    $('#gallery-control-previous').on('click', function(e) {
+        $(galleryCarouselSelector).carousel('prev');
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    });
+    $('#gallery-control-play').on('click', function(e) {
+        $('#gallery-carousel-container').addClass(playClass);
+        $(galleryCarouselSelector).carousel('cycle');
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    });
+    $('#gallery-control-pause').on('click', function(e) {
+        $('#gallery-carousel-container').removeClass(playClass);
+        $(galleryCarouselSelector).carousel('pause');
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    });
+    $('#gallery-control-next').on('click', function(e) {
+        $(galleryCarouselSelector).carousel('next');
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    });
+    $('#gallery-control-next-index').on('click', function(e) {
+        $(galleryCarouselSelector).carousel(getIndex(1));
+    });
+    $('#gallery-control-full-screen').on('click', function(e) {
+        $('body').addClass(fullscreenClass);
+        $('#gallery-carousel-container').addClass('fullscreen');
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
+    });
+    $('#gallery-control-restore-screen').on('click', function(e) {
+        $('body').removeClass(fullscreenClass);
+        $('#gallery-carousel-container').removeClass('fullscreen');
+        $(galleryCarouselSelector)[0].scrollIntoView(scrollOptions);
     });
 
     // Lazy-loading
@@ -99,19 +148,28 @@ function initGallery() {
         if (img.complete) addImg();
         else img.onload = addImg;
     }
-    let first = $('#gallery-carousel').find('div.carousel-item.active');
+    let first = $(galleryCarouselSelector).find('div.carousel-item.active');
     lazyLoadLoaderImages(first.find('img.gallery-image-loader[data-src]'));
     lazyLoadViewImages(first.find('a.gallery-image-link'));
     lazyLoadLoaderImages(first.next().find('img.gallery-image-loader[data-src]'));
-    $('#gallery-carousel').on('slid.bs.carousel', function(ev) {
+    $(galleryCarouselSelector).on('slid.bs.carousel', function(ev) {
         // Update the index in session storage
         sessionStorage.setItem(sessionStorageKey, ev.to);
         const target = $(ev.relatedTarget);
 
+        // Update the download link
+        const dl = $('#gallery-control-download');
+        const original = target.find('.gallery-image-link').data('original');
+        const dlPrefix = dl.data('download-prefix');
+        const dlNumber = original.substring(original.lastIndexOf('-') + 1).replace('.jpg', '');
+        const dlCategory = target.data('category').replace(' ', '-');
+        dl.attr('href', original);
+        dl.attr('download', `${dlPrefix}-${dlNumber}-${dlCategory}.jpg`);
+
         // Update the current gallery index
-        let newCategory = target.attr('data-category');
+        let newCategory = target.data('category');
         let currentIndexElement = $('.gallery-index-link.selected');
-        if (currentIndexElement.attr('data-category') !== newCategory) {
+        if (currentIndexElement.data('category') !== newCategory) {
             currentIndexElement.removeClass('selected');
             $('.gallery-index-link[data-category="' + newCategory + '"]').addClass('selected');
         }
@@ -125,7 +183,7 @@ function initGallery() {
     // Reload the previous image position
     let sessionTarget = sessionStorage.getItem(sessionStorageKey);
     if (sessionTarget) {
-        $('#gallery-carousel').carousel(parseInt(sessionTarget));
+        $(galleryCarouselSelector).carousel(parseInt(sessionTarget));
     }
 }
 

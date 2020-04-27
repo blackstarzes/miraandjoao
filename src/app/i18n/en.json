@@ -96,7 +96,10 @@
     "couple": "Couple",
     "cocktail": "Cocktail",
     "dinner": "Dinner",
-    "party": "Party"
+    "party": "Party",
+    "controls": {
+      "downloadPrefix": "Mira-Joao-Wedding"
+    }
   },
   "rsvp": {
     "title": "Join Us",
