@@ -409,6 +409,17 @@ function images() {
         .pipe(gulp.dest(buildAppImgFolder));
 }
 
+function watchEmails() {
+    return gulp.watch([
+        appFolder + "/_layout/*.*",
+        appFolder + "/_layout/**/*.*",
+        appFolder + "/email/*.*",
+        appFolder + "/email/**/*.*",
+        appFolder + "/i18n/*.*",
+        appFolder + "/i18n/**/*.*"
+    ], gulp.series("buildEmails"));
+}
+
 function watch() {
     return gulp.watch([
         appFolder + "/*.*",
@@ -416,6 +427,15 @@ function watch() {
     ] , {
         debounceDelay: 2000
     }, gulp.series("build"));
+}
+
+function serveEmails() {
+    return browserSync.init({
+        server: "build/email",
+        open: false,
+        port: 3010,
+        files: ["build/email/*.*", "build/email/**/*.*"]
+    })
 }
 
 function serve() {
@@ -459,6 +479,21 @@ gulp.task("galleryOptimisation", gulp.series(
     "galleryLoaders",
     "galleryThumbnails",
     "galleryViews"
+));
+
+gulp.task("buildEmails", gulp.series(
+    "pages",
+    "email2txt",
+    "emailTemplates",
+    "emailTokens"
+));
+gulp.task("watchEmails", watchEmails);
+gulp.task("serveEmails", gulp.series(
+   "buildEmails",
+   gulp.parallel(
+       "watchEmails",
+       serveEmails
+   )
 ));
 
 gulp.task("build", gulp.series(
