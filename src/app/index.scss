@@ -518,10 +518,6 @@ section {
       #gallery-control-pause {
         display: none;
       }
-    }
-
-    #gallery-options {
-      margin-top: -38px;
 
       #gallery-control-full-screen {
         display: unset;
@@ -547,9 +543,7 @@ section {
 
       #gallery-controls {
         margin-top: -95vh !important;
-      }
 
-      #gallery-options {
         #gallery-control-full-screen {
           display: none !important;
         }

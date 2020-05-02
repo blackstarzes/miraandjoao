@@ -268,13 +268,19 @@ function email2txt() {
         .pipe(html2txt({
             wordwrap: false,
             ignoreImage: true,
-            baseElement: ["div.email-container"],
+            baseElement: ["table.email-container"],
             format: {
                 heading: function(elem, fn, options) {
                     var h = fn(elem.children, options);
                     return h + "\n\n";
                 }
             }
+        }))
+        .pipe(modifyFile(function(content) {
+            while (content.indexOf("\n\n\n\n") >= 0) {
+                content = content.replace("\n\n\n\n", "\n\n");
+            }
+            return content;
         }))
         .pipe(gulp.dest(buildEmailFolder));
 }
