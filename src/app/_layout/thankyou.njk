@@ -1,0 +1,39 @@
+{% extends "email.njk" %}
+
+{% block title %}<%= email.thankyou.title %>{% endblock %}
+
+{% block image %}https://miraandjoao.com/img/thankyou.jpg{% endblock %}
+
+{% block year %}2020{% endblock %}
+
+{% block content %}
+<tr>
+    <td style="background-color: #ffffff;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td style="padding: 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
+                    <h1 style="margin: 0 0 10px 0; font-family: 'Great Vibes', 'Marck Script', cursive, sans-serif; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;"><%= email.thankyou.salutation %></h1>
+                    <p style="margin: 0; font-family: sans-serif;">{% block message %}{% endblock %}</p>
+                    <p></p>
+                    <p style="margin: 0; font-family: sans-serif;"><%= email.thankyou.personalisedmessage %></p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+{% block gallery %}{% endblock %}
+
+<tr>
+    <td style="background-color: #ffffff;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td align="center" style="padding: 20px; font-family: 'Great Vibes', 'Marck Script', cursive, sans-serif; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;">
+                    <h1 style="margin: 0 0 10px 0; font-family: 'Great Vibes', 'Marck Script', cursive, sans-serif; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;"><%= email.thankyou.withlove %></h1>
+                    <h1 style="margin: 0 0 10px 0; font-family: 'Great Vibes', 'Marck Script', cursive, sans-serif; font-size: 25px; line-height: 30px; color: #333333; font-weight: normal;"><%= email.thankyou.miraandjoaolourenco %></h1>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+{% endblock %}

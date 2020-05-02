@@ -264,12 +264,17 @@
     },
     "thankyou": {
       "title": "Thank You!",
-      "preview": "Thank You! - Mira & Joao's Wedding!",
       "salutation": "{{salutation}} {{invitednames}},",
-      "message": "Thank you so much for sharing our wedding celebration with us! It was the best day of our lives, and it would not have been the same without your presence. We are incredibly grateful for your effort to travel, the warm wishes that we received, and the love that we felt from you in the Algarve.",
+      "messages": {
+        "attendedpreview": "Thank you for attending Mira & Joao's wedding!",
+        "attended": "Thank you so much for sharing our wedding celebration with us! It was the best day of our lives, and it would not have been the same without your presence. We are incredibly grateful for your effort to travel, the warm wishes that we received, and the love that we felt from you in the Algarve.",
+        "didnotattendpreview": "We missed you at our wedding.",
+        "didnotattend": "We missed you at our wedding celebration! It was the best day of our lives, and wish that you could have been there to celebrate with us. We are incredibly grateful for the warm wishes that we received, and the love that we felt from you from afar."
+      },
       "personalisedmessage": "{{personalisedmessage}}",
       "ctamessage": "We hope that you enjoy these photos from our special day.",
       "cta": "Gallery",
+      "favouritesmessage": "Here are some of our favourites:",
       "where": "Where",
       "algarvePortugal": "Algarve, Portugal",
       "when": "When",

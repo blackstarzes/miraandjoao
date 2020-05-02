@@ -281,7 +281,7 @@ function email2txt() {
 
 function emailTemplates() {
     return gulp.src([
-        buildEmailFolder + "/**/*.(html|txt)"
+        buildEmailFolder + "/**/*.*"
     ])
         .pipe(groupAggregate({
             group: function(file) {
